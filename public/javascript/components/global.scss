@@ -1,0 +1,51 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.no-padding {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+input:focus {
+  outline:0;
+}
+
+.btn-default {
+    margin: 8px 10px;
+    background: #218ae3;
+    color: #fff;
+    border: 0;
+    border-bottom: 2px solid #1c71b9;
+}
+
+.btn-lg {
+    padding: 6px 28px;
+}
+
+.btn-success {
+    margin: 8px 10px;
+    background: #4eb962;
+    border-bottom: 2px solid #44a156;
+    border:0;
+    color:#fff;
+}
+
+.btn-default.disabled {
+    background:#ececec;
+    color:#bcbbbb;
+}

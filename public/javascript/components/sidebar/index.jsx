@@ -1,4 +1,6 @@
 var React = require('react');
+var isotopeActions = require('../../actions/isotopeActions');
+var isotopeStore = require('../../stores/isotopeStore');
 
 if (typeof window !== "undefined") {
     require('./style.scss');

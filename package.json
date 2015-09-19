@@ -18,7 +18,8 @@
     "morgan": "~1.5.1",
     "node-jsx": "^0.13.3",
     "react": "^0.13.3",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "superagent": "^1.4.0"
   },
   "devDependencies": {
     "alt": "^0.17.3",

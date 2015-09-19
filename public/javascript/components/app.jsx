@@ -1,12 +1,14 @@
 var React = require("react");
+var Sidebar = require('./sidebar/index')
 
 var App = React.createClass({
-    click(event) {
-        console.log('clicked');
-    },
     render() {
         return (
-            <div onClick={this.click}>this is serverrrrralexxxxalalalala side man and again</div>
+            <div className="container-fluid">
+                <div className="row">
+                    <Sidebar/>
+                </div>
+            </div>
         );
     }
 });

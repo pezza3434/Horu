@@ -1,3 +1,7 @@
+if (typeof window !== "undefined") {
+    require('./style.scss');
+}
+
 var React = require('react');
 var isotopeActions = require('../../actions/isotopeActions');
 var isotopeStore = require('../../stores/isotopeStore');
@@ -16,8 +20,8 @@ module.exports = React.createClass({
     _renderFaces() {
         var faces = '';
         if(this.state && this.state.isotopeImages) {
-            var faces = this.state.isotopeImages.map(face => {
-                return <Face id={face.id} path={face.path} userId={face.user_id} rated={face.rated} age={face.age}></Face>
+            var faces = this.state.isotopeImages.map((face, index) => {
+                return <Face key={index} id={face.id} path={face.path} userId={face.user_id} rated={face.rated} age={face.age}></Face>
             });
         }
         return faces;

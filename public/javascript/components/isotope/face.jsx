@@ -1,38 +1,78 @@
 var React = require('react');
+var classNames = require('classnames');
+var isotopeActions = require('../../actions/isotopeActions');
 
 module.exports = React.createClass({
+    getInitialState() {
+        return {
+            containerClicked: false,
+            displayForm: false,
+            formSubmitted: false
+        }
+    },
+    _clickedContainer() {
+        this.setState({containerClicked: true});
+        React.findDOMNode(this.refs.faceInput).focus();
+    },
+    _onMouseLeave() {
+        this.setState({containerClicked:false, displayForm:false});
+    },
+    _onMouseEnter() {
+        this.setState({displayForm:true});
+    },
+    _onFormSubmit(e) {
+        e.preventDefault();
+        var ageGuessed = this.refs.faceInput.getDOMNode().value;
+
+        var submissionData = {
+            imageRatedId: this.props.id,
+            rating: ageGuessed
+        }
+
+        isotopeActions.submitAge(submissionData);
+
+        this.setState({formSubmitted: true, ageGuessed: ageGuessed});
+    },
+    _formJSX() {
+        if (this.state.displayForm && !this.state.formSubmitted) {
+            return (
+                <form onSubmit={this._onFormSubmit} ref="faceForm">
+                         <div className="box__container">
+                             <input ref="faceInput" className="" id="input-1" maxLength="2" type="text" autoComplete="off"/>
+                             <label className="" htmlFor="input-1">
+                                 <span className="">How old am I?</span>
+                             </label>
+                        </div>
+                </form>
+            );
+        }
+    },
+    _resultsJSX() {
+        if(this.state.formSubmitted) {
+            return (
+                <div className="box__container-guess">
+                    <div className="box__container-guess__guess">You guessed:</div>
+                    <div className="box__container-guess__guess-number">{this.state.ageGuessed}</div>
+                    <div className="box__container-guess__real-age">Real Age:</div>
+                    <div className="box__container-guess__real-age-number">{this.props.age}</div>
+                </div>
+            );
+        }
+    },
     render() {
         var url = 'http://generation.com:3000/static' + this.props.path;
+        var containerClassNames = classNames('col-xs-12', 'col-sm-6', 'col-md-4', 'grid-item', 'no-padding', {clicked: this.state.containerClicked});
+        var boxClassNames = classNames('box', {submitted: this.state.formSubmitted}, {hide: !this.state.displayForm && !this.state.formSubmitted});
         return (
-            <div>
-                <img class="grid-item__image img-responsive" src={url} />
-
+            <div className={containerClassNames} onClick={this._clickedContainer} onMouseLeave={this._onMouseLeave} onMouseEnter={this._onMouseEnter}>
+                <img className="grid-item__image img-responsive" src={url} />
+                <div className={boxClassNames}>
+                    <div className="grid-item__text__input">
+                        {this._formJSX()}
+                    </div>
+                    {this._resultsJSX()}
+                </div>
             </div>
         )
     }
 });
-
-
-// <div class="grid-item__text">
-//     <div class="grid-item__text__main" ng-show="show && !submitted && !image.rated"></div>
-//     <div class="grid-item__text__input">
-//         <form ng-show="show && image.rated === false" ng-submit="submitAge()">
-//             <div class="box" ng-class="{submitted: submitted && image.rated === false}">
-//                 <div class="box__container">
-//                     <input ng-model="age" class="" id="input-1" maxlength=2 type="text">
-//                     <label class="" for="input-1">
-//                         <span class="">How old am I?</span>
-//                     </label>
-//                     <div class="box__container__guess" ng-show="submitted && image.rated === false" >You guessed:</div>
-//                     <div class="box__container__guess-number" ng-show="submitted && image.rated === false">{{age}}</div>
-//                     <div class="box__container__real-age" ng-show="submitted && image.rated === false">Real Age:</div>
-//                     <div class="box__container__real-age-number" ng-show="submitted && image.rated === false">{{image.age}}</div>
-//                 </div>
-//             </div>
-//         </form>
-//     </div>
-//     <div class="grid-item__text__rated" ng-show="image.rated === true">
-//         You have rated this image previously
-//     </div>
-// </div>
-// <div class="grid-item__overlay" ng-show="show || submitted || image.rated === true"></div>

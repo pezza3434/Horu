@@ -12,6 +12,20 @@ var actions = {
     },
     getImagesSuccess(imagesResponse) {
         this.dispatch(imagesResponse);
+    },
+    submitAge(postData) {
+
+        request
+        .post('http://generation.com:3000/ratings')
+        .send(postData)
+        .end((err,res) => {
+            this.submitAgeSuccess(res);
+        });
+
+        this.dispatch();
+    },
+    submitAgeSuccess(ratingsResponse) {
+        this.dispatch(ratingsResponse);
     }
 
 };

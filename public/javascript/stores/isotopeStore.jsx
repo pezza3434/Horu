@@ -1,24 +1,32 @@
 var alt = require('../alt');
 var isotopeActions = require('../actions/isotopeActions');
 
-var testStore = function () {
+var isotopeStore = function () {
 
     this.isotopeImages = [];
     this.apiCallInProgress = false;
 
     this.bindListeners({
-        handleApiCallStatus: isotopeActions.getImages,
-        handleIsotopeImages: isotopeActions.getImagesSuccess
+        getImages: isotopeActions.getImages,
+        getImagesSuccess: isotopeActions.getImagesSuccess,
     });
 }
 
-testStore.prototype.handleIsotopeImages = function (response) {
+isotopeStore.prototype.getImages = function () {
+    this.apiCallInProgress = true;
+}
+
+isotopeStore.prototype.getImagesSuccess = function (response) {
     this.isotopeImages = response.body;
     this.apiCallInProgress = false;
 }
 
-testStore.prototype.handleApiCallStatus = function () {
+isotopeStore.prototype.submitAge = function () {
     this.apiCallInProgress = true;
 }
 
-module.exports = alt.createStore(testStore, 'TestStore');
+isotopeStore.prototype.submitAgeSuccess = function () {
+    this.apiCallInProgress = false;
+}
+
+module.exports = alt.createStore(isotopeStore, 'TestStore');

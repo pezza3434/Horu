@@ -1,0 +1,214 @@
+.img-responsive {
+    width: 100%;
+}
+
+.grid-item {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.box {
+    position: absolute;
+    background: #218ae3;
+    width: 100%;
+    bottom: 0;
+    height: 38px;
+    transition: all 0.2s ease-in;
+    color: #fff;
+    text-align: center;
+
+    label {
+        transition: all 0.2s ease-in;
+        position: absolute;
+        color: #000;
+        top: 0;
+        left: 0;
+        color: #fff;
+        top: 8px;
+        left: 22px;
+    }
+
+    input {
+        transition: all 0.2s ease-in;
+        color: #fff;
+        background: #218ae3;
+        border: 0;
+        text-align: center;
+        padding-top: 9px;
+    }
+}
+
+.box.submitted {
+    height:228px;
+    label {
+        opacity:0;
+    }
+    input {
+        opacity:0;
+    }
+}
+
+.box__container {
+    text-align: center;
+    display: inline-block;
+    position: relative;
+}
+
+.grid-item:hover .box {
+    bottom: 0;
+}
+
+.grid-item.clicked .box {
+    label {
+        position: absolute;
+        top: -30px;
+    }
+}
+
+.box.active {
+    bottom: 0;
+}
+
+.grid-item__image {
+
+}
+
+.grid-item__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+    background: #000;
+    opacity: 0.3;
+}
+
+.grid-item__overlay.ng-hide {
+    opacity: 0;
+}
+
+.grid-item__text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 11;
+    padding-top: 180px;
+}
+
+.grid-item__text__submission {
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+}
+
+.grid-item__text__rated {
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+.grid-item__text__input {
+
+    // input[type="text"] {
+    //     border: 0;
+    //     padding: 18px 0;
+    //     border-radius: 1px;
+    //     width: 70px;
+    //     font-size: 50px;
+    //     text-align: center;
+    //     font-weight: lighter;
+    //     background: transparent;
+    //     color: #fff;
+    // }
+    ::-webkit-input-placeholder {
+        color: #e4e1e1;
+    }
+    :-moz-placeholder {
+        /* Firefox 18- */
+        color: #e4e1e1;
+    }
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #e4e1e1;
+    }
+    :-ms-input-placeholder {
+        color: #e4e1e1;
+    }
+    input:focus::-webkit-input-placeholder {
+        color: transparent;
+    }
+    input:focus:-moz-placeholder {
+        color: transparent;
+    }
+    /* FF 4-18 */
+    input:focus::-moz-placeholder {
+        color: transparent;
+    }
+    /* FF 19+ */
+    input:focus:-ms-input-placeholder {
+        color: transparent;
+    }
+    /* IE 10+ */
+}
+
+.grid-item__text__main {
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+.grid-item__text:hover {
+    display: block;
+}
+
+.box__container-guess {
+    padding-top:15px;
+}
+
+.box__container-guess__guess,
+.box__container-guess__guess-number,
+.box__container-guess__real-age,
+.box__container-guess__real-age-number {
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.box__container-guess__guess-number{
+    font-weight:600;
+
+}
+
+.box__container-guess__real-age-number {
+    font-weight:600;
+}
+
+.hide {
+    display:none;
+}
+
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .img-responsive {
+        width: auto;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}

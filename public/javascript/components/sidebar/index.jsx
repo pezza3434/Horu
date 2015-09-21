@@ -1,6 +1,7 @@
 var React = require('react');
 var isotopeActions = require('../../actions/isotopeActions');
 var isotopeStore = require('../../stores/isotopeStore');
+var LoginButton = require('../login-button/index');
 
 if (typeof window !== "undefined") {
     require('./style.scss');
@@ -15,7 +16,7 @@ module.exports = React.createClass({
                     </div>
                     <div className="col-sm-12 no-padding user-info">
                         <div className="user-info__login">
-                            <span className="user-info__login"><a data-toggle="modal" data-target="#login-modal">Login |</a></span>
+                            <span className="user-info__login">here<LoginButton /></span>
                             <span className="user-info__register"><a data-toggle="modal" data-target="#register-modal">Sign-up</a></span>
                         </div>
                         <div className="logged-in">

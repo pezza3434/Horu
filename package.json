@@ -19,6 +19,7 @@
     "morgan": "~1.5.1",
     "node-jsx": "^0.13.3",
     "react": "^0.13.3",
+    "react-bootstrap": "^0.25.2",
     "serve-favicon": "~2.2.0",
     "superagent": "^1.4.0"
   },

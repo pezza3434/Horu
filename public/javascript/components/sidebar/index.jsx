@@ -1,37 +1,46 @@
 var React = require('react');
 var isotopeActions = require('../../actions/isotopeActions');
+var sessionActions = require('../../actions/sessionActions');
 var isotopeStore = require('../../stores/isotopeStore');
 var LoginButton = require('../login-button/index');
+var UserProfile = require('./user-profile/index');
+var sessionStore = require('../../stores/sessionStore');
+var classNames = require('classnames');
 
 if (typeof window !== "undefined") {
     require('./style.scss');
 }
 
 module.exports = React.createClass({
+    getInitialState() {
+        return ({loggedIn: sessionStore.isLoggedIn()})
+    },
+    componentDidMount() {
+        sessionStore.listen(this._sessionStoreChange);
+    },
+    _sessionStoreChange(storeState) {
+        if(storeState.isLoggedIn && storeState.user) {
+            this.setState({
+                loggedIn:true,
+                user:storeState.user
+            });
+        }
+    },
     render() {
+
+        var loginButtonClasses = classNames('user-info__login', {hide: this.state.loggedIn});
+
         return (
             <div className="col-sm-2 sidebar no-padding">
                     <div className="sidebar__logo">
                         <div className="sidebar__logo__text">HORU</div>
                     </div>
                     <div className="col-sm-12 no-padding user-info">
-                        <div className="user-info__login">
-                            <span className="user-info__login">here<LoginButton /></span>
-                            <span className="user-info__register"><a data-toggle="modal" data-target="#register-modal">Sign-up</a></span>
+                        <div className={loginButtonClasses}>
+                            <div className="user-info__login"><LoginButton /></div> |
+                            <div className="user-info__register">Register</div>
                         </div>
-                        <div className="logged-in">
-                            <div className="logged-in__container">
-                                <div className="logged-in__profile-image">
-                                </div>
-                                <div className="logged-in__profile-text">
-                                    <div className="logged-in__profile-username">
-                                        Pezza3434
-                                    </div>
-                                    <div className="logged-in__profile-votes">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {this.state.loggedIn ? <UserProfile user={this.state.user}/> : ''}
                     </div>
                     <div className="col-sm-12 navigation no-padding">
                         <ul>

@@ -1,7 +1,7 @@
 var alt = require('../alt');
 var request = require('superagent');
 
-var actions = {
+var isotopeActions = {
     getImages() {
         request
         .get('http://generation.com:3000/images')
@@ -30,4 +30,4 @@ var actions = {
 
 };
 
-module.exports = alt.createActions(actions);
+module.exports = alt.createActions(isotopeActions);

@@ -32,6 +32,25 @@ var sessionActions = {
     },
     getUserResponse(getUserResponse) {
         this.dispatch(getUserResponse);
+    },
+    postUser(registrationData) {
+        request
+        .post('http://generation.com:3000/user')
+        .send(registrationData)
+        .end((err,res) => {
+            if(err){
+                return this.actions.postUserError(err);
+            }
+            this.actions.postUserResponse(res);
+            this.actions.authenticate({username:registrationData.username, password: registrationData.password})
+        });
+        this.dispatch();
+    },
+    postUserResponse(postUserResponse) {
+        this.dispatch(postUserResponse);
+    },
+    postUserError(postUserError) {
+        this.dispatch(postUserError);
     }
 };
 

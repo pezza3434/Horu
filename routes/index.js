@@ -1,8 +1,5 @@
 var express = require('express');
 var router = express.Router();
-require("node-jsx").install({
-    extension: ".jsx"
-});
 var React = require('react');
 var App = React.createFactory(require("../public/javascript/components/app"));
 

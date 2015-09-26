@@ -3,6 +3,7 @@ var isotopeActions = require('../../actions/isotopeActions');
 var sessionActions = require('../../actions/sessionActions');
 var isotopeStore = require('../../stores/isotopeStore');
 var LoginButton = require('../login-button/index');
+var RegisterButton = require('../register-button/index');
 var UserProfile = require('./user-profile/index');
 var sessionStore = require('../../stores/sessionStore');
 var classNames = require('classnames');
@@ -38,7 +39,7 @@ module.exports = React.createClass({
                     <div className="col-sm-12 no-padding user-info">
                         <div className={loginButtonClasses}>
                             <div className="user-info__login"><LoginButton /></div> |
-                            <div className="user-info__register">Register</div>
+                            <div className="user-info__register"><RegisterButton /></div>
                         </div>
                         {this.state.loggedIn ? <UserProfile user={this.state.user}/> : ''}
                     </div>

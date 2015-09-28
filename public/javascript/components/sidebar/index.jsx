@@ -1,3 +1,7 @@
+if (typeof window !== "undefined") {
+    require('./style.scss');
+}
+
 import React from 'react';
 import classNames from 'classnames';
 import {Link} from 'react-router';
@@ -12,9 +16,6 @@ import LoginButton from '../login-button/index';
 import RegisterButton from '../register-button/index';
 import UserProfile from './user-profile/index';
 
-if (typeof window !== "undefined") {
-    require('./style.scss');
-}
 
 module.exports = React.createClass({
     getInitialState() {
@@ -40,7 +41,7 @@ module.exports = React.createClass({
                     <div className="sidebar__logo">
                         <div className="sidebar__logo__text">HORU</div>
                     </div>
-                    <div className="col-sm-12 no-padding user-info">
+                    <div className="col-sm-12 user-info">
                         <div className={loginButtonClasses}>
                             <div className="user-info__login"><LoginButton /></div> |
                             <div className="user-info__register"><RegisterButton /></div>

@@ -1,6 +1,9 @@
 var React = require('react');
 require('bootstrap-sass/assets/stylesheets/_bootstrap.scss');
 require('./components/global.scss');
-var App = React.createFactory(require("./components/app"));
+var Router = require('react-router');
+var routes = require('./routes.jsx');
 
-React.render(App(), document.getElementById("app-container"));
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+  React.render(<Handler/>, document.getElementById("app-container"));
+});

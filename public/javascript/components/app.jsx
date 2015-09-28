@@ -1,6 +1,8 @@
 var React = require("react");
 var Sidebar = require('./sidebar/index');
 var Isotope = require('./isotope/index');
+import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
+
 
 var App = React.createClass({
     render() {
@@ -8,7 +10,7 @@ var App = React.createClass({
             <div className="container-fluid">
                 <div className="row">
                     <Sidebar/>
-                    <Isotope/>
+                    <RouteHandler/>
                 </div>
             </div>
         );

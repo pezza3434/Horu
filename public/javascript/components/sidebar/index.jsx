@@ -7,6 +7,8 @@ var RegisterButton = require('../register-button/index');
 var UserProfile = require('./user-profile/index');
 var sessionStore = require('../../stores/sessionStore');
 var classNames = require('classnames');
+import {Link} from 'react-router';
+
 
 if (typeof window !== "undefined") {
     require('./style.scss');
@@ -47,13 +49,13 @@ module.exports = React.createClass({
                         <ul>
                             <li>
                                 <i className="fa fa-home"></i>
-                                <a href="/#/">Home</a></li>
+                                <Link to="isotope" href="/#/">Home</Link></li>
                             <li>
                                 <i className="fa fa-wrench"></i>
                                 <a href="#">About HORU</a></li>
                             <li ng-if="loggedIn">
                                 <i className="fa fa-users"></i>
-                                <a href="/#/account">Your Account</a>
+                                <Link to="account" href="/#/account">Your Account</Link>
                             </li>
                         </ul>
                     </div>

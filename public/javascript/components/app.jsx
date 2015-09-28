@@ -1,10 +1,9 @@
-var React = require("react");
-var Sidebar = require('./sidebar/index');
-var Isotope = require('./isotope/index');
+import React from 'react';
+import Sidebar from './sidebar/index';
+import Isotope from './isotope/index';
 import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
 
-
-var App = React.createClass({
+const App = React.createClass({
     render() {
         return (
             <div className="container-fluid">

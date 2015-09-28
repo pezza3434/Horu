@@ -131,7 +131,7 @@ module.exports = React.createClass({
                             <div className="form-group">
                                 <label htmlFor="exampleInputPassword1">Confirm Password</label>
                                 {this.state.confirmPasswordError? <span className="error-message">You haven't confirmed your password</span>: '' }
-                            <input ref="confirmPassword" onChange={this._formOnChange}name = "confirm-password" ref = "confirmPassword" className = "form-control" id = "form-confirm-password" placeholder = "Confirm Password" type = "password" /> </div>
+                            <input ref="confirmPassword" onChange={this._formOnChange}name = "confirm-password" className = "form-control" id = "form-confirm-password" placeholder = "Confirm Password" type = "password" /> </div>
                             <button className={submitClasses} type="submit" onClick={this._formValidation}> Submit </button>{this.state.registrationError ? <span className="error-message">There was a problem processing your details</span > : '' } {this.state.successfulRegistration ? <span className="success-message">You're account has been added!</span> : '' }
                             </form>
                         </Modal.Body >

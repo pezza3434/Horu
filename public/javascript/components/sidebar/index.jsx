@@ -1,14 +1,16 @@
-var React = require('react');
-var isotopeActions = require('../../actions/isotopeActions');
-var sessionActions = require('../../actions/sessionActions');
-var isotopeStore = require('../../stores/isotopeStore');
-var LoginButton = require('../login-button/index');
-var RegisterButton = require('../register-button/index');
-var UserProfile = require('./user-profile/index');
-var sessionStore = require('../../stores/sessionStore');
-var classNames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 import {Link} from 'react-router';
 
+import isotopeActions from '../../actions/isotopeActions';
+import sessionActions from '../../actions/sessionActions';
+
+import sessionStore from '../../stores/sessionStore';
+import isotopeStore from '../../stores/isotopeStore';
+
+import LoginButton from '../login-button/index';
+import RegisterButton from '../register-button/index';
+import UserProfile from './user-profile/index';
 
 if (typeof window !== "undefined") {
     require('./style.scss');
@@ -31,7 +33,7 @@ module.exports = React.createClass({
     },
     render() {
 
-        var loginButtonClasses = classNames('user-info__login', {hide: this.state.loggedIn});
+        let loginButtonClasses = classNames('user-info__login', {hide: this.state.loggedIn});
 
         return (
             <div className="col-sm-2 sidebar no-padding">

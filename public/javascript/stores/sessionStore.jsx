@@ -32,7 +32,7 @@ class sessionStore {
             },
 
             getAuthenticationToken() {
-                return this.authenticationToken;
+                return this.getState().authenticationToken;
             }
 
         });

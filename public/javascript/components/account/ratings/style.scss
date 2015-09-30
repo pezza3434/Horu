@@ -1,0 +1,25 @@
+.account_uploads_stats__delete a{
+    font-size:11px;
+    color:red;
+}
+
+.account__uploads__container {
+    padding: 10px 0;
+}
+
+.account__uploads img {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    border: 2px solid #eaeaea;
+    float: left;
+}
+.account__uploads_stats {
+    padding: 29px 0;
+    font-size: 21px;
+}

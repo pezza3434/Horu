@@ -5,7 +5,6 @@ if (typeof window !== "undefined") {
 
 var React = require('react');
 var Modal = require('react-bootstrap').Modal;
-var ImagePreview = require('./image-preview');
 
 module.exports = React.createClass({
     getInitialState() {

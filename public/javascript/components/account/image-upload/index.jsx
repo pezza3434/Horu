@@ -5,10 +5,18 @@ if (typeof window !== "undefined") {
 
 var React = require('react');
 var Modal = require('react-bootstrap').Modal;
+var uploadActions = require('../../../actions/uploadActions');
+var uploadStore = require('../../../stores/uploadStore');
 
 module.exports = React.createClass({
     getInitialState() {
         return ({ showModal: false });
+    },
+    componentDidMount() {
+        uploadStore.listen(this._uploadStoreChange);
+    },
+    _uploadStoreChange(storeState) {
+        this.setState(storeState);
     },
     _openModal() {
         this.setState({ showModal: true });
@@ -16,7 +24,9 @@ module.exports = React.createClass({
     _closeModal() {
         this.setState({showModal:false});
     },
-
+    _uploadImage() {
+        uploadActions.postUpload(this.refs.cropper.getCroppedCanvas().toDataURL());
+    },
     render() {
         return (
             <div className="col-md-12 account__upload">
@@ -35,7 +45,6 @@ module.exports = React.createClass({
                             src='http://fengyuanchen.github.io/cropper/img/picture.jpg'
                             guides={false}
                             aspectRatio={1 / 1}
-                            crop={this._crop}
                             style={{height:400}}
                             preview='.preview'
                              />
@@ -48,8 +57,8 @@ module.exports = React.createClass({
                             Choose Image
                         </span>
                     </label>
-                    <button className="btn btn-default generate-image"><span>Upload Image</span></button>
-                    <div className="success-message btn btn-success">Your image has been uploaded!</div>
+                    <button onClick={this._uploadImage} className="btn btn-default generate-image"><span>Upload Image</span></button>
+                    {this.state.uploadSuccess ? <div className="success-message btn btn-success">Your image has been uploaded!</div> : ''}
                     </div>
 
                     </Modal.Body>

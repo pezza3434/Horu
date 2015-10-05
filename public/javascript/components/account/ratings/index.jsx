@@ -7,8 +7,6 @@ import React from 'react';
 import IndividualRating from './individual-rating';
 
 export default React.createClass({
-    _crop (data) {
-    },
     render() {
         let Ratings = this.props.ratings.map(rating => <IndividualRating rating={rating} />);
         return (

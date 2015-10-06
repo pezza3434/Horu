@@ -21,6 +21,9 @@ var uploadActions = {
     },
     postUploadError(err) {
         this.dispatch(err);
+    },
+    triggerModal(state) {
+        this.dispatch(state);
     }
 };
 

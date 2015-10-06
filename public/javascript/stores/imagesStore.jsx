@@ -12,6 +12,7 @@ class imagesStore {
         this.bindListeners({
             deleteImage: imagesActions.deleteImage,
             deleteImageSuccess: imagesActions.deleteImageSuccess,
+            toggleModal: imagesActions.toggleModal
         });
 
     }
@@ -21,11 +22,13 @@ class imagesStore {
     }
 
     deleteImageSuccess (response) {
-        this.uploadSuccess = true;
         this.imageDeleteSuccessful = true;
         this.response = response.body;
     }
 
+    toggleModal() {
+        //simply resets the state
+    }
 
 }
 

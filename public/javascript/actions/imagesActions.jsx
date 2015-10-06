@@ -10,12 +10,14 @@ var imagesActions = {
         .end((err,res) => {
             this.actions.deleteImageSuccess(res);
         });
-        this.dispatch();
+        this.dispatch(id);
     },
     deleteImageSuccess(imageResponse) {
         this.dispatch(imageResponse);
+    },
+    toggleModal() {
+        this.dispatch();
     }
-
 };
 
 module.exports = alt.createActions(imagesActions);

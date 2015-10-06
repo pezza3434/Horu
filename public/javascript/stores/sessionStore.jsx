@@ -1,18 +1,20 @@
 var alt = require('../alt');
 var sessionActions = require('../actions/sessionActions');
+var pageActions = require('../actions/pageActions');
 
 class sessionStore {
     constructor() {
         this.isLoggedIn = false;
-        this.authenticationToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoicGV6emEzNDM0IiwiZW1haWwiOiJhbGV4cGVycnkyQGdtYWlsLmNvbSIsImlhdCI6MTQ0NDExNDgxMywiZXhwIjoxNDQ0MjAxMjEzfQ.ib2eQK0Y0AdySlmxPp0Ivwgi1f374K5CfzbTcv5gp7s';
+        this.authenticationToken = '';
         this.user = '';
 
-        this.on('beforeEach', function () {
-            this.apiCallInProgress = false;
-            this.isError = false;
-            this.registrationError = false;
-            this.successfulRegistration = false;
-        });
+        this
+            .on('beforeEach', function() {
+                this.apiCallInProgress = false;
+                this.isError = false;
+                this.registrationError = false;
+                this.successfulRegistration = false;
+            });
 
         this.bindListeners({
             authenticate: sessionActions.authenticate,
@@ -22,20 +24,31 @@ class sessionStore {
             getUserResponse: sessionActions.getUserResponse,
             postUser: sessionActions.postUser,
             postUserResponse: sessionActions.postUserResponse,
-            postUserError: sessionActions.postUserError
+            postUserError: sessionActions.postUserError,
+            appLoaded: pageActions.appLoaded
         });
 
         this.exportPublicMethods({
 
             isLoggedIn() {
-                return this.getState().isLoggedIn;
+                return this.getState()
+                    .isLoggedIn;
             },
 
             getAuthenticationToken() {
-                return this.getState().authenticationToken;
+                return this.getState()
+                    .authenticationToken;
             }
 
         });
+    }
+
+    appLoaded () {
+
+        //This is breaking on server side render
+        if (localStorage.getItem("horu-token")) {
+            this.authenticationToken = localStorage.getItem("horu-token");
+        }
     }
 
     authenticate () {
@@ -45,6 +58,7 @@ class sessionStore {
     authenticateResponse (response) {
         this.isLoggedIn = true;
         this.authenticationToken = response.body.token;
+        localStoreage.setItem("horu-token", response.body.token);
     }
 
     authenticationErrorResponse (err) {

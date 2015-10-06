@@ -8,7 +8,6 @@ import DeleteRatingModal from './delete-rating-modal';
 import imagesActions from '../../actions/imagesActions';
 import imagesStore from '../../stores/imagesStore';
 
-
 module.exports = React.createClass({
     componentDidMount() {
         ratingsActions.getRatings();
@@ -30,6 +29,7 @@ module.exports = React.createClass({
         }
     },
     _triggerDeleteModal(idToDelete) {
+        imagesActions.toggleModal();
         ratingsActions.toggleModal({showModal:true, idToDelete:idToDelete});
     },
     _triggerImageDelete(id) {

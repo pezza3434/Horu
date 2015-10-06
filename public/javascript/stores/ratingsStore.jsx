@@ -1,11 +1,13 @@
 import alt from '../alt';
 import ratingsActions from '../actions/ratingsActions';
+import imagesActions from '../actions/imagesActions';
 
 class ratingsStore {
     constructor() {
 
         this.ratings = [];
-        this.showDeleteModal = false;
+
+        this.imageIdToBeDeleted;
 
         this.on('beforeEach', function () {
             this.apiCallInProgress = false;
@@ -14,7 +16,9 @@ class ratingsStore {
         this.bindListeners({
             getRatings: ratingsActions.getRatings,
             getRatingsSuccess: ratingsActions.getRatingsSuccess,
-            toggleModal: ratingsActions.toggleModal
+            toggleModal: ratingsActions.toggleModal,
+            deleteImage: imagesActions.deleteImage,
+            deleteImageSuccess: imagesActions.deleteImageSuccess
         });
 
         this.exportPublicMethods({
@@ -37,6 +41,14 @@ class ratingsStore {
     toggleModal (state) {
         this.showModal = state.showModal;
         this.idToDelete = state.idToDelete;
+    }
+
+    deleteImage(id) {
+        this.imageIdToBeDeleted = id;
+    }
+
+    deleteImageSuccess() {
+        this.ratings = this.ratings.filter((rating) => rating.image_id !== this.imageIdToBeDeleted);
     }
 }
 

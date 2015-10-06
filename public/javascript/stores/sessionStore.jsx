@@ -4,7 +4,7 @@ var sessionActions = require('../actions/sessionActions');
 class sessionStore {
     constructor() {
         this.isLoggedIn = false;
-        this.authenticationToken = '';
+        this.authenticationToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoicGV6emEzNDM0IiwiZW1haWwiOiJhbGV4cGVycnkyQGdtYWlsLmNvbSIsImlhdCI6MTQ0NDExNDgxMywiZXhwIjoxNDQ0MjAxMjEzfQ.ib2eQK0Y0AdySlmxPp0Ivwgi1f374K5CfzbTcv5gp7s';
         this.user = '';
 
         this.on('beforeEach', function () {

@@ -30,7 +30,7 @@ module.exports = React.createClass({
     },
     render() {
         return(<ImageUpload showModal={this.state.showModal}
-            uploadImageAction={this.uploadImageAction}
+            uploadImageAction={this._uploadImageAction}
             openModalAction={this._openModal}
             closeModalAction={this._closeModal}
             uploadSuccess={this.state.uploadSuccess} />)

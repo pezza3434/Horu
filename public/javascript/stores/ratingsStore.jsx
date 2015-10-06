@@ -5,6 +5,7 @@ class ratingsStore {
     constructor() {
 
         this.ratings = [];
+        this.showDeleteModal = false;
 
         this.on('beforeEach', function () {
             this.apiCallInProgress = false;
@@ -13,6 +14,7 @@ class ratingsStore {
         this.bindListeners({
             getRatings: ratingsActions.getRatings,
             getRatingsSuccess: ratingsActions.getRatingsSuccess,
+            toggleModal: ratingsActions.toggleModal
         });
 
         this.exportPublicMethods({
@@ -30,6 +32,11 @@ class ratingsStore {
 
     getRatingsSuccess (response) {
         this.ratings = response.body;
+    }
+
+    toggleModal (state) {
+        this.showModal = state.showModal;
+        this.idToDelete = state.idToDelete;
     }
 }
 

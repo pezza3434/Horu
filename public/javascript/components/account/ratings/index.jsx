@@ -8,7 +8,7 @@ import IndividualRating from './individual-rating';
 
 export default React.createClass({
     render() {
-        let Ratings = this.props.ratings.map(rating => <IndividualRating rating={rating} />);
+        let Ratings = this.props.ratings.map((rating, index) => <IndividualRating rating={rating} triggerDeleteModal={this.props.triggerDeleteModal} key={index}/>);
         return (
             <div className="col-md-12 account__uploads">
                 {Ratings}

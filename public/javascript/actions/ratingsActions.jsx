@@ -11,11 +11,14 @@ var ratingsActions = {
             this.actions.getRatingsSuccess(res);
         });
         this.dispatch();
-        console.log(sessionStore.getAuthenticationToken(), 'token');
     },
     getRatingsSuccess(ratingsResponse) {
         this.dispatch(ratingsResponse);
     },
+    toggleModal(modalState) {
+        this.dispatch(modalState);
+    }
+
 };
 
 module.exports = alt.createActions(ratingsActions);

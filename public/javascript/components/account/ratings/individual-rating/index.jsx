@@ -1,6 +1,11 @@
 import React from 'react';
 
 export default React.createClass({
+    //this.props.rating.image_id
+    _deleteImage() {
+        console.log(this.props);
+        this.props.triggerDeleteModal(this.props.rating.image_id);
+    },
     render() {
         var url = "http://generation.com:3000/static" + this.props.rating.image_thumbnail;
         return (
@@ -18,10 +23,10 @@ export default React.createClass({
                         {this.props.rating.votes}
                     </div>
                     <div className="account_uploads_stats__delete">
-                        <a href="" data-toggle="modal" data-target="#confirm-modal">
+                        <span onClick={this._deleteImage}>
                             <i className="fa fa-trash"></i>
                             Delete Image
-                        </a>
+                        </span>
                     </div>
                 </div>
             </div>

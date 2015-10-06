@@ -29,7 +29,6 @@ class uploadStore {
     }
 
     triggerModal (modalState) {
-        console.log('setting show modal to', modalState);
         this.showModal = modalState;
     }
 

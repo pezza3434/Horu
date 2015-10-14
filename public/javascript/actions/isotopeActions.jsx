@@ -14,13 +14,24 @@ var isotopeActions = {
         this.dispatch(imagesResponse);
     },
     submitAge(postData) {
+        var sessionStore = require('../stores/sessionStore');
 
-        request
-        .post('http://generation.com:3000/ratings')
-        .send(postData)
-        .end((err,res) => {
-            this.submitAgeSuccess(res);
-        });
+        if(sessionStore.getAuthenticationToken()) {
+            request
+            .post('http://generation.com:3000/ratings')
+            .set('x-access-token', sessionStore.getAuthenticationToken())
+            .send(postData)
+            .end((err,res) => {
+                this.actions.submitAgeSuccess(res);
+            });
+        } else {
+            request
+            .post('http://generation.com:3000/ratings')
+            .send(postData)
+            .end((err,res) => {
+                this.actions.submitAgeSuccess(res);
+            });
+        }
 
         this.dispatch();
     },

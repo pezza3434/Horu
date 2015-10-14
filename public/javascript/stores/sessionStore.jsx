@@ -5,6 +5,7 @@ if (typeof window !== "undefined") {
 var alt = require('../alt');
 var sessionActions = require('../actions/sessionActions');
 var pageActions = require('../actions/pageActions');
+var isotopeActions = require('../actions/isotopeActions');
 
 class sessionStore {
     constructor() {
@@ -27,7 +28,8 @@ class sessionStore {
             postUser: sessionActions.postUser,
             postUserResponse: sessionActions.postUserResponse,
             postUserError: sessionActions.postUserError,
-            appLoaded: pageActions.appLoaded
+            appLoaded: pageActions.appLoaded,
+            updateVoteCount: isotopeActions.submitAgeSuccess
         });
 
         this.exportPublicMethods({
@@ -85,6 +87,12 @@ class sessionStore {
 
     postUserError (err) {
         this.registrationError = true;
+    }
+
+    updateVoteCount() {
+        if(this.user){
+            this.user.votes++;
+        }
     }
 
 }

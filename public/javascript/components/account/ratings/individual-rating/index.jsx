@@ -13,11 +13,11 @@ export default React.createClass({
                 </div>
                 <div className="col-md-8 account__uploads_stats">
                     <div>
-                        <strong>Current Rating:</strong>
+                        <strong>Current Rating: </strong>
                         {this.props.rating.current_rating}
                     </div>
                     <div>
-                        <strong>Number of Votes:</strong>
+                        <strong>Number of Votes: </strong>
                         {this.props.rating.votes}
                     </div>
                     <div className="account_uploads_stats__delete">

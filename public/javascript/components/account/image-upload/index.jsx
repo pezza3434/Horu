@@ -35,5 +35,8 @@ module.exports = React.createClass({
             closeModalAction={this._closeModal}
             uploadSuccess={this.state.uploadSuccess} />)
 
+    },
+    componentWillUnmount() {
+        uploadStore.unlisten(this._uploadStoreChange)
     }
 });

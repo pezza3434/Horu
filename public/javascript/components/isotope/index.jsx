@@ -35,5 +35,8 @@ module.exports = React.createClass({
                 {faces}
             </div>
         )
-    }
+    },
+    componentWillUnmount() {
+        isotopeStore.unlisten(this._onChange);
+    },
 });

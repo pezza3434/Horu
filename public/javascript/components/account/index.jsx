@@ -7,6 +7,7 @@ import ratingsStore from '../../stores/ratingsStore';
 import DeleteRatingModal from './delete-rating-modal';
 import imagesActions from '../../actions/imagesActions';
 import imagesStore from '../../stores/imagesStore';
+import uploadStore from '../../stores/uploadStore';
 
 module.exports = React.createClass({
     componentDidMount() {
@@ -58,5 +59,10 @@ module.exports = React.createClass({
                 </div>
             </div>
         )
-    }
+    },
+
+    componentWillUnmount() {
+        ratingsStore.unlisten(this._ratingsStoreChange);
+        imagesStore.unlisten(this._imagesStoreChange);
+    },
 });

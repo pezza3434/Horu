@@ -13,13 +13,23 @@ module.exports = React.createClass({
     },
     _onStoreChange(response) {
 
+        var state = {};
+
+        if(response.apiCallInProgress) {
+            state.apiCallInProgress = true;
+        } else {
+            state.apiCallInProgress = false;
+        }
+
         if(response.isLoggedIn && response.user && !response.isError) {
-            this.setState({showModal:false});
+            state.showModal = false;
         }
 
         if(response.isError) {
-            this.setState({isError:true});
+            state.isError = true;
         }
+
+        this.setState(state);
     },
     _validate(e) {
         e.preventDefault();
@@ -69,7 +79,7 @@ module.exports = React.createClass({
         this.setState({showModal:false});
     },
     render() {
-        var submitClasses = classNames('btn', 'btn-default', {disabled: !this.state.validated});
+        var submitClasses = classNames('btn', 'btn-default', {disabled: !this.state.validated || this.state.apiCallInProgress});
         return(
             <div>
                 <div onClick={this._openModal}>Log in</div>
@@ -87,7 +97,7 @@ module.exports = React.createClass({
                                 <label htmlFor="exampleInputPassword1">Password</label> {this.state.password ? <span className="error-message"> Your password is required.</span> : ''}
                                 <input onChange={this._formOnChange} ref="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" type="password" />
                             </div>
-                            <button disabled={!this.state.validated} className={submitClasses} onClick={this._validate} type="submit">Submit</button>
+                            <button disabled={!this.state.validated || this.state.apiCallInProgress} className={submitClasses} onClick={this._validate} type="submit">{this.state.apiCallInProgress ? 'Loading...' : 'Submit'}</button>
                             {this.state.isError ? <span className="error-message">There was a problem with your supplied username and password</span> : '' }
                         </form>
                     </Modal.Body>

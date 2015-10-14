@@ -1,6 +1,7 @@
 var alt = require('../alt');
 var request = require('superagent');
 var sessionStore = require('../stores/sessionStore');
+var ratingsActions = require('./ratingsActions');
 
 var uploadActions = {
     postUpload(dataURL) {
@@ -18,6 +19,7 @@ var uploadActions = {
     },
     postUploadSuccess(uploadResponse) {
         this.dispatch(uploadResponse);
+        ratingsActions.getRatings();
     },
     postUploadError(err) {
         this.dispatch(err);

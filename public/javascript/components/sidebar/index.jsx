@@ -71,9 +71,6 @@ module.exports = React.createClass({
                             <li>
                                 <i className="fa fa-home"></i>
                                 <Link to="isotope" href="/#/">Home</Link></li>
-                            <li>
-                                <i className="fa fa-wrench"></i>
-                                <a href="#">About HORU</a></li>
                             {this.state.loggedIn ? <li>
                                 <i className="fa fa-users"></i>
                                 <Link to="account" href="/#/account">Your Account</Link>

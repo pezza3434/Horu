@@ -16,13 +16,24 @@ module.exports = React.createClass({
         sessionStore.listen(this._sessionStoreChange);
     },
     _sessionStoreChange(storeState) {
+        var state = {};
+
+        if(storeState.apiCallInProgress) {
+            state.apiCallInProgress = true;
+        } else {
+            state.apiCallInProgress = false;
+        }
+
         if (storeState.successfulRegistration) {
-            this.setState({successfulRegistration:true});
+            state.successfulRegistration = true;
+            state.showModal = false;
         }
 
         if (storeState.registrationError) {
-            this.setState({registrationError:true});
+            state.registrationError = true;
         }
+
+        this.setState(state);
     },
     _openModal() {
         this.setState({
@@ -101,7 +112,7 @@ module.exports = React.createClass({
     render() {
 
         var submitClasses = classNames('btn', 'btn-default', {
-            disabled: !this.state.validated
+            disabled: !this.state.validated || this.state.apiCallInProgress
         });
 
         return (
@@ -132,7 +143,7 @@ module.exports = React.createClass({
                                 <label htmlFor="exampleInputPassword1">Confirm Password</label>
                                 {this.state.confirmPasswordError? <span className="error-message">You haven't confirmed your password</span>: '' }
                             <input ref="confirmPassword" onChange={this._formOnChange}name = "confirm-password" className = "form-control" id = "form-confirm-password" placeholder = "Confirm Password" type = "password" /> </div>
-                            <button className={submitClasses} type="submit" onClick={this._formValidation}> Submit </button>{this.state.registrationError ? <span className="error-message">There was a problem processing your details</span > : '' } {this.state.successfulRegistration ? <span className="success-message">You're account has been added!</span> : '' }
+                            <button className={submitClasses} type="submit" onClick={this._formValidation}> {this.state.apiCallInProgress ? 'Loading...' : 'Submit'} </button>{this.state.registrationError ? <span className="error-message">There was a problem processing your details</span > : '' } {this.state.successfulRegistration ? <span className="success-message">You're account has been added!</span> : '' }
                             </form>
                         </Modal.Body >
                         <Modal.Footer>

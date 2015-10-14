@@ -28,6 +28,7 @@ class sessionStore {
             postUser: sessionActions.postUser,
             postUserResponse: sessionActions.postUserResponse,
             postUserError: sessionActions.postUserError,
+            logout: sessionActions.logout,
             appLoaded: pageActions.appLoaded,
             updateVoteCount: isotopeActions.submitAgeSuccess
         });
@@ -92,6 +93,14 @@ class sessionStore {
     updateVoteCount() {
         if(this.user){
             this.user.votes++;
+        }
+    }
+
+    logout() {
+        this.isLoggedIn = false;
+        this.authenticationToken = '';
+        if(cookieUtil) {
+            cookieUtil.removeItem('horu');
         }
     }
 

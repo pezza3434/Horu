@@ -26,11 +26,16 @@ module.exports = React.createClass({
     },
     _sessionStoreChange(storeState) {
         if(storeState.isLoggedIn && storeState.user) {
-            this.setState({
+            return this.setState({
                 loggedIn:true,
                 user:storeState.user
             });
         }
+
+        this.setState({
+            loggedIn:false,
+            user: ''
+        });
     },
     _userHasBeenLoaded() {
 
@@ -69,10 +74,10 @@ module.exports = React.createClass({
                             <li>
                                 <i className="fa fa-wrench"></i>
                                 <a href="#">About HORU</a></li>
-                            <li ng-if="loggedIn">
+                            {this.state.loggedIn ? <li>
                                 <i className="fa fa-users"></i>
                                 <Link to="account" href="/#/account">Your Account</Link>
-                            </li>
+                            </li> : ''}
                         </ul>
                     </div>
                 </div>

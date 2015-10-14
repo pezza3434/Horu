@@ -8,6 +8,7 @@ class uploadStore {
         this.uploadSuccess = false;
 
         this.on('beforeEach', function () {
+            this.uploadSuccess = false;
             this.apiCallInProgress = false;
         });
 

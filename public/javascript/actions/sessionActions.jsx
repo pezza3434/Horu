@@ -51,6 +51,9 @@ var sessionActions = {
     },
     postUserError(postUserError) {
         this.dispatch(postUserError);
+    },
+    logout() {
+        this.dispatch();
     }
 };
 

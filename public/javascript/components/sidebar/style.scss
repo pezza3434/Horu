@@ -93,8 +93,15 @@
         font-size: 14px;
         li {
             &.active,
-            &:hover {
+            &:hover,
+            &:focus {
                 background: #262424;
+            }
+            a {
+                &:focus{
+                    text-decoration:none;
+                    color:#fff;
+                }
             }
             i {
                 padding-right: 10px;

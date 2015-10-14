@@ -1,9 +1,7 @@
 import React from 'react';
 
 export default React.createClass({
-    //this.props.rating.image_id
     _deleteImage() {
-        console.log(this.props);
         this.props.triggerDeleteModal(this.props.rating.image_id);
     },
     render() {

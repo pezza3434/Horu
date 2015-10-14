@@ -32,6 +32,19 @@ module.exports = React.createClass({
             });
         }
     },
+    _userHasBeenLoaded() {
+
+        if (!this.state.loggedIn) {
+            return false;
+        }
+
+        if (this.state.loggedIn && !this.state.user) {
+            sessionActions.getUser(sessionStore.getAuthenticationToken());
+            return false;
+        }
+
+        return true;
+    },
     render() {
 
         let loginButtonClasses = classNames('user-info__login', {hide: this.state.loggedIn});
@@ -46,7 +59,7 @@ module.exports = React.createClass({
                             <div className="user-info__login"><LoginButton /></div> |
                             <div className="user-info__register"><RegisterButton /></div>
                         </div>
-                        {this.state.loggedIn ? <UserProfile user={this.state.user}/> : ''}
+                        {this._userHasBeenLoaded() ? <UserProfile user={this.state.user}/> : ''}
                     </div>
                     <div className="col-sm-12 navigation no-padding">
                         <ul>

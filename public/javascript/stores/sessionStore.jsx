@@ -1,3 +1,7 @@
+if (typeof window !== "undefined") {
+    var cookieUtil = require('../utils/cookieUtil');
+}
+
 var alt = require('../alt');
 var sessionActions = require('../actions/sessionActions');
 var pageActions = require('../actions/pageActions');
@@ -6,10 +10,8 @@ class sessionStore {
     constructor() {
         this.isLoggedIn = false;
         this.authenticationToken = '';
-        this.user = '';
 
-        this
-            .on('beforeEach', function() {
+        this.on('beforeEach', function() {
                 this.apiCallInProgress = false;
                 this.isError = false;
                 this.registrationError = false;
@@ -45,10 +47,6 @@ class sessionStore {
 
     appLoaded () {
 
-        //This is breaking on server side render
-        if (localStorage.getItem("horu-token")) {
-            this.authenticationToken = localStorage.getItem("horu-token");
-        }
     }
 
     authenticate () {
@@ -58,7 +56,11 @@ class sessionStore {
     authenticateResponse (response) {
         this.isLoggedIn = true;
         this.authenticationToken = response.body.token;
-        localStoreage.setItem("horu-token", response.body.token);
+
+        if(cookieUtil) {
+            cookieUtil.setItem('horu', response.body.token);
+        }
+
     }
 
     authenticationErrorResponse (err) {

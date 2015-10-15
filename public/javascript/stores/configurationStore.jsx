@@ -10,7 +10,7 @@ class configurationStore {
                     url: 'http://generation.com:3000'
                 },
                 production: {
-                    url: 'the server url'
+                    url: 'http://46.101.54.208:3000'
                 }
             }
         });

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "webpack": "webpack-dev-server --devtool eval --progress --colors --content-base build",
-    "start": "nodemon -e jsx,js,hbs --watch ../horu bin/www"
+    "start": "NODE_ENV=development nodemon -e jsx,js,hbs --watch ../horu bin/www"
   },
   "dependencies": {
     "body-parser": "~1.12.0",

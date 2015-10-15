@@ -5,6 +5,9 @@ var routes = require('../public/javascript/routes');
 var alt = require('../public/javascript/alt.js');
 
 module.exports = function (req, res, next) {
+
+    var assetPath;
+
     var router = Router.create({
         location: req.url,
         routes: routes
@@ -19,10 +22,19 @@ module.exports = function (req, res, next) {
         }));
     }
 
+    if (process.env.NODE_ENV === 'development') {
+        assetPath = 'http://localhost:8080/public/';
+    }
+
+    if (process.env.NODE_ENV === 'production') {
+        assetPath = '/';
+    }
+
     router.run(function (Handler, state) {
         var html = React.renderToString( < Handler / > )
         return res.render('index', {
-            html: html
+            html: html,
+            assetPath: assetPath
         })
     });
 }

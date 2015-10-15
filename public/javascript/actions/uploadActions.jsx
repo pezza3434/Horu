@@ -2,11 +2,12 @@ var alt = require('../alt');
 var request = require('superagent');
 var sessionStore = require('../stores/sessionStore');
 var ratingsActions = require('./ratingsActions');
+var configurationStore = require('../stores/configurationStore');
 
 var uploadActions = {
     postUpload(dataURL) {
         request
-        .post('http://generation.com:3000/upload')
+        .post(configurationStore.getServerUrl() + '/upload')
         .set('x-access-token', sessionStore.getAuthenticationToken())
         .send({data:dataURL})
         .end((err,res) => {

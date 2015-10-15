@@ -3,7 +3,7 @@ var React = require('react');
 module.exports = React.createClass({
     render() {
 
-        var imageSource = 'http://generation.com:3000/static' + this.props.user.profilePicture;
+        var imageSource = this.props.serverUrl + '/static' + this.props.user.profilePicture;
 
         return (
             <div className="logged-in">

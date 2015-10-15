@@ -11,6 +11,7 @@ import sessionActions from '../../actions/sessionActions';
 
 import sessionStore from '../../stores/sessionStore';
 import isotopeStore from '../../stores/isotopeStore';
+import configurationStore from '../../stores/configurationStore';
 
 import LoginButton from '../login-button/index';
 import RegisterButton from '../register-button/index';
@@ -22,6 +23,7 @@ module.exports = React.createClass({
         return ({loggedIn: sessionStore.isLoggedIn()})
     },
     componentDidMount() {
+        this.setState({serverUrl: configurationStore.getServerUrl()});
         sessionStore.listen(this._sessionStoreChange);
     },
     _sessionStoreChange(storeState) {
@@ -64,7 +66,7 @@ module.exports = React.createClass({
                             <div className="user-info__login"><LoginButton /></div> |
                             <div className="user-info__register"><RegisterButton /></div>
                         </div>
-                        {this._userHasBeenLoaded() ? <UserProfile user={this.state.user}/> : ''}
+                        {this._userHasBeenLoaded() ? <UserProfile serverUrl={this.state.serverUrl} user={this.state.user}/> : ''}
                     </div>
                     <div className="col-sm-12 navigation no-padding">
                         <ul>

@@ -11,6 +11,9 @@ if(cookieUtil.getItem('horu')) {
         sessionStore: {
             authenticationToken: cookieUtil.getItem('horu'),
             isLoggedIn:true
+        },
+        configurationStore: {
+            environment: window.node_env
         }
     }));
 }

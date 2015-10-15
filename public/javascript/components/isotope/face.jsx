@@ -60,7 +60,7 @@ module.exports = React.createClass({
         }
     },
     render() {
-        var url = 'http://generation.com:3000/static' + this.props.path;
+        var url = this.props.serverUrl + '/static' + this.props.path;
         var containerClassNames = classNames('col-xs-12', 'col-sm-6', 'col-md-4', 'grid-item', 'no-padding', {clicked: this.state.containerClicked});
         var boxClassNames = classNames('box', {submitted: this.state.formSubmitted}, {hide: !this.state.displayForm && !this.state.formSubmitted});
         return (

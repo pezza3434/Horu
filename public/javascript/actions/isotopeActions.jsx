@@ -1,10 +1,11 @@
 var alt = require('../alt');
 var request = require('superagent');
+var configurationStore = require('../stores/configurationStore');
 
 var isotopeActions = {
     getImages() {
         request
-        .get('http://generation.com:3000/images')
+        .get(configurationStore.getServerUrl() + '/images')
         .end((err,res) => {
             this.actions.getImagesSuccess(res);
         });
@@ -18,7 +19,7 @@ var isotopeActions = {
 
         if(sessionStore.getAuthenticationToken()) {
             request
-            .post('http://generation.com:3000/ratings')
+            .post(configurationStore.getServerUrl() + '/ratings')
             .set('x-access-token', sessionStore.getAuthenticationToken())
             .send(postData)
             .end((err,res) => {
@@ -26,7 +27,7 @@ var isotopeActions = {
             });
         } else {
             request
-            .post('http://generation.com:3000/ratings')
+            .post(configurationStore.getServerUrl() + '/ratings')
             .send(postData)
             .end((err,res) => {
                 this.actions.submitAgeSuccess(res);

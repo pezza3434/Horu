@@ -1,11 +1,12 @@
 var alt = require('../alt');
 var request = require('superagent');
 var sessionStore = require('../stores/sessionStore');
+var configurationStore = require('../stores/configurationStore');
 
 var imagesActions = {
     deleteImage(id) {
         request
-        .del('http://generation.com:3000/images?id=' + id)
+        .del(configurationStore.getServerUrl() + '/' + id)
         .set('x-access-token', sessionStore.getAuthenticationToken())
         .end((err,res) => {
             this.actions.deleteImageSuccess(res);

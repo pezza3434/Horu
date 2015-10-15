@@ -18,6 +18,9 @@ module.exports = function (req, res, next) {
             sessionStore: {
                 authenticationToken: req.cookies.horu,
                 isLoggedIn:true
+            },
+            configurationStore: {
+                environment: process.env.NODE_ENV
             }
         }));
     }
@@ -34,7 +37,8 @@ module.exports = function (req, res, next) {
         var html = React.renderToString( < Handler / > )
         return res.render('index', {
             html: html,
-            assetPath: assetPath
+            assetPath: assetPath,
+            nodeEnv: process.env.NODE_ENV
         })
     });
 }

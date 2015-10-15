@@ -8,12 +8,14 @@ import DeleteRatingModal from './delete-rating-modal';
 import imagesActions from '../../actions/imagesActions';
 import imagesStore from '../../stores/imagesStore';
 import uploadStore from '../../stores/uploadStore';
+import configurationStore from '../../stores/configurationStore';
 
 module.exports = React.createClass({
     componentDidMount() {
         ratingsActions.getRatings();
         ratingsStore.listen(this._ratingsStoreChange);
         imagesStore.listen(this._imagesStoreChange);
+        this.setState({serverUrl: configurationStore.getSeverUrl()});
     },
     getInitialState() {
         return {ratings:false};
@@ -49,7 +51,7 @@ module.exports = React.createClass({
                 <div className="account">
                     <Header/>
                     <Upload/>
-                    {this.state.ratings ? <Ratings ratings={this.state.ratings} triggerDeleteModal={this._triggerDeleteModal}/> : ''}
+                    {this.state.ratings ? <Ratings serverUrl={this.state.serverUrl} ratings={this.state.ratings} triggerDeleteModal={this._triggerDeleteModal}/> : ''}
                     <DeleteRatingModal showModal={this.state.showModal}
                         idToDelete={this.state.idToDelete}
                         cancelModalAction={this._triggerCancelImageDelete}

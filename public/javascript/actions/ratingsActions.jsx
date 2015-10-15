@@ -1,11 +1,12 @@
 var alt = require('../alt');
 var request = require('superagent');
 var sessionStore = require('../stores/sessionStore');
+var configurationStore = require('../stores/configurationStore');
 
 var ratingsActions = {
     getRatings() {
         request
-        .get('http://generation.com:3000/ratings')
+        .get(configurationStore.getServerUrl() + '/ratings')
         .set('x-access-token', sessionStore.getAuthenticationToken())
         .end((err,res) => {
             this.actions.getRatingsSuccess(res);

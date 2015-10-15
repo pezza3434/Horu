@@ -1,10 +1,11 @@
 var alt = require('../alt');
 var request = require('superagent');
+var configurationStore = require('../stores/configurationStore');
 
 var sessionActions = {
     authenticate(data) {
         request
-        .post('http://generation.com:3000/authenticate')
+        .post(configurationStore.getServerUrl() + '/authenticate')
         .send(data)
         .end((err,res) => {
             if(err){
@@ -23,7 +24,7 @@ var sessionActions = {
     },
     getUser(authenticationToken) {
         request
-        .get('http://generation.com:3000/user')
+        .get(configurationStore.getServerUrl() + '/user')
         .set('x-access-token', authenticationToken)
         .end((err,res) => {
             this.actions.getUserResponse(res);
@@ -35,7 +36,7 @@ var sessionActions = {
     },
     postUser(registrationData) {
         request
-        .post('http://generation.com:3000/user')
+        .post(configurationStore.getServerUrl() + '/user')
         .send(registrationData)
         .end((err,res) => {
             if(err){

@@ -7,6 +7,7 @@ var alt = require('../public/javascript/alt.js');
 module.exports = function (req, res, next) {
 
     var assetPath;
+    var bootstrapData = {}
 
     var router = Router.create({
         location: req.url,
@@ -14,16 +15,17 @@ module.exports = function (req, res, next) {
     });
 
     if(req.cookies.horu) {
-        alt.bootstrap(JSON.stringify({
-            sessionStore: {
-                authenticationToken: req.cookies.horu,
-                isLoggedIn:true
-            },
-            configurationStore: {
-                environment: process.env.NODE_ENV
-            }
-        }));
+        bootstrapData.sessionStore = {
+            authenticationToken: req.cookies.horu,
+            isLoggedIn:true
+        }
     }
+
+    bootstrapData.configurationStore = {
+        environment: process.env.NODE_ENV
+    }
+
+    alt.bootstrap(JSON.stringify(bootstrapData));
 
     if (process.env.NODE_ENV === 'development') {
         assetPath = 'http://localhost:8080/public/';

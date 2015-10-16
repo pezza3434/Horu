@@ -6,17 +6,22 @@ import routes from './routes.jsx';
 import alt from './alt';
 import cookieUtil from './utils/cookieUtil';
 
+var bootstrapData = {};
+
 if(cookieUtil.getItem('horu')) {
-    alt.bootstrap(JSON.stringify({
-        sessionStore: {
-            authenticationToken: cookieUtil.getItem('horu'),
-            isLoggedIn:true
-        },
-        configurationStore: {
-            environment: window.node_env
-        }
-    }));
+
+    bootstrapData.sessionStore = {
+        authenticationToken: cookieUtil.getItem('horu'),
+        isLoggedIn:true
+    }
+
 }
+
+bootstrapData.configurationStore = {
+    environment: window.node_env
+};
+
+alt.bootstrap(JSON.stringify(bootstrapData));
 
 Router.run(routes, Router.HistoryLocation, function (Handler) {
   React.render(<Handler/>, document.getElementById("app-container"));

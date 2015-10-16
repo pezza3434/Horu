@@ -15,7 +15,7 @@ module.exports = React.createClass({
         ratingsActions.getRatings();
         ratingsStore.listen(this._ratingsStoreChange);
         imagesStore.listen(this._imagesStoreChange);
-        this.setState({serverUrl: configurationStore.getSeverUrl()});
+        this.setState({serverUrl: configurationStore.getServerUrl()});
     },
     getInitialState() {
         return {ratings:false};

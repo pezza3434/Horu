@@ -13,7 +13,7 @@ module.exports = React.createClass({
                     </div>
                     <div className="logged-in__profile-text">
                         <div className="logged-in__profile-username">
-                            Pezza3434
+                            {this.props.user.username}
                         </div>
                         <div className="logged-in__profile-votes">
                             {this.props.user.votes} votes

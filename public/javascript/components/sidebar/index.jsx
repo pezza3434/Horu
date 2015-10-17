@@ -22,36 +22,17 @@ module.exports = React.createClass({
     getInitialState() {
         return ({loggedIn: sessionStore.isLoggedIn()})
     },
-    componentDidMount() {
-        this.setState({serverUrl: configurationStore.getServerUrl()});
-        sessionStore.listen(this._sessionStoreChange);
-    },
-    _sessionStoreChange(storeState) {
-        if(storeState.isLoggedIn && storeState.user) {
-            return this.setState({
-                loggedIn:true,
-                user:storeState.user
-            });
-        }
+    componentDidMount(){
+        let sessionStoreState = sessionStore.getState();
 
-        this.setState({
-            loggedIn:false,
-            user: ''
-        });
-    },
-    _userHasBeenLoaded() {
-
-        if (!this.state.loggedIn) {
-            return false;
-        }
-
-        if (this.state.loggedIn && !this.state.user) {
+        if(sessionStoreState.isLoggedIn && !sessionStoreState.user) {
             sessionActions.getUser(sessionStore.getAuthenticationToken());
-            return false;
         }
 
-        return true;
-    },
+        sessionStore.listen(storeState => this.setState(storeState))
+        this.setState({serverUrl: configurationStore.getServerUrl()});
+
+    }
     render() {
 
         let loginButtonClasses = classNames('user-info__login', {hide: this.state.loggedIn});
@@ -66,7 +47,7 @@ module.exports = React.createClass({
                             <div className="user-info__login"><LoginButton /></div> |
                             <div className="user-info__register"><RegisterButton /></div>
                         </div>
-                        {this._userHasBeenLoaded() ? <UserProfile serverUrl={this.state.serverUrl} user={this.state.user}/> : ''}
+                        {this.state.user ? <UserProfile serverUrl={this.state.serverUrl} user={this.state.user}/> : ''}
                     </div>
                     <div className="col-sm-12 navigation no-padding">
                         <ul>

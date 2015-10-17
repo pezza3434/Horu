@@ -4,6 +4,7 @@ import imagesActions from '../actions/imagesActions';
 class configurationStore {
     constructor() {
 
+
         this.on('beforeEach', function () {
             this.configuration = {
                 development: {
@@ -20,7 +21,6 @@ class configurationStore {
         this.exportPublicMethods({
             getServerUrl() {
                 var state = this.getState();
-                console.log(state, 'environment');
                 return state.configuration[state.environment].url;
             }
         });

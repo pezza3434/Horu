@@ -14,7 +14,9 @@ module.exports = React.createClass({
         uploadImageAction: React.PropTypes.func,
         openModalAction: React.PropTypes.func,
         closeModalAction: React.PropTypes.func,
-        uploadSuccess: React.PropTypes.bool
+        uploadSuccess: React.PropTypes.bool,
+        newImageSelectedAction: React.PropTypes.func,
+        imageSrc: React.PropTypes.string
     },
     _uploadImage() {
         this.props.uploadImageAction(this.refs.cropper.getCroppedCanvas().toDataURL());

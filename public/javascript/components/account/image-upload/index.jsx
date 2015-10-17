@@ -26,33 +26,17 @@ module.exports = React.createClass({
     _closeModal() {
         uploadActions.triggerModal(false);
     },
-    _uploadImageAction(imageData) {
-        uploadActions.postUpload(imageData);
-    },
-    _newImageSelectedAction(e){
-       e.preventDefault();
-       let files;
-       if (e.dataTransfer) {
-         files = e.dataTransfer.files;
-       } else if (e.target) {
-         files = e.target.files;
-       }
-       let reader = new FileReader();
-       reader.onload = () => {
-         this.setState({src: reader.result});
-       };
-       reader.readAsDataURL(files[0]);
-    },
+
     render() {
-        let placeHolderImage = configurationStore.getServerUrl() + '/static/placeholder.jpg';
-        let imageSource = this.state.src || placeHolderImage;
-        return(<ImageUpload showModal={this.state.showModal}
-            uploadImageAction={this._uploadImageAction}
+
+        return(<ImageUpload
+            showModal={this.state.showModal}
+            uploadImageAction={uploadActions.postUpload}
             openModalAction={this._openModal}
             closeModalAction={this._closeModal}
             uploadSuccess={this.state.uploadSuccess}
-            newImageSelectedAction={this._newImageSelectedAction}
-            imageSrc={imageSource}
+            newImageSelectedAction={uploadActions.selectNewImage}
+            imageSrc={this.state.selectedImage}
              />)
 
     },

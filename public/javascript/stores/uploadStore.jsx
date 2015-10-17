@@ -6,6 +6,7 @@ class uploadStore {
 
         this.showModal = false;
         this.uploadSuccess = false;
+        this.selectedImage = 'http://generation.com:3000' + '/static/placeholder.jpg';
 
         this.on('beforeEach', function () {
             this.uploadSuccess = false;
@@ -15,7 +16,8 @@ class uploadStore {
         this.bindListeners({
             postUpload: uploadActions.postUpload,
             postUploadSuccess: uploadActions.postUploadSuccess,
-            triggerModal: uploadActions.triggerModal
+            triggerModal: uploadActions.triggerModal,
+            selectNewImage: uploadActions.selectNewImage
         });
 
     }
@@ -31,6 +33,23 @@ class uploadStore {
 
     triggerModal (modalState) {
         this.showModal = modalState;
+    }
+
+    selectNewImage (e) {
+        e.preventDefault();
+        let files;
+        if (e.dataTransfer) {
+          files = e.dataTransfer.files;
+        } else if (e.target) {
+          files = e.target.files;
+        }
+        let reader = new FileReader();
+        reader.onload = () => {
+          this.selectedImage = reader.result;
+          this.emitChange();
+        };
+        reader.readAsDataURL(files[0]);
+        return false;
     }
 
 }

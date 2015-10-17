@@ -7,6 +7,7 @@ var React = require('react');
 var Modal = require('react-bootstrap').Modal;
 var uploadActions = require('../../../actions/uploadActions');
 var uploadStore = require('../../../stores/uploadStore');
+var classNames = require('classnames');
 
 module.exports = React.createClass({
     propTypes: {
@@ -22,6 +23,8 @@ module.exports = React.createClass({
         this.props.uploadImageAction(this.refs.cropper.getCroppedCanvas().toDataURL());
     },
     render() {
+
+        let uploadIsDisabled = this.props.imageSrc.indexOf('placeholder') > -1;
 
         return (
             <div className="col-md-12 account__upload">
@@ -52,7 +55,7 @@ module.exports = React.createClass({
                             Choose Image
                         </span>
                     </label>
-                    <button onClick={this._uploadImage} className="btn btn-default generate-image"><span>Upload Image</span></button>
+                    <button disabled={uploadIsDisabled} onClick={this._uploadImage} className="btn btn-default generate-image"><span>Upload Image</span></button>
                     {this.props.uploadSuccess ? <div className="success-message btn btn-success">Your image has been uploaded!</div> : ''}
                     </div>
 

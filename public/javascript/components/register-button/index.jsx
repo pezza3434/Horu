@@ -50,7 +50,8 @@ module.exports = React.createClass({
             email: this.refs.email.getDOMNode().value,
             username: this.refs.username.getDOMNode().value,
             password: this.refs.password.getDOMNode().value,
-            confirmPassword: this.refs.confirmPassword.getDOMNode().value
+            confirmPassword: this.refs.confirmPassword.getDOMNode().value,
+            age: this.refs.age.getDOMNode().value
         }
     },
     _formOnChange() {
@@ -58,10 +59,11 @@ module.exports = React.createClass({
             email,
             username,
             password,
-            confirmPassword
+            confirmPassword,
+            age
         } = this._getFieldDOMNodes();
 
-        if (email && username && password && confirmPassword && password === confirmPassword) {
+        if (email && username && age && password && confirmPassword && password === confirmPassword) {
             this.setState({
                 validated: true
             })
@@ -78,7 +80,8 @@ module.exports = React.createClass({
             email,
             username,
             password,
-            confirmPassword
+            confirmPassword,
+            age
         } = this._getFieldDOMNodes();
 
         let state = {};
@@ -100,8 +103,11 @@ module.exports = React.createClass({
         var registrationData = {
             email: email,
             username: username,
-            password: password
+            password: password,
+            age
         };
+
+        console.log(registrationData);
 
         sessionActions.postUser(registrationData);
 
@@ -133,6 +139,11 @@ module.exports = React.createClass({
                                 <label htmlFor="exampleInputEmail1">Username</label>
                                 {this.state.usernameError ? <span className="error-message">Your username is required.</span>: ''}
                                 <input className="form-control" id="form-username" name="username" onChange={this._formOnChange} placeholder="Enter username" ref="username" type="text"/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1">How old are you? (We use this to tell people how accurate their guesses were)</label>
+                                {this.state.ageError ? <span className="error-message">Your real age is required</span>: ''}
+                                <input className="form-control" id="form-username" name="username" onChange={this._formOnChange} placeholder="Enter your age" ref="age" type="text"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputPassword1">Password</label>

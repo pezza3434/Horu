@@ -107,8 +107,6 @@ module.exports = React.createClass({
             age
         };
 
-        console.log(registrationData);
-
         sessionActions.postUser(registrationData);
 
         return this.setState({

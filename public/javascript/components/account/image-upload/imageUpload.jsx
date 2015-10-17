@@ -35,7 +35,7 @@ module.exports = React.createClass({
                         {Cropper ?
                             <Cropper
                             ref='cropper'
-                            src='http://fengyuanchen.github.io/cropper/img/picture.jpg'
+                            src={this.props.imageSrc}
                             guides={false}
                             aspectRatio={1 / 1}
                             style={{height:400}}
@@ -45,7 +45,7 @@ module.exports = React.createClass({
                     </div>
                     <div className="col-md-12">
                     <label className="btn btn-primary btn-upload" htmlFor="inputImage" title="Upload image file">
-                        <input accept="image/*" className="sr-only" id="inputImage" name="file" type="file" />
+                        <input accept="image/*" className="sr-only" id="inputImage" name="file" type="file" onChange={this.props.newImageSelectedAction}/>
                         <span className="docs-tooltip" data-original-title="Import image with Blob URLs" data-toggle="tooltip" title="">
                             Choose Image
                         </span>

@@ -16,14 +16,16 @@ module.exports = React.createClass({
         closeModalAction: React.PropTypes.func,
         uploadSuccess: React.PropTypes.bool,
         newImageSelectedAction: React.PropTypes.func,
-        imageSrc: React.PropTypes.string
+        imageSrc: React.PropTypes.string,
+        uploadInProgress: React.PropTypes.bool
     },
     _uploadImage() {
         this.props.uploadImageAction(this.refs.cropper.getCroppedCanvas().toDataURL());
     },
     render() {
 
-        let uploadIsDisabled = this.props.imageSrc.indexOf('placeholder') > -1;
+        let uploadIsDisabled = this.props.imageSrc.indexOf('placeholder') > -1 || this.props.uploadInProgress;
+        let uploadClassNames = classNames('btn', 'btn-default', 'generate-image', {disabled: uploadIsDisabled})
 
         return (
             <div className="col-md-12 account__upload">
@@ -54,7 +56,7 @@ module.exports = React.createClass({
                             Choose Image
                         </span>
                     </label>
-                    <button disabled={uploadIsDisabled} onClick={this._uploadImage} className="btn btn-default generate-image"><span>Upload Image</span></button>
+                    <button disabled={uploadIsDisabled} onClick={this._uploadImage} className={uploadClassNames}><span>{this.props.uploadInProgress ? 'Uploading...': 'Upload Image'}</span></button>
                     {this.props.uploadSuccess ? <div className="success-message btn btn-success">Your image has been uploaded!</div> : ''}
                     </div>
 

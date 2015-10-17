@@ -1,13 +1,15 @@
 import React from 'react';
+
 import Header from './header/index';
 import Upload from './image-upload/index';
 import Ratings from './ratings';
-import ratingsActions from '../../actions/ratingsActions';
-import ratingsStore from '../../stores/ratingsStore';
 import DeleteRatingModal from './delete-rating-modal';
+
+import ratingsActions from '../../actions/ratingsActions';
 import imagesActions from '../../actions/imagesActions';
+
+import ratingsStore from '../../stores/ratingsStore';
 import imagesStore from '../../stores/imagesStore';
-import uploadStore from '../../stores/uploadStore';
 import configurationStore from '../../stores/configurationStore';
 
 module.exports = React.createClass({

@@ -1,12 +1,13 @@
 import alt from '../alt';
 import uploadActions from '../actions/uploadActions';
+import configurationStore from './configurationStore';
 
 class uploadStore {
     constructor() {
 
         this.showModal = false;
         this.uploadSuccess = false;
-        this.selectedImage = 'http://generation.com:3000' + '/static/placeholder.jpg';
+        this.selectedImage = configurationStore.getServerUrl() + '/static/placeholder.jpg';
 
         this.on('beforeEach', function () {
             this.uploadSuccess = false;

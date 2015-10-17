@@ -22,7 +22,7 @@ module.exports = function (req, res, next) {
     }
 
     bootstrapData.configurationStore = {
-        environment: process.env.NODE_ENV
+        environment: process.env.NODE_ENV || 'development'
     }
 
     alt.bootstrap(JSON.stringify(bootstrapData));

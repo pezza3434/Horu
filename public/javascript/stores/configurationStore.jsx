@@ -1,9 +1,7 @@
 import alt from '../alt';
-import imagesActions from '../actions/imagesActions';
 
 class configurationStore {
     constructor() {
-
 
         this.on('beforeEach', function () {
             this.configuration = {
@@ -21,7 +19,9 @@ class configurationStore {
         this.exportPublicMethods({
             getServerUrl() {
                 var state = this.getState();
-                return state.configuration[state.environment].url;
+                if(state.environment){
+                    return state.configuration[state.environment].url;
+                }
             }
         });
     }

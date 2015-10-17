@@ -7,9 +7,10 @@ class uploadStore {
 
         this.showModal = false;
         this.uploadSuccess = false;
-        this.selectedImage = configurationStore.getServerUrl() + '/static/placeholder.jpg';
+        this.selectedImage;
 
         this.on('beforeEach', function () {
+            this.selectedImage = this.selectedImage || configurationStore.getServerUrl() + '/static/placeholder.jpg';
             this.uploadSuccess = false;
             this.apiCallInProgress = false;
         });
@@ -33,6 +34,9 @@ class uploadStore {
     }
 
     triggerModal (modalState) {
+        if(!modalState) {
+            this.selectedImage = configurationStore.getServerUrl() + '/static/placeholder.jpg';
+        }
         this.showModal = modalState;
     }
 

@@ -32,7 +32,7 @@ module.exports = React.createClass({
         sessionStore.listen(storeState => this.setState(storeState))
         this.setState({serverUrl: configurationStore.getServerUrl()});
 
-    }
+    },
     render() {
 
         let loginButtonClasses = classNames('user-info__login', {hide: this.state.loggedIn});

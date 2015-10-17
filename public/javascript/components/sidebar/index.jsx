@@ -20,7 +20,7 @@ import UserProfile from './user-profile/index';
 
 module.exports = React.createClass({
     getInitialState() {
-        return ({loggedIn: sessionStore.isLoggedIn()})
+        return ({isLoggedIn: sessionStore.isLoggedIn()})
     },
     componentDidMount(){
         let sessionStoreState = sessionStore.getState();
@@ -35,7 +35,7 @@ module.exports = React.createClass({
     },
     render() {
 
-        let loginButtonClasses = classNames('user-info__login', {hide: this.state.loggedIn});
+        let loginButtonClasses = classNames('user-info__login', {hide: this.state.isLoggedIn});
 
         return (
             <div className="col-sm-2 sidebar no-padding">
@@ -47,14 +47,14 @@ module.exports = React.createClass({
                             <div className="user-info__login"><LoginButton /></div> |
                             <div className="user-info__register"><RegisterButton /></div>
                         </div>
-                        {this.state.user ? <UserProfile serverUrl={this.state.serverUrl} user={this.state.user}/> : ''}
+                        {this.state.user && this.state.isLoggedIn ? <UserProfile serverUrl={this.state.serverUrl} user={this.state.user}/> : ''}
                     </div>
                     <div className="col-sm-12 navigation no-padding">
                         <ul>
                             <li>
                                 <i className="fa fa-home"></i>
                                 <Link to="isotope" href="/#/">Home</Link></li>
-                            {this.state.loggedIn ? <li>
+                            {this.state.isLoggedIn ? <li>
                                 <i className="fa fa-users"></i>
                                 <Link to="account" href="/#/account">Your Account</Link>
                             </li> : ''}

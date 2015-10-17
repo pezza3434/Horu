@@ -6,7 +6,6 @@ if (typeof window !== "undefined") {
 var React = require('react');
 var Modal = require('react-bootstrap').Modal;
 var uploadActions = require('../../../actions/uploadActions');
-var uploadStore = require('../../../stores/uploadStore');
 var classNames = require('classnames');
 
 module.exports = React.createClass({

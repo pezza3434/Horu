@@ -5,6 +5,7 @@ if (typeof window !== "undefined") {
 
 var React = require('react');
 var Modal = require('react-bootstrap').Modal;
+var ProgressBar = require('react-bootstrap').ProgressBar;
 var uploadActions = require('../../../actions/uploadActions');
 var classNames = require('classnames');
 
@@ -17,7 +18,8 @@ module.exports = React.createClass({
         uploadSuccess: React.PropTypes.bool,
         newImageSelectedAction: React.PropTypes.func,
         imageSrc: React.PropTypes.string,
-        uploadInProgress: React.PropTypes.bool
+        uploadInProgress: React.PropTypes.bool,
+        uploadProgress: React.PropTypes.number
     },
     _uploadImage() {
         this.props.uploadImageAction(this.refs.cropper.getCroppedCanvas().toDataURL());
@@ -57,6 +59,7 @@ module.exports = React.createClass({
                         </span>
                     </label>
                     <button disabled={uploadIsDisabled} onClick={this._uploadImage} className={uploadClassNames}><span>{this.props.uploadInProgress ? 'Uploading...': 'Upload Image'}</span></button>
+                    {this.props.uploadInProgress ? <ProgressBar className="progressBar" active now={this.props.uploadProgress || 0} /> : ''}
                     {this.props.uploadSuccess ? <div className="success-message btn btn-success">Your image has been uploaded!</div> : ''}
                     </div>
 

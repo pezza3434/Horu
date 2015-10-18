@@ -39,6 +39,7 @@ module.exports = React.createClass({
             newImageSelectedAction={uploadActions.selectNewImage}
             imageSrc={this.state.selectedImage}
             uploadInProgress={this.state.apiCallInProgress}
+            uploadProgress={this.state.uploadProgress}
              />)
 
     },

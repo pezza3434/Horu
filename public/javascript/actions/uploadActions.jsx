@@ -8,8 +8,8 @@ var uploadActions = {
     postUpload(dataURL) {
         request
         .post(configurationStore.getServerUrl() + '/upload')
-        .on('progress', function(e){
-            console.log(e, 'e')
+        .on('progress', (e) => {
+            this.actions.updateUploadProgress(e);
         })
         .set('x-access-token', sessionStore.getAuthenticationToken())
         .send({data:dataURL})
@@ -24,6 +24,9 @@ var uploadActions = {
     postUploadSuccess(uploadResponse) {
         this.dispatch(uploadResponse);
         ratingsActions.getRatings();
+    },
+    updateUploadProgress(e) {
+        this.dispatch(e.percent)
     },
     postUploadError(err) {
         this.dispatch(err);

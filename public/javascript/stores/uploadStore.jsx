@@ -8,6 +8,7 @@ class uploadStore {
         this.showModal = false;
         this.uploadSuccess = false;
         this.selectedImage;
+        this.uploadProgress;
 
         this.on('beforeEach', function () {
             this.selectedImage = this.selectedImage || configurationStore.getServerUrl() + '/static/placeholder.jpg';
@@ -18,6 +19,7 @@ class uploadStore {
         this.bindListeners({
             postUpload: uploadActions.postUpload,
             postUploadSuccess: uploadActions.postUploadSuccess,
+            updateUploadProgress: uploadActions.updateUploadProgress,
             triggerModal: uploadActions.triggerModal,
             selectNewImage: uploadActions.selectNewImage
         });
@@ -38,9 +40,13 @@ class uploadStore {
             this.selectedImage = configurationStore.getServerUrl() + '/static/placeholder.jpg';
         }
         this.showModal = modalState;
+        this.uploadProgress = 0;
     }
 
     selectNewImage (e) {
+
+        this.uploadProgress = 0;
+
         e.preventDefault();
         let files;
         if (e.dataTransfer) {
@@ -55,6 +61,10 @@ class uploadStore {
         };
         reader.readAsDataURL(files[0]);
         return false;
+    }
+
+    updateUploadProgress (percent) {
+        this.uploadProgress = Math.floor(percent);
     }
 
 }

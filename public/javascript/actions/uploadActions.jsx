@@ -8,6 +8,9 @@ var uploadActions = {
     postUpload(dataURL) {
         request
         .post(configurationStore.getServerUrl() + '/upload')
+        .on('progress', function(e){
+            console.log(e, 'e')
+        })
         .set('x-access-token', sessionStore.getAuthenticationToken())
         .send({data:dataURL})
         .end((err,res) => {

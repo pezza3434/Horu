@@ -26,6 +26,7 @@ var uploadActions = {
         ratingsActions.getRatings();
     },
     updateUploadProgress(e) {
+        console.log(e);
         this.dispatch(e.percent)
     },
     postUploadError(err) {

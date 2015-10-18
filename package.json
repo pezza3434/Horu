@@ -25,9 +25,9 @@
     "node-jsx": "^0.13.3",
     "react": "^0.13.3",
     "react-bootstrap": "^0.25.2",
-    "react-cropper": "^0.4.0",
     "serve-favicon": "~2.2.0",
-    "superagent": "^1.4.0"
+    "superagent": "^1.4.0",
+    "cropper": "^0.11.1"
   },
   "devDependencies": {
     "alt": "^0.17.3",

@@ -6,27 +6,28 @@ var configurationStore = require('../stores/configurationStore');
 
 var uploadActions = {
     postUpload(dataURL) {
-        request
+        var req = request
         .post(configurationStore.getServerUrl() + '/upload')
         .on('progress', (e) => {
-            this.actions.updateUploadProgress(e);
+            if(e.percent) {
+                this.actions.updateUploadProgress(e);
+            }
         })
         .set('x-access-token', sessionStore.getAuthenticationToken())
         .send({data:dataURL})
         .end((err,res) => {
             if(err){
-                return this.actions.postUploadError;
+                return console.log(err)
             }
             this.actions.postUploadSuccess(res);
         });
-        this.dispatch();
+        this.dispatch(req.xhr);
     },
     postUploadSuccess(uploadResponse) {
         this.dispatch(uploadResponse);
         ratingsActions.getRatings();
     },
     updateUploadProgress(e) {
-        console.log(e);
         this.dispatch(e.percent)
     },
     postUploadError(err) {
@@ -37,6 +38,10 @@ var uploadActions = {
     },
     selectNewImage(ev) {
         this.dispatch(ev);
+    },
+    abortUpload(xhrObject){
+        xhrObject.abort();
+        this.dispatch();
     }
 };
 

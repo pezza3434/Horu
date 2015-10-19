@@ -25,6 +25,9 @@ module.exports = React.createClass({
         uploadActions.triggerModal(true);
     },
     _closeModal() {
+        if (this.state.apiCallInProgress) {
+            uploadActions.abortUpload(this.state.xhrObject);
+        }
         uploadActions.triggerModal(false);
     },
 

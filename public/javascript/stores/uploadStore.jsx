@@ -9,6 +9,7 @@ class uploadStore {
         this.uploadSuccess = false;
         this.selectedImage;
         this.uploadProgress;
+        this.xhrObject;
 
         this.on('beforeEach', function () {
             this.selectedImage = this.selectedImage || configurationStore.getServerUrl() + '/static/placeholder.jpg';
@@ -26,8 +27,9 @@ class uploadStore {
 
     }
 
-    postUpload () {
+    postUpload (xhr) {
         this.apiCallInProgress = true;
+        this.xhrObject = xhr;
     }
 
     postUploadSuccess (response) {
@@ -65,7 +67,6 @@ class uploadStore {
 
     updateUploadProgress (percent) {
         this.apiCallInProgress = true;
-
         this.uploadProgress = Math.floor(percent);
     }
 

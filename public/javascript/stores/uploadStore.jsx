@@ -64,6 +64,8 @@ class uploadStore {
     }
 
     updateUploadProgress (percent) {
+        this.apiCallInProgress = true;
+
         this.uploadProgress = Math.floor(percent);
     }
 

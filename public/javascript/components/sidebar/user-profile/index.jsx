@@ -1,4 +1,5 @@
 var React = require('react');
+import {Link} from 'react-router';
 
 module.exports = React.createClass({
     render() {
@@ -13,7 +14,7 @@ module.exports = React.createClass({
                     </div>
                     <div className="logged-in__profile-text">
                         <div className="logged-in__profile-username">
-                            {this.props.user.username}
+                            <Link to="account" href="/#/account">{this.props.user.username}</Link>
                         </div>
                         <div className="logged-in__profile-votes">
                             {this.props.user.votes} votes

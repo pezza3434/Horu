@@ -1,3 +1,7 @@
+if (typeof window !== "undefined") {
+    require('./style.scss');
+}
+
 var React = require('react');
 var Modal = require('react-bootstrap').Modal;
 var classNames = require('classnames');
@@ -82,7 +86,7 @@ module.exports = React.createClass({
         var submitClasses = classNames('btn', 'btn-default', {disabled: !this.state.validated || this.state.apiCallInProgress});
         return(
             <div>
-                <div onClick={this._openModal}>Log in</div>
+                <div className="login-button" onClick={this._openModal}>Log in</div>
                 <Modal show={this.state.showModal} onHide={this._closeModal}>
                     <Modal.Header closeButton>
                         <Modal.Title>Login to How Old Are you Really</Modal.Title>

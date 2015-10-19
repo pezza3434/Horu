@@ -1,3 +1,7 @@
+if (typeof window !== "undefined") {
+    require('./style.scss');
+}
+
 var React = require('react');
 var classNames = require('classnames');
 var sessionActions = require('../../actions/sessionActions');
@@ -121,7 +125,7 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <div onClick={this._openModal}>Register</div>
+                <div className="register-button" onClick={this._openModal}> Register</div>
                 <Modal onHide={this._closeModal} show={this.state.showModal}>
                     <Modal.Header closeButton>
                         <Modal.Title>Register to How Old Are you Really</Modal.Title>

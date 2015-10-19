@@ -4,6 +4,7 @@ import Header from './header/index';
 import Upload from './image-upload/index';
 import Ratings from './ratings';
 import DeleteRatingModal from './delete-rating-modal';
+import NoImagesMessage from './no-images-message';
 
 import ratingsActions from '../../actions/ratingsActions';
 import imagesActions from '../../actions/imagesActions';
@@ -49,11 +50,11 @@ module.exports = React.createClass({
 
     render() {
         return (
-            <div className="col-sm-10 col-sm-offset-2 content no-padding">
-                <div className="account">
+            <div className="col-sm-10 col-sm-offset-2 content no-padding fill">
+                <div className="account fill">
                     <Header/>
                     <Upload/>
-                    {this.state.ratings ? <Ratings serverUrl={this.state.serverUrl} ratings={this.state.ratings} triggerDeleteModal={this._triggerDeleteModal}/> : ''}
+                    {this.state.ratings ? <Ratings serverUrl={this.state.serverUrl} ratings={this.state.ratings} triggerDeleteModal={this._triggerDeleteModal}/> : <NoImagesMessage/>}
                     <DeleteRatingModal showModal={this.state.showModal}
                         idToDelete={this.state.idToDelete}
                         cancelModalAction={this._triggerCancelImageDelete}

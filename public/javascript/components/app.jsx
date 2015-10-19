@@ -11,8 +11,8 @@ const App = React.createClass({
     },
     render() {
         return (
-            <div className="container-fluid">
-                <div className="row">
+            <div className="container-fluid fill">
+                <div className="row fill">
                     <Sidebar/>
                     <RouteHandler/>
                     <Footer/>

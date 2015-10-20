@@ -21,12 +21,10 @@ module.exports = React.createClass({
         this.setState({serverUrl: configurationStore.getServerUrl()});
     },
     getInitialState() {
-        return {ratings:false};
+        return ratingsStore.getState();
     },
     _ratingsStoreChange(storeState) {
-        if (ratingsStore.hasRatings()){
-            this.setState(storeState);
-        }
+        this.setState(storeState);
     },
     _imagesStoreChange(storeState) {
         this.setState(storeState);
@@ -54,7 +52,7 @@ module.exports = React.createClass({
                 <div className="account fill">
                     <Header/>
                     <Upload/>
-                    {this.state.ratings ? <Ratings serverUrl={this.state.serverUrl} ratings={this.state.ratings} triggerDeleteModal={this._triggerDeleteModal}/> : <NoImagesMessage/>}
+                    {this.state.ratings.length > 0 ? <Ratings serverUrl={this.state.serverUrl} ratings={this.state.ratings} triggerDeleteModal={this._triggerDeleteModal}/> : <NoImagesMessage/>}
                     <DeleteRatingModal showModal={this.state.showModal}
                         idToDelete={this.state.idToDelete}
                         cancelModalAction={this._triggerCancelImageDelete}

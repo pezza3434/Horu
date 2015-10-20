@@ -26,10 +26,6 @@ class imagesStore {
         this.response = response.body;
     }
 
-    toggleModal() {
-        //simply resets the state
-    }
-
 }
 
 

@@ -3,6 +3,7 @@ var request = require('superagent');
 var sessionStore = require('../stores/sessionStore');
 var ratingsActions = require('./ratingsActions');
 var configurationStore = require('../stores/configurationStore');
+var sessionActions = require('./sessionActions');
 
 var uploadActions = {
     postUpload(dataURL) {
@@ -26,6 +27,7 @@ var uploadActions = {
     postUploadSuccess(uploadResponse) {
         this.dispatch(uploadResponse);
         ratingsActions.getRatings();
+        sessionActions.getUser(sessionStore.getAuthenticationToken());
     },
     updateUploadProgress(e) {
         this.dispatch(e.percent)

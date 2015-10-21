@@ -12,7 +12,6 @@ class imagesStore {
         this.bindListeners({
             deleteImage: imagesActions.deleteImage,
             deleteImageSuccess: imagesActions.deleteImageSuccess,
-            toggleModal: imagesActions.toggleModal
         });
 
     }

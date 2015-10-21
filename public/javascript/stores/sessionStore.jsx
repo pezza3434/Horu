@@ -61,7 +61,7 @@ class sessionStore {
         this.authenticationToken = response.body.token;
 
         if(cookieUtil) {
-            cookieUtil.setItem('horu', response.body.token);
+            cookieUtil.setItem('horu', response.body.token, 1440);
         }
 
     }

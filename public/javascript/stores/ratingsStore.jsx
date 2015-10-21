@@ -6,7 +6,7 @@ class ratingsStore {
     constructor() {
 
         this.ratings = [];
-
+        this.showModal = false;
         this.imageIdToBeDeleted;
 
         this.on('beforeEach', function () {

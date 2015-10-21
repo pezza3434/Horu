@@ -43,10 +43,11 @@ module.exports = React.createClass({
         ratingsActions.toggleModal({showModal:false});
     },
     _closeModalAfterSuccess() {
-        setTimeout(() => this.setState({showModal:false}), 1000);
+        setTimeout(() => ratingsActions.toggleModal({showModal:false}), 1000);
     },
 
     render() {
+        console.log(this.state.showModal);
         return (
             <div className="col-sm-10 col-sm-offset-2 content no-padding fill">
                 <div className="account fill">

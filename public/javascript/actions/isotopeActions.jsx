@@ -38,6 +38,9 @@ var isotopeActions = {
     },
     submitAgeSuccess(ratingsResponse) {
         this.dispatch(ratingsResponse);
+    },
+    clickedFace(state) {
+        this.dispatch(state);
     }
 
 };

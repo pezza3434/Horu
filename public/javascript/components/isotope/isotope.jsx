@@ -14,18 +14,23 @@ import Face from './face';
 module.exports = React.createClass({
     propTypes: {
         serverUrl: React.PropTypes.string,
-        isotopeImages: React.PropTypes.array
+        isotopeImages: React.PropTypes.array,
+        clickedFaceHandler: React.PropTypes.func
     },
     _renderFaces() {
         return this.props.isotopeImages.map((face, index) => {
             return <Face
                 key={index}
+                stateIndex = {index}
                 serverUrl={this.props.serverUrl}
                 id={face.id}
                 path={face.path}
                 userId={face.user_id}
                 rated={face.rated}
-                age={face.age}>
+                age={face.age}
+                clickedFaceHandler={this.props.clickedFaceHandler}
+                containerClicked={this.props.isotopeState[index].containerClicked}
+                >
             </Face>
         });
     },

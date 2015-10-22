@@ -16,11 +16,17 @@ module.exports = React.createClass({
     componentDidMount() {
         isotopeStore.listen(storeState => this.setState(storeState));
     },
+    _clickedFaceHandler(stateIndex, stateValue) {
+        isotopeActions.clickedFace({stateIndex, stateValue});
+    },
     render() {
+        console.log(this.state)
         return <Isotope
             serverUrl = {this.state.serverUrl}
             isotopeImages = {this.state.isotopeImages}
+            clickedFaceHandler = {this._clickedFaceHandler}
+            isotopeState = {this.state.isotopeState}
             />
-        
+
     }
 });

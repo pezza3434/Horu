@@ -6,17 +6,17 @@ import isotopeActions from '../../actions/isotopeActions';
 module.exports = React.createClass({
     getInitialState() {
         return {
-            containerClicked: false,
             displayForm: false,
             formSubmitted: false
         }
     },
     _clickedContainer() {
-        this.setState({containerClicked: true});
+        this.props.clickedFaceHandler(this.props.stateIndex, true);
         React.findDOMNode(this.refs.faceInput).focus();
     },
     _onMouseLeave() {
-        this.setState({containerClicked:false, displayForm:false});
+        this.props.clickedFaceHandler(this.props.stateIndex, false);
+        this.setState({displayForm:false});
     },
     _onMouseEnter() {
         this.setState({displayForm:true});
@@ -62,7 +62,7 @@ module.exports = React.createClass({
     },
     render() {
         var url = this.props.serverUrl + '/static' + this.props.path;
-        var containerClassNames = classNames('col-xs-12', 'col-sm-6', 'col-md-4', 'grid-item', 'no-padding', {clicked: this.state.containerClicked});
+        var containerClassNames = classNames('col-xs-12', 'col-sm-6', 'col-md-4', 'grid-item', 'no-padding', {clicked: this.props.containerClicked});
         var boxClassNames = classNames('box', {submitted: this.state.formSubmitted}, {hide: !this.state.displayForm && !this.state.formSubmitted});
         return (
             <div className={containerClassNames} onClick={this._clickedContainer} onMouseLeave={this._onMouseLeave} onMouseEnter={this._onMouseEnter}>

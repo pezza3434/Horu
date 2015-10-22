@@ -1,6 +1,7 @@
-var React = require('react');
-var classNames = require('classnames');
-var isotopeActions = require('../../actions/isotopeActions');
+import React from 'react';
+import classNames from 'classnames';
+
+import isotopeActions from '../../actions/isotopeActions';
 
 module.exports = React.createClass({
     getInitialState() {

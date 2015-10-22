@@ -16,15 +16,19 @@ module.exports = React.createClass({
     componentDidMount() {
         isotopeStore.listen(storeState => this.setState(storeState));
     },
-    _clickedFaceHandler(stateIndex, stateValue) {
-        isotopeActions.clickedFace({stateIndex, stateValue});
+    _clickedFaceHandler(faceIndex) {
+        isotopeActions.clickedFace(faceIndex);
+    },
+    _mouseLeftContainerHandler(faceIndex) {
+        console.log('mosue elft', faceIndex)
+        isotopeActions.mouseLeftContainer(faceIndex);
     },
     render() {
-        console.log(this.state)
         return <Isotope
             serverUrl = {this.state.serverUrl}
             isotopeImages = {this.state.isotopeImages}
             clickedFaceHandler = {this._clickedFaceHandler}
+            mouseLeftContainerHandler = {this._mouseLeftContainerHandler}
             isotopeState = {this.state.isotopeState}
             />
 

@@ -39,8 +39,11 @@ var isotopeActions = {
     submitAgeSuccess(ratingsResponse) {
         this.dispatch(ratingsResponse);
     },
-    clickedFace(state) {
-        this.dispatch(state);
+    clickedFace(faceIndex) {
+        this.dispatch(faceIndex);
+    },
+    mouseLeftContainer(faceIndex) {
+        this.dispatch(faceIndex);
     }
 
 };

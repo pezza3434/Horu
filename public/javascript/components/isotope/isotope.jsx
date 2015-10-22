@@ -21,14 +21,14 @@ module.exports = React.createClass({
         return this.props.isotopeImages.map((face, index) => {
             return <Face
                 key={index}
-                stateIndex = {index}
                 serverUrl={this.props.serverUrl}
                 id={face.id}
                 path={face.path}
                 userId={face.user_id}
                 rated={face.rated}
                 age={face.age}
-                clickedFaceHandler={this.props.clickedFaceHandler}
+                mouseLeftContainerHandler={this.props.mouseLeftContainerHandler.bind(null, index)}
+                clickedFaceHandler={this.props.clickedFaceHandler.bind(null, index)}
                 containerClicked={this.props.isotopeState[index].containerClicked}
                 >
             </Face>

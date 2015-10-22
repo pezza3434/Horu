@@ -10,7 +10,8 @@ class isotopeStore {
         this.bindListeners({
             getImages: isotopeActions.getImages,
             getImagesSuccess: isotopeActions.getImagesSuccess,
-            clickedFace: isotopeActions.clickedFace
+            clickedFace: isotopeActions.clickedFace,
+            mouseLeftContainer: isotopeActions.mouseLeftContainer
         });
     }
 
@@ -36,9 +37,14 @@ class isotopeStore {
         this.apiCallInProgress = false;
     }
 
-    clickedFace(state) {
-        this.isotopeState[state.stateIndex].containerClicked = state.stateValue;
+    clickedFace(faceIndex) {
+        this.isotopeState[faceIndex].containerClicked = true;
     }
+
+    mouseLeftContainer(faceIndex) {
+        this.isotopeState[faceIndex].containerClicked = false;
+    }
+
 }
 
 

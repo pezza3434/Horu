@@ -11,11 +11,11 @@ module.exports = React.createClass({
         }
     },
     _clickedContainer() {
-        this.props.clickedFaceHandler(this.props.stateIndex, true);
+        this.props.clickedFaceHandler();
         React.findDOMNode(this.refs.faceInput).focus();
     },
     _onMouseLeave() {
-        this.props.clickedFaceHandler(this.props.stateIndex, false);
+        this.props.mouseLeftContainerHandler();
         this.setState({displayForm:false});
     },
     _onMouseEnter() {

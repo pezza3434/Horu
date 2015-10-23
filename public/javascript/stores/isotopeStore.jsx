@@ -25,12 +25,13 @@ class isotopeStore {
     getImagesSuccess (response) {
         this.isotopeImages = response.body;
         this.apiCallInProgress = false;
-        this.isotopeState = response.body.reduce(function(isotopeState, image){
-            isotopeState.containerClicked = false;
-            isotopeState.displayForm = false;
-            isotopeState.formSubmitted = false;
-            isotopeState.push({});
-            return isotopeState
+        this.isotopeState = response.body.reduce(function(builtState, image){
+            var newState = {};
+            newState.containerClicked = false;
+            newState.displayForm = false;
+            newState.formSubmitted = false;
+            builtState.push(newState);
+            return builtState;
         }, []);
     }
 

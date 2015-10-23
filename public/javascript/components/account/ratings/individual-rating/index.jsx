@@ -14,7 +14,7 @@ export default React.createClass({
                 <div className="col-md-8 account__uploads_stats">
                     <div>
                         <strong>Current Rating: </strong>
-                        {this.props.rating.current_rating}
+                        {Math.floor(this.props.rating.current_rating)}
                     </div>
                     <div>
                         <strong>Number of Votes: </strong>

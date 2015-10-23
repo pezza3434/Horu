@@ -35,13 +35,9 @@ class isotopeStore {
     }
 
     submitAge (data) {
-        console.log('gets to here')
         this.apiCallInProgress = true;
         this.isotopeState[data.faceIndex].formSubmitted = true;
         this.isotopeState[data.faceIndex].ageGuessed = data.ageGuessed;
-
-        console.log(this.isotopeState)
-
     }
 
     submitAgeSuccess () {

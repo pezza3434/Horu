@@ -30,8 +30,11 @@ module.exports = React.createClass({
                 mouseLeftContainerHandler={this.props.mouseLeftContainerHandler.bind(null, index)}
                 mouseEnteredContainerHandler={this.props.mouseEnteredContainerHandler.bind(null, index)}
                 clickedFaceHandler={this.props.clickedFaceHandler.bind(null, index)}
+                formSubmittedHandler={this.props.formSubmittedHandler.bind(null, index)}
                 containerClicked={this.props.isotopeState[index].containerClicked}
                 displayForm={this.props.isotopeState[index].displayForm}
+                formSubmitted={this.props.isotopeState[index].formSubmitted}
+                ageGuessed = {this.props.isotopeState[index].ageGuessed}
                 >
             </Face>
         });

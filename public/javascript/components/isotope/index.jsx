@@ -25,6 +25,9 @@ module.exports = React.createClass({
     _mouseEnteredContainerhandler(faceIndex) {
         isotopeActions.mouseEnteredContainer(faceIndex);
     },
+    _formSubmittedHandler(faceIndex, submissionData) {
+        isotopeActions.submitAge(submissionData, faceIndex);
+    },
     render() {
         return <Isotope
             serverUrl = {this.state.serverUrl}
@@ -32,6 +35,7 @@ module.exports = React.createClass({
             clickedFaceHandler = {this._clickedFaceHandler}
             mouseLeftContainerHandler = {this._mouseLeftContainerHandler}
             mouseEnteredContainerHandler = {this._mouseEnteredContainerhandler}
+            formSubmittedHandler = {this._formSubmittedHandler}
             isotopeState = {this.state.isotopeState}
             />
 

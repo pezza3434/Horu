@@ -10,6 +10,8 @@ class isotopeStore {
         this.bindListeners({
             getImages: isotopeActions.getImages,
             getImagesSuccess: isotopeActions.getImagesSuccess,
+            submitAge: isotopeActions.submitAge,
+            submitAgeSuccess: isotopeActions.submitAgeSuccess,
             clickedFace: isotopeActions.clickedFace,
             mouseLeftContainer: isotopeActions.mouseLeftContainer,
             mouseEnteredContainer: isotopeActions.mouseEnteredContainer
@@ -26,13 +28,20 @@ class isotopeStore {
         this.isotopeState = response.body.reduce(function(isotopeState, image){
             isotopeState.containerClicked = false;
             isotopeState.displayForm = false;
+            isotopeState.formSubmitted = false;
             isotopeState.push({});
             return isotopeState
         }, []);
     }
 
-    submitAge () {
+    submitAge (data) {
+        console.log('gets to here')
         this.apiCallInProgress = true;
+        this.isotopeState[data.faceIndex].formSubmitted = true;
+        this.isotopeState[data.faceIndex].ageGuessed = data.ageGuessed;
+
+        console.log(this.isotopeState)
+
     }
 
     submitAgeSuccess () {

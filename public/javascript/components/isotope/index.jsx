@@ -20,8 +20,10 @@ module.exports = React.createClass({
         isotopeActions.clickedFace(faceIndex);
     },
     _mouseLeftContainerHandler(faceIndex) {
-        console.log('mosue elft', faceIndex)
         isotopeActions.mouseLeftContainer(faceIndex);
+    },
+    _mouseEnteredContainerhandler(faceIndex) {
+        isotopeActions.mouseEnteredContainer(faceIndex);
     },
     render() {
         return <Isotope
@@ -29,6 +31,7 @@ module.exports = React.createClass({
             isotopeImages = {this.state.isotopeImages}
             clickedFaceHandler = {this._clickedFaceHandler}
             mouseLeftContainerHandler = {this._mouseLeftContainerHandler}
+            mouseEnteredContainerHandler = {this._mouseEnteredContainerhandler}
             isotopeState = {this.state.isotopeState}
             />
 

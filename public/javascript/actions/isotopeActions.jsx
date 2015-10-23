@@ -42,6 +42,9 @@ var isotopeActions = {
     clickedFace(faceIndex) {
         this.dispatch(faceIndex);
     },
+    mouseEnteredContainer(faceIndex) {
+        this.dispatch(faceIndex);
+    },
     mouseLeftContainer(faceIndex) {
         this.dispatch(faceIndex);
     }

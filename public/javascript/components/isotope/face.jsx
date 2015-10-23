@@ -6,7 +6,6 @@ import isotopeActions from '../../actions/isotopeActions';
 module.exports = React.createClass({
     getInitialState() {
         return {
-            displayForm: false,
             formSubmitted: false
         }
     },
@@ -16,10 +15,9 @@ module.exports = React.createClass({
     },
     _onMouseLeave() {
         this.props.mouseLeftContainerHandler();
-        this.setState({displayForm:false});
     },
     _onMouseEnter() {
-        this.setState({displayForm:true});
+        this.props.mouseEnteredContainerHandler();
     },
     _onFormSubmit(e) {
         e.preventDefault();
@@ -35,7 +33,7 @@ module.exports = React.createClass({
         this.setState({formSubmitted: true, ageGuessed: ageGuessed});
     },
     _formJSX() {
-        if (this.state.displayForm && !this.state.formSubmitted) {
+        if (this.props.displayForm && !this.state.formSubmitted) {
             return (
                 <form onSubmit={this._onFormSubmit} ref="faceForm">
                          <div className="box__container">
@@ -63,7 +61,7 @@ module.exports = React.createClass({
     render() {
         var url = this.props.serverUrl + '/static' + this.props.path;
         var containerClassNames = classNames('col-xs-12', 'col-sm-6', 'col-md-4', 'grid-item', 'no-padding', {clicked: this.props.containerClicked});
-        var boxClassNames = classNames('box', {submitted: this.state.formSubmitted}, {hide: !this.state.displayForm && !this.state.formSubmitted});
+        var boxClassNames = classNames('box', {submitted: this.state.formSubmitted}, {hide: !this.props.displayForm && !this.state.formSubmitted});
         return (
             <div className={containerClassNames} onClick={this._clickedContainer} onMouseLeave={this._onMouseLeave} onMouseEnter={this._onMouseEnter}>
                 <img className="grid-item__image img-responsive" src={url} />

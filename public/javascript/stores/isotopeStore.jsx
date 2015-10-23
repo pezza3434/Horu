@@ -11,7 +11,8 @@ class isotopeStore {
             getImages: isotopeActions.getImages,
             getImagesSuccess: isotopeActions.getImagesSuccess,
             clickedFace: isotopeActions.clickedFace,
-            mouseLeftContainer: isotopeActions.mouseLeftContainer
+            mouseLeftContainer: isotopeActions.mouseLeftContainer,
+            mouseEnteredContainer: isotopeActions.mouseEnteredContainer
         });
     }
 
@@ -23,7 +24,8 @@ class isotopeStore {
         this.isotopeImages = response.body;
         this.apiCallInProgress = false;
         this.isotopeState = response.body.reduce(function(isotopeState, image){
-            isotopeState.containerClicked = false,
+            isotopeState.containerClicked = false;
+            isotopeState.displayForm = false;
             isotopeState.push({});
             return isotopeState
         }, []);
@@ -39,10 +41,16 @@ class isotopeStore {
 
     clickedFace(faceIndex) {
         this.isotopeState[faceIndex].containerClicked = true;
+        this.isotopeState[faceIndex].displayForm = true;
     }
 
     mouseLeftContainer(faceIndex) {
         this.isotopeState[faceIndex].containerClicked = false;
+        this.isotopeState[faceIndex].displayForm = false;
+    }
+
+    mouseEnteredContainer(faceIndex) {
+        this.isotopeState[faceIndex].displayForm = true;
     }
 
 }

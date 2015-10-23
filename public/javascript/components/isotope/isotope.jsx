@@ -15,9 +15,18 @@ module.exports = React.createClass({
     propTypes: {
         serverUrl: React.PropTypes.string,
         isotopeImages: React.PropTypes.array,
-        clickedFaceHandler: React.PropTypes.func
+        clickedFaceHandler: React.PropTypes.func,
+        mouseLeftContainerHandler: React.PropTypes.func,
+        mouseEnteredContainerHandler: React.PropTypes.func,
+        formSubmittedHandler: React.PropTypes.func,
+        isotopeState: React.PropTypes.array
     },
     _renderFaces() {
+        var {isotopeState,
+            formSubmittedHandler,
+            clickedFaceHandler,
+            mouseEnteredContainerHandler,
+            mouseLeftContainerHandler} = this.props;
         return this.props.isotopeImages.map((face, index) => {
             return <Face
                 key={index}
@@ -27,28 +36,21 @@ module.exports = React.createClass({
                 userId={face.user_id}
                 rated={face.rated}
                 age={face.age}
-                mouseLeftContainerHandler={this.props.mouseLeftContainerHandler.bind(null, index)}
-                mouseEnteredContainerHandler={this.props.mouseEnteredContainerHandler.bind(null, index)}
-                clickedFaceHandler={this.props.clickedFaceHandler.bind(null, index)}
-                formSubmittedHandler={this.props.formSubmittedHandler.bind(null, index)}
-                containerClicked={this.props.isotopeState[index].containerClicked}
-                displayForm={this.props.isotopeState[index].displayForm}
-                formSubmitted={this.props.isotopeState[index].formSubmitted}
-                ageGuessed = {this.props.isotopeState[index].ageGuessed}
+                mouseLeftContainerHandler={mouseLeftContainerHandler.bind(null, index)}
+                mouseEnteredContainerHandler={mouseEnteredContainerHandler.bind(null, index)}
+                clickedFaceHandler={clickedFaceHandler.bind(null, index)}
+                formSubmittedHandler={formSubmittedHandler.bind(null, index)}
+                containerClicked={isotopeState[index].containerClicked}
+                displayForm={isotopeState[index].displayForm}
+                formSubmitted={isotopeState[index].formSubmitted}
+                ageGuessed = {isotopeState[index].ageGuessed}
                 >
             </Face>
         });
     },
     render() {
-        var faces;
-        if (this.props.isotopeImages.length > 0) {
-            faces = this._renderFaces();
-        } else {
-            faces = '';
-        }
-
         return <div className="col-sm-10 col-sm-offset-2 content no-padding">
-            {faces}
+            {this._renderFaces()}
         </div>
 
     },

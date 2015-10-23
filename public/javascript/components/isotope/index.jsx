@@ -29,15 +29,25 @@ module.exports = React.createClass({
         isotopeActions.submitAge(submissionData, faceIndex);
     },
     render() {
-        return <Isotope
-            serverUrl = {this.state.serverUrl}
-            isotopeImages = {this.state.isotopeImages}
-            clickedFaceHandler = {this._clickedFaceHandler}
-            mouseLeftContainerHandler = {this._mouseLeftContainerHandler}
-            mouseEnteredContainerHandler = {this._mouseEnteredContainerhandler}
-            formSubmittedHandler = {this._formSubmittedHandler}
-            isotopeState = {this.state.isotopeState}
-            />
+        return(
+            <div>
+             {this.state.isotopeImages.length > 0 ?
+                <Isotope
+                    serverUrl = {this.state.serverUrl}
+                    isotopeImages = {this.state.isotopeImages}
+                    clickedFaceHandler = {this._clickedFaceHandler}
+                    mouseLeftContainerHandler = {this._mouseLeftContainerHandler}
+                    mouseEnteredContainerHandler = {this._mouseEnteredContainerhandler}
+                    formSubmittedHandler = {this._formSubmittedHandler}
+                    isotopeState = {this.state.isotopeState}
+                    />
+                : ''}
+            </div>
+        );
 
     }
+
+
+
+
 });

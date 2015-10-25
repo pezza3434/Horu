@@ -1,4 +1,5 @@
 import React from 'react';
+import NoImagesError from './noImagesError'
 
 import Isotope from './isotope';
 
@@ -16,20 +17,26 @@ module.exports = React.createClass({
         isotopeActions.getImages();
         isotopeStore.listen(storeState => this.setState(storeState));
     },
+    _clickedFaceHandler(faceIndex) {
+        if(isotopeStore.getSubmittedFace().length > 0){
+            isotopeActions.populateImageRequest(isotopeStore.imageIdsCurrentlyBeingDisplayed());
+        }
+        isotopeActions.clickedFace(faceIndex);
+    },
     render() {
         return(
             <div>
-             {this.state.isotopeImages.length > 0 ?
+             {this.state.isotopeImages.length > 0 && !this.state.error ? 
                 <Isotope
                     serverUrl = {this.state.serverUrl}
                     isotopeImages = {this.state.isotopeImages}
-                    clickedFaceHandler = {isotopeActions.clickedFace}
+                    clickedFaceHandler = {this._clickedFaceHandler}
                     mouseLeftContainerHandler = {isotopeActions.mouseLeftContainer}
                     mouseEnteredContainerHandler = {isotopeActions.mouseEnteredContainer}
                     formSubmittedHandler = {isotopeActions.submitAge}
                     isotopeState = {this.state.isotopeState}
                     />
-                : ''}
+                : <NoImagesError/>}
             </div>
         );
 

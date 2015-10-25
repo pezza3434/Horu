@@ -34,7 +34,6 @@ module.exports = React.createClass({
 
     },
     render() {
-
         let loginButtonClasses = classNames('user-info__login', {hide: this.state.isLoggedIn});
 
         return (
@@ -44,7 +43,7 @@ module.exports = React.createClass({
                     </div>
                     <div className="col-sm-12 user-info">
                         <div className={loginButtonClasses}>
-                            <div className="user-info__login"><LoginButton /></div>| 
+                            <div className="user-info__login"><LoginButton /></div>|
                             <div className="user-info__register"><RegisterButton /></div>
                         </div>
                         {this.state.user && this.state.isLoggedIn ? <UserProfile serverUrl={this.state.serverUrl} user={this.state.user}/> : ''}

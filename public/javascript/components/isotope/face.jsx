@@ -34,19 +34,12 @@ module.exports = React.createClass({
             {hideimage: this.props.secondaryImage}
         );
 
-        var secondaryImageClasses = classNames(
-            'grid-item__image',
-            'img-responsive',
-            'secondaryImage'
-        );
-
         return (
             <div className={containerClassNames}
                 onClick={this._clickedContainer}
                 onMouseLeave={this.props.mouseLeftContainerHandler}
                 onMouseEnter={this.props.mouseEnteredContainerHandler}>
                 <img className={primaryImageClasses} src={url + this.props.path} />
-                <img className={secondaryImageClasses} src={url + this.props.secondaryImage} />
                 <div className={boxClassNames}>
                     <div className="grid-item__text__input">
                         {this.props.displayForm && !this.props.formSubmitted ?

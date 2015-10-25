@@ -4,12 +4,17 @@ var isotopeActions = require('../actions/isotopeActions');
 class isotopeStore {
     constructor() {
         this.isotopeImages = [];
-        this.apiCallInProgress = false;
         this.isotopeState = [];
+
+        this.on('beforeEach', function () {
+            this.error = false;
+            this.apiCallInProgress = false;
+        });
 
         this.bindListeners({
             getImages: isotopeActions.getImages,
             getImagesSuccess: isotopeActions.getImagesSuccess,
+            getImagesError: isotopeActions.getImagesError,
             submitAge: isotopeActions.submitAge,
             submitAgeSuccess: isotopeActions.submitAgeSuccess,
             clickedFace: isotopeActions.clickedFace,
@@ -17,6 +22,17 @@ class isotopeStore {
             mouseEnteredContainer: isotopeActions.mouseEnteredContainer,
             populateImageRequestSuccess: isotopeActions.populateImageRequestSuccess,
             resetImageState: isotopeActions.resetImageState
+        });
+
+        this.exportPublicMethods({
+
+            imageIdsCurrentlyBeingDisplayed() {
+                return this.getState().isotopeImages.map(image => image.id);
+            },
+            getSubmittedFace() {
+                return this.getState().isotopeState.filter(face => face.formSubmitted);
+            }
+
         });
     }
 
@@ -36,6 +52,10 @@ class isotopeStore {
             builtState.push(newState);
             return builtState;
         }, []);
+    }
+
+    getImagesError (response) {
+        this.error = {status:response.statusCode, message: response.body.error};
     }
 
     submitAge (data) {

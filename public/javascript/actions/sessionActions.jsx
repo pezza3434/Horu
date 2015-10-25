@@ -16,8 +16,10 @@ var sessionActions = {
         this.dispatch();
     },
     authenticateResponse(authenticationResponse) {
+        var isotopeActions = require('./isotopeActions');
         this.dispatch(authenticationResponse);
-        this.actions.getUser(authenticationResponse.body.token)
+        this.actions.getUser(authenticationResponse.body.token);
+        isotopeActions.getImages();
     },
     authenticationErrorResponse(err) {
         this.dispatch(err)
@@ -55,6 +57,8 @@ var sessionActions = {
     },
     logout() {
         this.dispatch();
+        var isotopeActions = require('./isotopeActions');
+        isotopeActions.getImages();
     }
 };
 

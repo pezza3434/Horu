@@ -14,7 +14,7 @@ var isotopeActions = {
     getImagesSuccess(imagesResponse) {
         this.dispatch(imagesResponse);
     },
-    submitAge(postData, faceIndex) {
+    submitAge(faceIndex, postData) {
         var sessionStore = require('../stores/sessionStore');
         var ageGuessed = postData.rating;
 

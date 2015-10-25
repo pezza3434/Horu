@@ -16,18 +16,6 @@ module.exports = React.createClass({
     componentDidMount() {
         isotopeStore.listen(storeState => this.setState(storeState));
     },
-    _clickedFaceHandler(faceIndex) {
-        isotopeActions.clickedFace(faceIndex);
-    },
-    _mouseLeftContainerHandler(faceIndex) {
-        isotopeActions.mouseLeftContainer(faceIndex);
-    },
-    _mouseEnteredContainerhandler(faceIndex) {
-        isotopeActions.mouseEnteredContainer(faceIndex);
-    },
-    _formSubmittedHandler(faceIndex, submissionData) {
-        isotopeActions.submitAge(submissionData, faceIndex);
-    },
     render() {
         return(
             <div>
@@ -35,10 +23,10 @@ module.exports = React.createClass({
                 <Isotope
                     serverUrl = {this.state.serverUrl}
                     isotopeImages = {this.state.isotopeImages}
-                    clickedFaceHandler = {this._clickedFaceHandler}
-                    mouseLeftContainerHandler = {this._mouseLeftContainerHandler}
-                    mouseEnteredContainerHandler = {this._mouseEnteredContainerhandler}
-                    formSubmittedHandler = {this._formSubmittedHandler}
+                    clickedFaceHandler = {isotopeActions.clickedFace}
+                    mouseLeftContainerHandler = {isotopeActions.mouseLeftContainer}
+                    mouseEnteredContainerHandler = {isotopeActions.mouseEnteredContainer}
+                    formSubmittedHandler = {isotopeActions.submitAge}
                     isotopeState = {this.state.isotopeState}
                     />
                 : ''}

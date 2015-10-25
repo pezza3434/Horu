@@ -21,10 +21,6 @@ a:hover, a:active, a:focus{
     padding-left: 0;
 }
 
-.fill {
-    height:100%;
-}
-
 input:focus {
   outline:0;
 }
@@ -52,4 +48,10 @@ input:focus {
 .btn-default.disabled {
     background:#ececec;
     color:#bcbbbb;
+}
+
+@media (min-width: 768px) {
+    .fill {
+        height:100%;
+    }
 }

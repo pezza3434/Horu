@@ -26,7 +26,7 @@ module.exports = React.createClass({
     render() {
         return(
             <div>
-             {this.state.isotopeImages.length > 0 && !this.state.error ? 
+             {this.state.isotopeImages.length > 0 && !this.state.error ?
                 <Isotope
                     serverUrl = {this.state.serverUrl}
                     isotopeImages = {this.state.isotopeImages}
@@ -36,7 +36,8 @@ module.exports = React.createClass({
                     formSubmittedHandler = {isotopeActions.submitAge}
                     isotopeState = {this.state.isotopeState}
                     />
-                : <NoImagesError/>}
+                : ''}
+                {this.state.error ? <NoImagesError/> : ''}
             </div>
         );
 

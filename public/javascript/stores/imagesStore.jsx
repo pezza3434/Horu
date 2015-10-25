@@ -12,6 +12,7 @@ class imagesStore {
         this.bindListeners({
             deleteImage: imagesActions.deleteImage,
             deleteImageSuccess: imagesActions.deleteImageSuccess,
+            toggleModal: imagesActions.toggleModal
         });
 
     }
@@ -23,6 +24,11 @@ class imagesStore {
     deleteImageSuccess (response) {
         this.imageDeleteSuccessful = true;
         this.response = response.body;
+    }
+
+    toggleModal() {
+        this.imageDeleteSuccessful = false;
+        this.response = '';
     }
 
 }

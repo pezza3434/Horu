@@ -11,9 +11,9 @@ module.exports = React.createClass({
     componentWillMount() {
         this.setState({serverUrl: configurationStore.getServerUrl()});
         this.setState(isotopeStore.getState());
-        isotopeActions.getImages();
     },
     componentDidMount() {
+        isotopeActions.getImages();
         isotopeStore.listen(storeState => this.setState(storeState));
     },
     render() {

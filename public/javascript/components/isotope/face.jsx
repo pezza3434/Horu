@@ -11,7 +11,7 @@ module.exports = React.createClass({
         this.props.clickedFaceHandler();
     },
     render() {
-        var url = this.props.serverUrl + '/static' + this.props.path;
+        var url = this.props.serverUrl + '/static';
 
         var containerClassNames = classNames(
             'col-xs-12',
@@ -28,12 +28,25 @@ module.exports = React.createClass({
             {hide: !this.props.displayForm && !this.props.formSubmitted}
         );
 
+        var primaryImageClasses = classNames(
+            'grid-item__image',
+            'img-responsive',
+            {hideimage: this.props.secondaryImage}
+        );
+
+        var secondaryImageClasses = classNames(
+            'grid-item__image',
+            'img-responsive',
+            'secondaryImage'
+        );
+
         return (
             <div className={containerClassNames}
                 onClick={this._clickedContainer}
                 onMouseLeave={this.props.mouseLeftContainerHandler}
                 onMouseEnter={this.props.mouseEnteredContainerHandler}>
-                <img className="grid-item__image img-responsive" src={url} />
+                <img className={primaryImageClasses} src={url + this.props.path} />
+                <img className={secondaryImageClasses} src={url + this.props.secondaryImage} />
                 <div className={boxClassNames}>
                     <div className="grid-item__text__input">
                         {this.props.displayForm && !this.props.formSubmitted ?

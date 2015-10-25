@@ -47,6 +47,7 @@ module.exports = React.createClass({
                         displayForm={isotopeState[index].displayForm}
                         formSubmitted={isotopeState[index].formSubmitted}
                         ageGuessed = {isotopeState[index].ageGuessed}
+                        secondaryImage = {isotopeState[index].secondaryImage}
                         >
                     </Face>
                 })

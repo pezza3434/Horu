@@ -41,6 +41,7 @@ var isotopeActions = {
         this.dispatch(ratingsResponse);
     },
     clickedFace(faceIndex) {
+        this.actions.populateImageRequest();
         this.dispatch(faceIndex);
     },
     mouseEnteredContainer(faceIndex) {
@@ -48,7 +49,23 @@ var isotopeActions = {
     },
     mouseLeftContainer(faceIndex) {
         this.dispatch(faceIndex);
+    },
+    populateImageRequest() {
+        request
+        .get(configurationStore.getServerUrl() + '/images/1')
+        .end((err,res) => {
+            this.actions.populateImageRequestSuccess(res);
+        });
+        this.dispatch();
+    },
+    populateImageRequestSuccess(res) {
+        this.dispatch(res);
+        this.actions.resetImageState(res);
+    },
+    resetImageState(res) {
+        this.dispatch(res);
     }
+
 
 };
 

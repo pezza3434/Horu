@@ -1,13 +1,11 @@
 .img-responsive {
     width: 100%;
 }
-
 .grid-item {
     overflow: hidden;
     position: relative;
     cursor: pointer;
 }
-
 .box {
     position: absolute;
     background: #218ae3;
@@ -17,7 +15,6 @@
     transition: all 0.2s ease-in;
     color: #fff;
     text-align: center;
-
     label {
         transition: all 0.2s ease-in;
         position: absolute;
@@ -28,7 +25,6 @@
         top: 8px;
         left: 22px;
     }
-
     input {
         transition: all 0.2s ease-in;
         color: #fff;
@@ -38,42 +34,46 @@
         padding-top: 9px;
     }
 }
-
 .box.submitted {
-    height:228px;
+    height: 228px;
     label {
-        opacity:0;
+        opacity: 0;
     }
     input {
-        opacity:0;
+        opacity: 0;
     }
 }
-
 .box__container {
     text-align: center;
     display: inline-block;
     position: relative;
 }
-
 .grid-item:hover .box {
     bottom: 0;
 }
-
 .grid-item.clicked .box {
     label {
         position: absolute;
         top: -30px;
     }
 }
-
 .box.active {
     bottom: 0;
 }
-
 .grid-item__image {
-
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
-
+.hideimage{
+    opacity:0;
+}
+.secondaryImage{
+    position:absolute;
+    top:0;
+    z-index: -100;
+}
 .grid-item__overlay {
     position: absolute;
     top: 0;
@@ -85,11 +85,9 @@
     background: #000;
     opacity: 0.3;
 }
-
 .grid-item__overlay.ng-hide {
     opacity: 0;
 }
-
 .grid-item__text {
     position: absolute;
     top: 0;
@@ -99,20 +97,17 @@
     z-index: 11;
     padding-top: 180px;
 }
-
 .grid-item__text__submission {
     text-align: center;
     color: #fff;
     font-size: 30px;
 }
-
 .grid-item__text__rated {
     color: #fff;
     text-align: center;
     font-size: 18px;
     font-weight: lighter;
 }
-
 .grid-item__text__input {
 
     // input[type="text"] {
@@ -126,18 +121,18 @@
     //     background: transparent;
     //     color: #fff;
     // }
-    ::-webkit-input-placeholder {
+     ::-webkit-input-placeholder {
         color: #e4e1e1;
     }
-    :-moz-placeholder {
+     :-moz-placeholder {
         /* Firefox 18- */
         color: #e4e1e1;
     }
-    ::-moz-placeholder {
+     ::-moz-placeholder {
         /* Firefox 19+ */
         color: #e4e1e1;
     }
-    :-ms-input-placeholder {
+     :-ms-input-placeholder {
         color: #e4e1e1;
     }
     input:focus::-webkit-input-placeholder {
@@ -156,22 +151,18 @@
     }
     /* IE 10+ */
 }
-
 .grid-item__text__main {
     color: #fff;
     text-align: center;
     font-size: 18px;
     font-weight: lighter;
 }
-
 .grid-item__text:hover {
     display: block;
 }
-
 .box__container-guess {
-    padding-top:15px;
+    padding-top: 15px;
 }
-
 .box__container-guess__guess,
 .box__container-guess__guess-number,
 .box__container-guess__real-age,
@@ -179,22 +170,15 @@
     font-size: 30px;
     font-weight: lighter;
 }
-
-.box__container-guess__guess-number{
-    font-weight:600;
-
+.box__container-guess__guess-number {
+    font-weight: 600;
 }
-
 .box__container-guess__real-age-number {
-    font-weight:600;
+    font-weight: 600;
 }
-
 .hide {
-    display:none;
+    display: none;
 }
-
-
-
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

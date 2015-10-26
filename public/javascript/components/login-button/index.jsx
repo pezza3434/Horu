@@ -111,5 +111,8 @@ module.exports = React.createClass({
                 </Modal>
             </div>
         )
+    },
+    componentWillUnmount() {
+        sessionStore.unlisten(this._onStoreChange);
     }
 });

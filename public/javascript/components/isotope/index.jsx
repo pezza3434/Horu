@@ -15,7 +15,10 @@ module.exports = React.createClass({
     },
     componentDidMount() {
         isotopeActions.getImages();
-        isotopeStore.listen(storeState => this.setState(storeState));
+        isotopeStore.listen(this._isotopeStoreChange);
+    },
+    _isotopeStoreChange(storeState) {
+        this.setState(storeState);
     },
     _clickedFaceHandler(faceIndex) {
         if(isotopeStore.getSubmittedFace().length > 0){
@@ -41,9 +44,9 @@ module.exports = React.createClass({
             </div>
         );
 
+    },
+    componentWillUnmount() {
+        isotopeStore.unlisten(this._isotopeStoreChange);
     }
-
-
-
 
 });

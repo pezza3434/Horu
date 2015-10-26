@@ -29,9 +29,12 @@ module.exports = React.createClass({
             sessionActions.getUser(sessionStore.getAuthenticationToken());
         }
 
-        sessionStore.listen(storeState => this.setState(storeState))
+        sessionStore.listen(this._sessionStoreChange);
         this.setState({serverUrl: configurationStore.getServerUrl()});
 
+    },
+    _sessionStoreChange(storeState) {
+        this.setState(storeState);
     },
     render() {
         let loginButtonClasses = classNames('user-info__login', {hide: this.state.isLoggedIn});
@@ -61,5 +64,8 @@ module.exports = React.createClass({
                     </div>
                 </div>
         );
+    },
+    componentWillUnmount() {
+        sessionStore.unlisten(this._sessionStoreChange);
     }
 });

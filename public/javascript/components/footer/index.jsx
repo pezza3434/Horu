@@ -31,5 +31,8 @@ module.exports = React.createClass({
               {this.state.loggedIn ?<div className="footer__logout btn btn-default" onClick={this.logout}>Logout</div> : '' }
             </div>
         )
+    },
+    componentWillUnmount() {
+        sessionStore.unlisten(this._sessionStoreChange);
     }
 });

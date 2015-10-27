@@ -1,7 +1,3 @@
-if (typeof window !== "undefined") {
-    require('./style.scss');
-}
-
 import React from 'react';
 
 import isotopeActions from '../../actions/isotopeActions';

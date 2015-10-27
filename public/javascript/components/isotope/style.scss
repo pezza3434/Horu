@@ -23,7 +23,6 @@
         left: 0;
         color: #fff;
         top: 8px;
-        left: 22px;
     }
     input {
         transition: all 0.2s ease-in;
@@ -47,6 +46,14 @@
     text-align: center;
     display: inline-block;
     position: relative;
+    width:100%;
+    label {
+        width: 100%;
+        display: block;
+    }
+    span {
+        display:block;
+    }
 }
 .grid-item:hover .box {
     bottom: 0;
@@ -178,6 +185,13 @@
 }
 .hide {
     display: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 /* Small devices (tablets, 768px and up) */

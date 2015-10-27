@@ -21,7 +21,7 @@ export default React.createClass({
                         {this.props.rating.votes}
                     </div>
                     <div className="account_uploads_stats__delete">
-                        <span onClick={this._deleteImage}>
+                        <span className="account_uploads_stats__delete__button" onClick={this._deleteImage}>
                             <i className="fa fa-trash"></i>
                             Delete Image
                         </span>

@@ -1,3 +1,8 @@
+if (typeof window !== "undefined") {
+    require('./style.scss');
+    require('./form.scss');
+}
+
 import React from 'react';
 import NoImagesError from './noImagesError'
 

@@ -18,7 +18,7 @@ module.exports = React.createClass({
         return (
             <form onSubmit={this._submitForm} ref="faceForm">
                      <div className="box__container">
-                         <input ref="faceInput" className="" id="input-1" maxLength="2" type="text" autoComplete="off"/>
+                         <input ref="faceInput" min="7" max="99" className="" id="input-1" type="number" autoComplete="off"/>
                          <label className="" htmlFor="input-1">
                              <span className="">How old am I?</span>
                          </label>

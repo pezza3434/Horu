@@ -14,7 +14,9 @@ module.exports = React.createClass({
         this.setState(isotopeStore.getState());
     },
     componentDidMount() {
-        isotopeActions.getImages();
+        if (isotopeStore.getState().isotopeImages.length === 0) {
+            isotopeActions.getImages();
+        }
         isotopeStore.listen(this._isotopeStoreChange);
     },
     _isotopeStoreChange(storeState) {

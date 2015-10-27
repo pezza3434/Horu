@@ -37,10 +37,11 @@ module.exports = function (req, res, next) {
 
     router.run(function (Handler, state) {
         var html = React.renderToString( < Handler / > )
-        return res.render('index', {
+        res.render('index', {
             html: html,
             assetPath: assetPath,
             nodeEnv: process.env.NODE_ENV
-        })
+        });
+        return alt.flush();
     });
 }

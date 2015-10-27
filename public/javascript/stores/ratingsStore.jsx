@@ -5,7 +5,7 @@ import imagesActions from '../actions/imagesActions';
 class ratingsStore {
     constructor() {
 
-        this.ratings = [];
+        this.ratings;
         this.showModal = false;
         this.imageIdToBeDeleted;
 
@@ -36,6 +36,8 @@ class ratingsStore {
 
     getRatingsSuccess (response) {
         this.ratings = response.body;
+        //Need to put here that no ratings present and then use that on the view layer.
+        //Decided that api calls should only be done client side
     }
 
     toggleModal (state) {

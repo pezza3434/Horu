@@ -14,14 +14,14 @@ import imagesStore from '../../stores/imagesStore';
 import configurationStore from '../../stores/configurationStore';
 
 module.exports = React.createClass({
+    componentWillMount() {
+        this.setState(ratingsStore.getState());
+        this.setState({serverUrl: configurationStore.getServerUrl()});
+    },
     componentDidMount() {
         ratingsActions.getRatings();
         ratingsStore.listen(this._ratingsStoreChange);
         imagesStore.listen(this._imagesStoreChange);
-        this.setState({serverUrl: configurationStore.getServerUrl()});
-    },
-    getInitialState() {
-        return ratingsStore.getState();
     },
     _ratingsStoreChange(storeState) {
         this.setState(storeState);
@@ -47,13 +47,14 @@ module.exports = React.createClass({
     },
 
     render() {
-        console.log(this.state.showModal);
+        var {ratings} = this.state;
         return (
             <div className="col-sm-10 col-sm-offset-2 content no-padding fill">
                 <div className="account fill">
                     <Header/>
                     <Upload/>
-                    {this.state.ratings.length > 0 ? <Ratings serverUrl={this.state.serverUrl} ratings={this.state.ratings} triggerDeleteModal={this._triggerDeleteModal}/> : <NoImagesMessage/>}
+                    {ratings && ratings.length > 0 ? <Ratings serverUrl={this.state.serverUrl} ratings={ratings} triggerDeleteModal={this._triggerDeleteModal}/> : ''}
+                    {ratings && ratings.length === 0 && !this.state.apiCallInProgress ? <NoImagesMessage/> : ''}
                     <DeleteRatingModal showModal={this.state.showModal}
                         idToDelete={this.state.idToDelete}
                         cancelModalAction={this._triggerCancelImageDelete}

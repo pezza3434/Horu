@@ -33,6 +33,7 @@ module.exports = React.createClass({
             <div className="col-md-12 account__upload">
                 <div>
                     <div onClick={this.props.openModalAction} className="btn btn-upload"><i className="fa fa-cloud-upload"></i> Upload your image!</div>
+                    <button className="btn btn-default">logout</button>
                 </div>
                 <Modal show={this.props.showModal} onHide={this.props.closeModalAction}>
                     <Modal.Header closeButton>
@@ -59,6 +60,8 @@ module.exports = React.createClass({
                         </span>
                     </label>
                     <button disabled={uploadIsDisabled} onClick={this._uploadImage} className={uploadClassNames}><span>{this.props.uploadInProgress ? 'Uploading...': 'Upload Image'}</span></button>
+                    {this.props.facialRecognitionInProgress ? <div>Facial recognition in progres...</div> : ''}
+                    {this.props.facialRecognitionError ? <div>Unfortunately we failed to find a face in this photo. Please try again..</div> : ''}
                     {this.props.uploadInProgress ? <ProgressBar className="progressBar" active now={this.props.uploadProgress || 0} /> : ''}
                     {this.props.uploadSuccess ? <div className="success-message btn btn-success">Your image has been uploaded!</div> : ''}
                     </div>

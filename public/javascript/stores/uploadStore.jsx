@@ -15,6 +15,10 @@ class uploadStore {
             this.selectedImage = this.selectedImage || configurationStore.getServerUrl() + '/static/placeholder.jpg';
             this.uploadSuccess = false;
             this.apiCallInProgress = false;
+            this.facialRecognitionInProgress = false;
+            this.facialRecognitionSuccess = false;
+            this.facialRecognitionError = false;
+
         });
 
         this.bindListeners({
@@ -22,7 +26,10 @@ class uploadStore {
             postUploadSuccess: uploadActions.postUploadSuccess,
             updateUploadProgress: uploadActions.updateUploadProgress,
             triggerModal: uploadActions.triggerModal,
-            selectNewImage: uploadActions.selectNewImage
+            selectNewImage: uploadActions.selectNewImage,
+            beginFacialRecognition: uploadActions.beginFacialRecognition,
+            facialRecognitionSuccess: uploadActions.facialRecognitionSuccess,
+            facialRecognitionError: uploadActions.facialRecognitionError
         });
 
     }
@@ -68,6 +75,18 @@ class uploadStore {
     updateUploadProgress (percent) {
         this.apiCallInProgress = true;
         this.uploadProgress = Math.floor(percent);
+    }
+
+    beginFacialRecognition () {
+        this.facialRecognitionInProgress = true;
+    }
+
+    facialRecognitionSuccess() {
+        this.facialRecognitionSuccess = true;
+    }
+
+    facialRecognitionError() {
+        this.facialRecognitionError = true
     }
 
 }

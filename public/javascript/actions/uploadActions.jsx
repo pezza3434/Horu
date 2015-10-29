@@ -44,6 +44,15 @@ var uploadActions = {
     abortUpload(xhrObject){
         xhrObject.abort();
         this.dispatch();
+    },
+    beginFacialRecognition() {
+        this.dispatch();
+    },
+    facialRecognitionSuccess() {
+        this.dispatch();
+    },
+    facialRecognitionError() {
+        this.dispatch();
     }
 };
 

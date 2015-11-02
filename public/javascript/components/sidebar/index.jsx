@@ -50,6 +50,9 @@ export default React.createClass({
                     <div className="row">
                         <Navigation isLoggedIn={this.state.isLoggedIn} />
                     </div>
+                    <div className="row feedback">
+                        <div className="feedback__text"><a href="mailto:hello@alexperry.io"><i className="fa fa-comment"></i>  Leave some feedback..</a></div>
+                    </div>
                 </div>
         );
     },

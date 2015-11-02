@@ -131,8 +131,33 @@
     margin-top:18px;
 }
 
+.feedback {
+    display:none;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+
+    .feedback {
+        position:absolute;
+        bottom:0;
+        width:100%;
+        text-align:center;
+        display:block;
+        background:#2e2c2c;
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        i {
+            padding-right:6px;
+        }
+    }
+
+    .feedback__text {
+        padding: 21px 0px;
+    }
 
     .btn-logout-user-info {
         display:none;

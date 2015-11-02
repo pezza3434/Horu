@@ -15,7 +15,6 @@ const App = React.createClass({
                 <div className="row fill">
                     <Sidebar/>
                     <RouteHandler/>
-                    <Footer/>
                 </div>
             </div>
         );

@@ -36,31 +36,53 @@ module.exports = React.createClass({
     _sessionStoreChange(storeState) {
         this.setState(storeState);
     },
+    _logoutHandler() {
+        sessionActions.logout();
+    },
     render() {
-        let loginButtonClasses = classNames('user-info__login', {hide: this.state.isLoggedIn});
 
         return (
-            <div className="col-sm-2 sidebar no-padding">
-                    <div className="sidebar__logo">
-                        <div className="sidebar__logo__text">HORU</div>
-                    </div>
-                    <div className="col-sm-12 user-info">
-                        <div className={loginButtonClasses}>
-                            <div className="user-info__login"><LoginButton /></div>|
-                            <div className="user-info__register"><RegisterButton /></div>
+            <div className="col-sm-2 sidebar">
+                    <div className="row">
+                        <div className="sidebar__logo">
+                            <div className="sidebar__logo__text">HORU</div>
                         </div>
-                        {this.state.user && this.state.isLoggedIn ? <UserProfile serverUrl={this.state.serverUrl} user={this.state.user}/> : ''}
                     </div>
-                    <div className="col-sm-12 navigation no-padding">
-                        <ul>
-                            <li>
-                                <i className="fa fa-home"></i>
-                                <Link to="isotope" href="/#/">Home</Link></li>
-                            {this.state.isLoggedIn ? <li>
-                                <i className="fa fa-users"></i>
-                                <Link to="account" href="/#/account">Your Account</Link>
-                            </li> : ''}
-                        </ul>
+                    <div className="row user-area">
+                        <div className="col-xs-6 col-sm-12 user-info">
+                            {!this.state.isLoggedIn ?
+                            <div className="navigation__center">
+                                <div className='user-info__login'>
+                                    <div className="user-info__login"><LoginButton /></div>|
+                                    <div className="user-info__register"><RegisterButton /></div>
+                                </div>
+                            </div>
+                            : '' }
+                            {this.state.user && this.state.isLoggedIn ? <UserProfile serverUrl={this.state.serverUrl} user={this.state.user}/> : ''}
+                        </div>
+                        {this.state.isLoggedIn ?
+                        <div className="col-xs-6 col-sm-0 logout-area">
+                            <button onClick={this._logoutHandler} className="btn btn-logout-user-info">logout</button>
+                        </div>
+                        : ''}
+                    </div>
+                    <div className="row">
+                        <div className="col-sm-12 navigation no-padding">
+                            <ul>
+                                <li>
+                                    <div className="navigation__center">
+                                        <i className="fa fa-home"></i>
+                                        <Link to="isotope" href="/#/">Home</Link>
+                                        </div>
+                                        </li>
+                                    {this.state.isLoggedIn ? <li>
+                                        <div className="navigation__center">
+                                        <i className="fa fa-users"></i>
+                                        <Link to="account" href="/#/account">Your Account</Link>
+                                        </div>
+                                </li> : ''}
+                            </ul>
+                        </div>
                     </div>
                 </div>
         );

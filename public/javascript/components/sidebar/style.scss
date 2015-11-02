@@ -17,6 +17,7 @@
 }
 
 .user-info {
+    text-align:left;
     padding: 10px 15px;
     background: #2e2c2c;
     vertical-align: middle;
@@ -25,6 +26,10 @@
     a:hover {
         text-decoration: underline;
     }
+}
+
+.user-area {
+    background: #2e2c2c;
 }
 
 .user-info__login {
@@ -48,7 +53,7 @@
 }
 
 .logged-in {
-    text-align: center;
+    text-align: left;
 }
 
 .logged-in__profile-image {
@@ -78,13 +83,13 @@
 
 .logged-in__profile-text {
     float: left;
+    text-align:left;
     padding: 5px 9px;
 }
 
 .navigation {
     padding: 0 15px;
     overflow: auto;
-    text-align: center;
 
     ul {
         list-style: none;
@@ -115,8 +120,27 @@
     }
 }
 
+.logout-area {
+    text-align:center;
+    opacity:0.7
+}
+
+.btn-logout-user-info {
+    background:none;
+    border:1px solid #fff;
+    margin-top:18px;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+
+    .btn-logout-user-info {
+        display:none;
+    }
+
+    .logged-in {
+        text-align: center;
+    }
 
     .sidebar {
         position: fixed;
@@ -163,7 +187,19 @@
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+    .navigation__center{
+        width: 136px;
+        text-align: left;
+        display: inline-block;
+    }
 
+    .navigation {
+        ul {
+            li {
+                text-align:center;
+            }
+        }
+    }
 }
 
 /* Large devices (large desktops, 1200px and up) */

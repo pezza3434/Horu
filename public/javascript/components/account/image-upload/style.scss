@@ -48,3 +48,29 @@
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+.btn-logout-account {
+    display:none;
+}
+
+@media (min-width: 768px) {
+    .btn-logout-account {
+        color: #d2d2d2;
+        background: transparent;
+        border: 1px solid #d2d2d2;
+        position: absolute;
+        right: 17px;
+        top: 10px;
+        display:inline-block;
+    }
+
+    .btn-logout-account:hover {
+        color: #fff;
+        background: transparent;
+        border: 1px solid #fff;
+        position: absolute;
+        right: 17px;
+        top: 10px;
+        display:inline-block;
+    }
+}

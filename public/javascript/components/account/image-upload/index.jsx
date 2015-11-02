@@ -14,15 +14,17 @@ var Modal = require('react-bootstrap').Modal;
 var ImageUpload = require('./imageUpload');
 
 var uploadStore = require('../../../stores/uploadStore');
+var sessionActions = require('../../../actions/sessionActions');
 
 var uploadActions = require('../../../actions/uploadActions');
+
 
 module.exports = React.createClass({
     getInitialState() {
         return uploadStore.getState();
     },
     componentDidMount() {
-        uploadStore.listen(this._uploadStoreChange)
+        uploadStore.listen(this._uploadStoreChange);
     },
     _uploadStoreChange(storeState) {
         this.setState(storeState);
@@ -50,11 +52,13 @@ module.exports = React.createClass({
                 uploadActions.facialRecognitionError();
             }
         });
-
     },
 
+    _logoutAction() {
+        window.location.href = "/";
+        sessionActions.logout();
+    },
     render() {
-
         return(<ImageUpload
             showModal={this.state.showModal}
             uploadImageAction={this._uploadImageAction}
@@ -67,6 +71,7 @@ module.exports = React.createClass({
             facialRecognitionInProgress={this.state.facialRecognitionInProgress}
             facialRecognitionError={this.state.facialRecognitionError}
             uploadProgress={this.state.uploadProgress}
+            logoutAction={this._logoutAction}
              />)
 
     },

@@ -33,7 +33,7 @@ module.exports = React.createClass({
             <div className="col-md-12 account__upload">
                 <div>
                     <div onClick={this.props.openModalAction} className="btn btn-upload"><i className="fa fa-cloud-upload"></i> Upload your image!</div>
-                    <button className="btn btn-default">logout</button>
+                    <button className="btn btn-logout-account" onClick={this.props.logoutAction}>logout</button>
                 </div>
                 <Modal show={this.props.showModal} onHide={this.props.closeModalAction}>
                     <Modal.Header closeButton>

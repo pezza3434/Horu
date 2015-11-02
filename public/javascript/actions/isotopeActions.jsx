@@ -7,10 +7,10 @@ var isotopeActions = {
         var sessionStore = require('../stores/sessionStore');
 
         var req = request
-        .get(configurationStore.getServerUrl() + '/images')
+        .get(configurationStore.getServerUrl() + '/images');
 
         if (sessionStore.getAuthenticationToken()) {
-            req.set('x-access-token', sessionStore.getAuthenticationToken())
+            req.set('x-access-token', sessionStore.getAuthenticationToken());
         }
 
         req.end((err,res) => {
@@ -93,4 +93,4 @@ var isotopeActions = {
 
 };
 
-module.exports = alt.createActions(isotopeActions);
+export default alt.createActions(isotopeActions);

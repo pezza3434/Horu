@@ -22,4 +22,4 @@ var ratingsActions = {
 
 };
 
-module.exports = alt.createActions(ratingsActions);
+export default alt.createActions(ratingsActions);

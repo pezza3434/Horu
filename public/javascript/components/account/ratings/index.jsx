@@ -1,6 +1,5 @@
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
     require('./style.scss');
-    var Cropper = require('react-cropper');
 }
 
 import React from 'react';

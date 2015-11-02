@@ -1,5 +1,4 @@
 var alt = require('../alt');
-var request = require('superagent');
 
 var pageActions = {
     appLoaded() {
@@ -7,4 +6,4 @@ var pageActions = {
     }
 };
 
-module.exports = alt.createActions(pageActions);
+export default alt.createActions(pageActions);

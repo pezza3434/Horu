@@ -1,13 +1,12 @@
-var express = require('express');
 var React = require('react');
-var Router = require('react-router')
+var Router = require('react-router');
 var routes = require('../public/javascript/routes');
 var alt = require('../public/javascript/alt.js');
 
-module.exports = function (req, res, next) {
+export default function (req, res) {
 
     var assetPath;
-    var bootstrapData = {}
+    var bootstrapData = {};
 
     var router = Router.create({
         location: req.url,
@@ -18,12 +17,12 @@ module.exports = function (req, res, next) {
         bootstrapData.sessionStore = {
             authenticationToken: req.cookies.horu,
             isLoggedIn:true
-        }
+        };
     }
 
     bootstrapData.configurationStore = {
         environment: process.env.NODE_ENV || 'development'
-    }
+    };
 
     alt.bootstrap(JSON.stringify(bootstrapData));
 
@@ -35,8 +34,8 @@ module.exports = function (req, res, next) {
         assetPath = '/';
     }
 
-    router.run(function (Handler, state) {
-        var html = React.renderToString( < Handler / > )
+    router.run(function (Handler) {
+        var html = React.renderToString( < Handler / > );
         res.render('index', {
             html: html,
             assetPath: assetPath,

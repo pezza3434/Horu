@@ -1,4 +1,4 @@
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
     var cookieUtil = require('../utils/cookieUtil');
 }
 
@@ -13,11 +13,11 @@ class sessionStore {
         this.authenticationToken = '';
 
         this.on('beforeEach', function() {
-                this.apiCallInProgress = false;
-                this.isError = false;
-                this.registrationError = false;
-                this.successfulRegistration = false;
-            });
+            this.apiCallInProgress = false;
+            this.isError = false;
+            this.registrationError = false;
+            this.successfulRegistration = false;
+        });
 
         this.bindListeners({
             authenticate: sessionActions.authenticate,
@@ -66,7 +66,7 @@ class sessionStore {
 
     }
 
-    authenticationErrorResponse (err) {
+    authenticationErrorResponse () {
         this.isError = true;
     }
 
@@ -82,11 +82,11 @@ class sessionStore {
         this.apiCallInProgress = true;
     }
 
-    postUserResponse (response) {
+    postUserResponse () {
         this.successfulRegistration = true;
     }
 
-    postUserError (err) {
+    postUserError () {
         this.registrationError = true;
     }
 
@@ -106,4 +106,4 @@ class sessionStore {
 
 }
 
-module.exports = alt.createStore(sessionStore, 'sessionStore');
+export default alt.createStore(sessionStore, 'sessionStore');

@@ -1,16 +1,12 @@
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
     require('./style.scss');
-    var Cropper = require('../../../utils/reactCropper');
     require('tracking/build/tracking-min.js');
     require('tracking/build/data/face-min.js');
     require('tracking/build/data/eye-min.js');
     require('tracking/build/data/mouth-min.js');
-
-    var $ = require('jquery');
 }
 
 var React = require('react');
-var Modal = require('react-bootstrap').Modal;
 var ImageUpload = require('./imageUpload');
 
 var uploadStore = require('../../../stores/uploadStore');
@@ -19,7 +15,7 @@ var sessionActions = require('../../../actions/sessionActions');
 var uploadActions = require('../../../actions/uploadActions');
 
 
-module.exports = React.createClass({
+export default React.createClass({
     getInitialState() {
         return uploadStore.getState();
     },
@@ -41,13 +37,12 @@ module.exports = React.createClass({
     _uploadImageAction(dataURL) {
         //At the moment this is currently relying on the
         //fact that .preview img exists
-        var img = $('.preview img');
         var tracker = new tracking.ObjectTracker(['face']);
         tracking.track('.preview img', tracker);
         uploadActions.beginFacialRecognition();
         tracker.on('track', function(event) {
             if (event.data.length > 0) {
-                 uploadActions.postUpload(dataURL);
+                uploadActions.postUpload(dataURL);
             } else {
                 uploadActions.facialRecognitionError();
             }
@@ -55,7 +50,7 @@ module.exports = React.createClass({
     },
 
     _logoutAction() {
-        window.location.href = "/";
+        window.location.href = '/';
         sessionActions.logout();
     },
     render() {
@@ -72,10 +67,10 @@ module.exports = React.createClass({
             facialRecognitionError={this.state.facialRecognitionError}
             uploadProgress={this.state.uploadProgress}
             logoutAction={this._logoutAction}
-             />)
+             />);
 
     },
     componentWillUnmount() {
-        uploadStore.unlisten(this._uploadStoreChange)
+        uploadStore.unlisten(this._uploadStoreChange);
     }
 });

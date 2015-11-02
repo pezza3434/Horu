@@ -35,4 +35,4 @@ class imagesStore {
 
 
 
-module.exports = alt.createStore(imagesStore, 'imagesStore');
+export default alt.createStore(imagesStore, 'imagesStore');

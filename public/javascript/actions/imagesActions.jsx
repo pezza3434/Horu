@@ -23,4 +23,4 @@ var imagesActions = {
     }
 };
 
-module.exports = alt.createActions(imagesActions);
+export default alt.createActions(imagesActions);

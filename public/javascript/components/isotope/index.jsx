@@ -1,10 +1,10 @@
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
     require('./style.scss');
     require('./form.scss');
 }
 
 import React from 'react';
-import NoImagesError from './noImagesError'
+import NoImagesError from './noImagesError';
 
 import Isotope from './isotope';
 
@@ -13,7 +13,7 @@ import isotopeActions from '../../actions/isotopeActions';
 import isotopeStore from '../../stores/isotopeStore';
 import configurationStore from '../../stores/configurationStore';
 
-module.exports = React.createClass({
+export default React.createClass({
     componentWillMount() {
         this.setState({serverUrl: configurationStore.getServerUrl()});
         this.setState(isotopeStore.getState());

@@ -1,4 +1,4 @@
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
     require('./style.scss');
 }
 
@@ -9,7 +9,7 @@ var sessionStore = require('../../stores/sessionStore');
 
 var Modal = require('react-bootstrap').Modal;
 
-module.exports = React.createClass({
+export default React.createClass({
     getInitialState() {
         return {
             showModal: false,
@@ -56,7 +56,7 @@ module.exports = React.createClass({
             password: this.refs.password.getDOMNode().value,
             confirmPassword: this.refs.confirmPassword.getDOMNode().value,
             age: this.refs.age.getDOMNode().value
-        }
+        };
     },
     _formOnChange() {
         var {
@@ -70,11 +70,11 @@ module.exports = React.createClass({
         if (email && username && age && password && confirmPassword && password === confirmPassword) {
             this.setState({
                 validated: true
-            })
+            });
         } else {
             this.setState({
                 validated: false
-            })
+            });
         }
     },
     _formValidation(e) {

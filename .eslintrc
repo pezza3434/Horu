@@ -1,0 +1,42 @@
+{
+    "rules": {
+        "indent": [
+            2,
+            4
+        ],
+        "quotes": [
+            2,
+            "single"
+        ],
+        "linebreak-style": [
+            2,
+            "unix"
+        ],
+        "semi": [
+            2,
+            "always"
+        ]
+    },
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+    "globals": {
+        "require": 1,
+        "exports": 1,
+        "process": 1,
+        "tracking": 1,
+        "React": 1
+    },
+    "extends": "eslint:recommended",
+    "ecmaFeatures": {
+        "jsx": true,
+        "experimentalObjectRestSpread": true,
+        "modules": true,
+        "module": true,
+        "arrowFunctions": true
+    },
+    "plugins": [
+        "react"
+    ]
+}

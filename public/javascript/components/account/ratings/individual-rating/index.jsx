@@ -5,7 +5,7 @@ export default React.createClass({
         this.props.triggerDeleteModal(this.props.rating.image_id);
     },
     render() {
-        var url = this.props.serverUrl + "/static/thumbnails" + this.props.rating.image_thumbnail;
+        var url = this.props.serverUrl + '/static/thumbnails' + this.props.rating.image_thumbnail;
         return (
             <div className="account__uploads__container col-md-6">
                 <div className="col-md-4 account__uploads__image">
@@ -28,6 +28,6 @@ export default React.createClass({
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 });

@@ -11,7 +11,7 @@ class configurationStore {
                 production: {
                     url: 'http://46.101.54.208:3000'
                 }
-            }
+            };
         });
 
         //store state is bootstrapped
@@ -28,4 +28,4 @@ class configurationStore {
 
 }
 
-module.exports = alt.createStore(configurationStore, 'configurationStore');
+export default alt.createStore(configurationStore, 'configurationStore');

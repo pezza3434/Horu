@@ -1,7 +1,7 @@
 var React = require('react');
 import {Link} from 'react-router';
 
-module.exports = React.createClass({
+export default React.createClass({
     render() {
 
         var imageSource = this.props.serverUrl + '/static' + this.props.user.profilePicture;

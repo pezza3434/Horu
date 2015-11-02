@@ -18,7 +18,7 @@ var uploadActions = {
         .send({data:dataURL})
         .end((err,res) => {
             if(err){
-                return console.log(err)
+                // return console.log(err)
             }
             this.actions.postUploadSuccess(res);
         });
@@ -30,7 +30,7 @@ var uploadActions = {
         sessionActions.getUser(sessionStore.getAuthenticationToken());
     },
     updateUploadProgress(e) {
-        this.dispatch(e.percent)
+        this.dispatch(e.percent);
     },
     postUploadError(err) {
         this.dispatch(err);
@@ -56,4 +56,4 @@ var uploadActions = {
     }
 };
 
-module.exports = alt.createActions(uploadActions);
+export default alt.createActions(uploadActions);

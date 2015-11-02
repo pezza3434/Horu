@@ -1,4 +1,4 @@
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
     require('./style.scss');
     var Cropper = require('../../../utils/reactCropper');
 }
@@ -6,10 +6,9 @@ if (typeof window !== "undefined") {
 var React = require('react');
 var Modal = require('react-bootstrap').Modal;
 var ProgressBar = require('react-bootstrap').ProgressBar;
-var uploadActions = require('../../../actions/uploadActions');
 var classNames = require('classnames');
 
-module.exports = React.createClass({
+export default React.createClass({
     propTypes: {
         showModal: React.PropTypes.bool,
         uploadImageAction: React.PropTypes.func,
@@ -27,7 +26,7 @@ module.exports = React.createClass({
     render() {
 
         let uploadIsDisabled = this.props.imageSrc.indexOf('placeholder') > -1 || this.props.uploadInProgress;
-        let uploadClassNames = classNames('btn', 'btn-default', 'generate-image', {disabled: uploadIsDisabled})
+        let uploadClassNames = classNames('btn', 'btn-default', 'generate-image', {disabled: uploadIsDisabled});
 
         return (
             <div className="col-md-12 account__upload">

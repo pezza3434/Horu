@@ -13,7 +13,7 @@ if(cookieUtil.getItem('horu')) {
     bootstrapData.sessionStore = {
         authenticationToken: cookieUtil.getItem('horu'),
         isLoggedIn:true
-    }
+    };
 
 }
 
@@ -24,5 +24,5 @@ bootstrapData.configurationStore = {
 alt.bootstrap(JSON.stringify(bootstrapData));
 
 Router.run(routes, Router.HistoryLocation, function (Handler) {
-  React.render(<Handler/>, document.getElementById("app-container"));
+    React.render(<Handler/>, document.getElementById('app-container'));
 });

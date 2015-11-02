@@ -1,26 +1,22 @@
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
     require('./style.scss');
 }
 
 import React from 'react';
-import classNames from 'classnames';
 
-import isotopeActions from '../../actions/isotopeActions';
 import sessionActions from '../../actions/sessionActions';
 
 import sessionStore from '../../stores/sessionStore';
-import isotopeStore from '../../stores/isotopeStore';
 import configurationStore from '../../stores/configurationStore';
 
-import UserProfile from './userProfile';
 import Logo from './logo';
 import Navigation from './navigation';
 import UserArea from './userArea';
 
 
-module.exports = React.createClass({
+export default React.createClass({
     getInitialState() {
-        return ({isLoggedIn: sessionStore.isLoggedIn()})
+        return ({isLoggedIn: sessionStore.isLoggedIn()});
     },
     componentDidMount(){
         let sessionStoreState = sessionStore.getState();

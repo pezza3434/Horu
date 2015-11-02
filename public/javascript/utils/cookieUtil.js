@@ -62,4 +62,4 @@ var docCookies = {
   }
 };
 
-module.exports = docCookies; 
+export default docCookies; 

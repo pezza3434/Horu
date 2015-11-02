@@ -25,7 +25,7 @@ class ratingsStore {
 
             hasRatings() {
                 return this.getState().ratings.length > 0;
-            },
+            }
 
         });
     }
@@ -56,4 +56,4 @@ class ratingsStore {
 
 
 
-module.exports = alt.createStore(ratingsStore, 'ratingsStore');
+export default alt.createStore(ratingsStore, 'ratingsStore');

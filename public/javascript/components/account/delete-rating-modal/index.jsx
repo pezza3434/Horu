@@ -1,7 +1,7 @@
 var React = require('react');
 var Modal = require('react-bootstrap').Modal;
 
-module.exports = React.createClass({
+export default React.createClass({
     _cancelImageDelete() {
         this.props.cancelModalAction();
     },

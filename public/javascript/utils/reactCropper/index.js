@@ -199,4 +199,4 @@ var Cropper = _react2['default'].createClass({
 });
 
 exports['default'] = Cropper;
-module.exports = exports['default'];
+export default exports['default'];

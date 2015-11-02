@@ -1,12 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import isotopeActions from '../../actions/isotopeActions';
-
 import ResultsForm from './resultsForm';
 import Form from './form';
 
-module.exports = React.createClass({
+export default React.createClass({
     _clickedContainer() {
         this.props.clickedFaceHandler();
     },
@@ -49,6 +47,6 @@ module.exports = React.createClass({
                     <ResultsForm ageGuessed = {this.props.ageGuessed} age = {this.props.age}/>
                 </div>
             </div>
-        )
+        );
     }
 });

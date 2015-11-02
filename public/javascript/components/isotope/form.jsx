@@ -1,6 +1,6 @@
 import React from 'react';
 
-module.exports = React.createClass({
+export default React.createClass({
     componentWillReceiveProps(props) {
         if (props.containerClicked){
             React.findDOMNode(this.refs.faceInput).focus();
@@ -11,7 +11,7 @@ module.exports = React.createClass({
         var submissionData = {
             imageRatedId: this.props.faceId,
             rating: this.refs.faceInput.getDOMNode().value
-        }
+        };
         this.props.formSubmittedHandler(submissionData);
     },
     render() {

@@ -9,7 +9,7 @@ var sessionActions = {
         .send(data)
         .end((err,res) => {
             if(err){
-                return this.actions.authenticationErrorResponse(err)
+                return this.actions.authenticationErrorResponse(err);
             }
             this.actions.authenticateResponse(res);
         });
@@ -22,7 +22,7 @@ var sessionActions = {
         isotopeActions.getImages();
     },
     authenticationErrorResponse(err) {
-        this.dispatch(err)
+        this.dispatch(err);
     },
     getUser(authenticationToken) {
         request
@@ -45,7 +45,7 @@ var sessionActions = {
                 return this.actions.postUserError(err);
             }
             this.actions.postUserResponse(res);
-            this.actions.authenticate({username:registrationData.username, password: registrationData.password})
+            this.actions.authenticate({username:registrationData.username, password: registrationData.password});
         });
         this.dispatch();
     },
@@ -62,4 +62,4 @@ var sessionActions = {
     }
 };
 
-module.exports = alt.createActions(sessionActions);
+export default alt.createActions(sessionActions);

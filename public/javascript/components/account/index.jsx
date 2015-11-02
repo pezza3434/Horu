@@ -13,7 +13,7 @@ import ratingsStore from '../../stores/ratingsStore';
 import imagesStore from '../../stores/imagesStore';
 import configurationStore from '../../stores/configurationStore';
 
-module.exports = React.createClass({
+export default React.createClass({
     componentWillMount() {
         this.setState(ratingsStore.getState());
         this.setState({serverUrl: configurationStore.getServerUrl()});
@@ -63,11 +63,11 @@ module.exports = React.createClass({
                         />
                 </div>
             </div>
-        )
+        );
     },
 
     componentWillUnmount() {
         ratingsStore.unlisten(this._ratingsStoreChange);
         imagesStore.unlisten(this._imagesStoreChange);
-    },
+    }
 });

@@ -43,7 +43,7 @@ class isotopeStore {
     getImagesSuccess (response) {
         this.isotopeImages = response.body;
         this.apiCallInProgress = false;
-        this.isotopeState = response.body.reduce(function(builtState, image){
+        this.isotopeState = response.body.reduce(function(builtState){
             var newState = {};
             newState.containerClicked = false;
             newState.displayForm = false;
@@ -107,4 +107,4 @@ class isotopeStore {
 
 
 
-module.exports = alt.createStore(isotopeStore, 'isotopeStore');
+export default alt.createStore(isotopeStore, 'isotopeStore');

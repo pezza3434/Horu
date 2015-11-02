@@ -1,4 +1,4 @@
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
     require('./style.scss');
 }
 
@@ -8,7 +8,7 @@ var classNames = require('classnames');
 var sessionActions = require('../../actions/sessionActions');
 var sessionStore = require('../../stores/sessionStore');
 
-module.exports = React.createClass({
+export default React.createClass({
     componentDidMount() {
         sessionStore.listen(this._onStoreChange);
     },
@@ -44,7 +44,7 @@ module.exports = React.createClass({
         var state = {
             username: '',
             password: ''
-        }
+        };
 
         if(!username) {
             state.username = 'Please supply a username';
@@ -61,7 +61,7 @@ module.exports = React.createClass({
         var authenticationData = {
             username: username,
             password: password
-        }
+        };
 
         sessionActions.authenticate(authenticationData);
 
@@ -71,9 +71,9 @@ module.exports = React.createClass({
         var password = this.refs.password.getDOMNode().value;
 
         if(username && password) {
-            this.setState({validated: true})
+            this.setState({validated: true});
         } else {
-            this.setState({validated:false})
+            this.setState({validated:false});
         }
     },
     _openModal() {
@@ -110,7 +110,7 @@ module.exports = React.createClass({
                     </Modal.Footer>
                 </Modal>
             </div>
-        )
+        );
     },
     componentWillUnmount() {
         sessionStore.unlisten(this._onStoreChange);

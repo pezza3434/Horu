@@ -58,17 +58,24 @@ class uploadStore {
 
         e.preventDefault();
         let files;
+
         if (e.dataTransfer) {
-          files = e.dataTransfer.files;
+
+            files = e.dataTransfer.files;
+
         } else if (e.target) {
-          files = e.target.files;
+            files = e.target.files;
         }
+
         let reader = new FileReader();
+
         reader.onload = () => {
-          this.selectedImage = reader.result;
-          this.emitChange();
+            this.selectedImage = reader.result;
+            this.emitChange();
         };
+
         reader.readAsDataURL(files[0]);
+
         return false;
     }
 
@@ -86,11 +93,11 @@ class uploadStore {
     }
 
     facialRecognitionError() {
-        this.facialRecognitionError = true
+        this.facialRecognitionError = true;
     }
 
 }
 
 
 
-module.exports = alt.createStore(uploadStore, 'uploadStore');
+export default alt.createStore(uploadStore, 'uploadStore');

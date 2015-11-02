@@ -42,7 +42,7 @@ var sessionActions = {
         .send(registrationData)
         .end((err,res) => {
             if(err){
-                return this.actions.postUserError(err);
+                return this.actions.postUserError(res.body.error);
             }
             this.actions.postUserResponse(res);
             this.actions.authenticate({username:registrationData.username, password: registrationData.password});

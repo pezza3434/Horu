@@ -86,8 +86,8 @@ class sessionStore {
         this.successfulRegistration = true;
     }
 
-    postUserError () {
-        this.registrationError = true;
+    postUserError (err) {
+        this.registrationError = err;
     }
 
     updateVoteCount() {

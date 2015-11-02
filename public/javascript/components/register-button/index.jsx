@@ -22,22 +22,12 @@ export default React.createClass({
     _sessionStoreChange(storeState) {
         var state = {};
 
-        if(storeState.apiCallInProgress) {
-            state.apiCallInProgress = true;
-        } else {
-            state.apiCallInProgress = false;
-        }
+        this.setState(storeState);
 
         if (storeState.successfulRegistration) {
-            state.successfulRegistration = true;
             state.showModal = false;
+            this.setState({showModal:false});
         }
-
-        if (storeState.registrationError) {
-            state.registrationError = true;
-        }
-
-        this.setState(state);
     },
     _openModal() {
         this.setState({
@@ -67,13 +57,9 @@ export default React.createClass({
             age
         } = this._getFieldDOMNodes();
 
-        if (email && username && age && password && confirmPassword && password === confirmPassword) {
+        if (email && username && age && password && confirmPassword) {
             this.setState({
                 validated: true
-            });
-        } else {
-            this.setState({
-                validated: false
             });
         }
     },
@@ -92,12 +78,16 @@ export default React.createClass({
 
         Object.keys(this._getFieldDOMNodes()).forEach(field => {
             if (!this._getFieldDOMNodes()[field]) {
-                state[field + 'Error'] = true;
+                state[field + 'Error'] = {error: true, message: 'You must provide a value for this field'};
             }
         });
 
         if (password !== confirmPassword) {
-            state.passwordMismatch = true;
+            state['passwordError'] = {error: true, message: 'Your password must match your confirmed password'};
+        }
+
+        if (username.length < 6){
+            state['usernameError'] = {error: true, message: 'Your username must be more than 5 characters long'};
         }
 
         if (Object.keys(state).length) {
@@ -113,9 +103,6 @@ export default React.createClass({
 
         sessionActions.postUser(registrationData);
 
-        return this.setState({
-            validated: true
-        });
     },
     render() {
 
@@ -134,29 +121,29 @@ export default React.createClass({
                         <form name="registerForm">
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Email address</label>
-                                {this.state.emailError ? <span className="error-message">Invalid Email.</span> : ''}
+                                {this.state.emailError ? <span className="error-message">{this.state.emailError.message}</span> : ''}
                                 <input className="form-control" id="form-email" name="email" onChange={this._formOnChange} placeholder="Enter email" ref="email" type="email"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Username</label>
-                                {this.state.usernameError ? <span className="error-message">Your username is required.</span>: ''}
+                                {this.state.usernameError ? <span className="error-message">{this.state.usernameError.message}</span>: ''}
                                 <input className="form-control" id="form-username" name="username" onChange={this._formOnChange} placeholder="Enter username" ref="username" type="text"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">How old are you? (We use this to tell people how accurate their guesses were)</label>
-                                {this.state.ageError ? <span className="error-message">Your real age is required</span>: ''}
+                                {this.state.ageError ? <span className="error-message">{this.state.ageError.message}</span>: ''}
                                 <input className="form-control" id="form-username" name="username" onChange={this._formOnChange} placeholder="Enter your age" ref="age" type="text"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputPassword1">Password</label>
-                                {this.state.passwordError? <span className="error-message">Your password is required.</span>: ''}
+                                {this.state.passwordError? <span className="error-message">{this.state.passwordError.message}</span>: ''}
                                 <input className="form-control" id="form-password" name="password" onChange={this._formOnChange} placeholder="Password" ref="password" type="password"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputPassword1">Confirm Password</label>
-                                {this.state.confirmPasswordError? <span className="error-message">You haven't confirmed your password</span>: '' }
+                                {this.state.confirmPasswordError? <span className="error-message">{this.state.confirmPasswordError.message}</span>: '' }
                             <input ref="confirmPassword" onChange={this._formOnChange}name = "confirm-password" className = "form-control" id = "form-confirm-password" placeholder = "Confirm Password" type = "password" /> </div>
-                            <button className={submitClasses} type="submit" onClick={this._formValidation}> {this.state.apiCallInProgress ? 'Loading...' : 'Submit'} </button>{this.state.registrationError ? <span className="error-message">There was a problem processing your details</span > : '' } {this.state.successfulRegistration ? <span className="success-message">You're account has been added!</span> : '' }
+                            <button className={submitClasses} type="submit" onClick={this._formValidation}> {this.state.apiCallInProgress ? 'Loading...' : 'Submit'} </button>{this.state.registrationError ? <span className="error-message">{this.state.registrationError}</span > : '' } {this.state.successfulRegistration ? <span className="success-message">You're account has been added!</span> : '' }
                             </form>
                         </Modal.Body >
                         <Modal.Footer>

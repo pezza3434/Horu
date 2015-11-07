@@ -9,15 +9,22 @@ export default React.createClass({
                     <li>
                         <div className="navigation__center">
                             <i className="fa fa-home"></i>
-                            <Link to="isotope" href="/#/">Home</Link>
-                            </div>
+                            <Link href="/#/" to="isotope">Home</Link>
+                        </div>
+                    </li>
+                    <li>
+                        <div className="navigation__center">
+                            <Link href="/#/about" to="about">About</Link>
+                        </div>
+                    </li>
+                    {this.props.isLoggedIn
+                        ? <li>
+                                <div className="navigation__center">
+                                    <i className="fa fa-users"></i>
+                                    <Link href="/#/account" to="account">Your Account</Link>
+                                </div>
                             </li>
-                        {this.props.isLoggedIn ? <li>
-                            <div className="navigation__center">
-                            <i className="fa fa-users"></i>
-                            <Link to="account" href="/#/account">Your Account</Link>
-                            </div>
-                    </li> : ''}
+                        : ''}
                 </ul>
             </div>
         );

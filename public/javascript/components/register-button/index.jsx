@@ -110,9 +110,12 @@ export default React.createClass({
             disabled: !this.state.validated || this.state.apiCallInProgress
         });
 
+        var buttonClassName = this.props.buttonClassName || 'register-button';
+        var buttonText = this.props.buttonText || 'Register';
+
         return (
             <div>
-                <div className="register-button" onClick={this._openModal}> Register</div>
+                <div className={buttonClassName} onClick={this._openModal}> {buttonText}</div>
                 <Modal onHide={this._closeModal} show={this.state.showModal}>
                     <Modal.Header closeButton>
                         <Modal.Title>Register to How Old Are you Really</Modal.Title>

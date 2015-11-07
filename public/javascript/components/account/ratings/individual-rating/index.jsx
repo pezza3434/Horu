@@ -13,7 +13,7 @@ export default React.createClass({
                 </div>
                 <div className="col-md-8 account__uploads_stats">
                     <div>
-                        <strong>Current Rating: </strong>
+                        <strong>People think you look: </strong>
                         {Math.floor(this.props.rating.current_rating)}
                     </div>
                     <div>

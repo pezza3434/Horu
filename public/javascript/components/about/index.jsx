@@ -44,8 +44,8 @@ export default React.createClass({
                             <div className="grid-item__text__input">
                                 <form>
                                     <div className="box__container">
-                                        <input min="7" value="26" max="99" id="input-1" type="number" autocomplete="off"/>
-                                        <label for="input-1" >
+                                        <input min="7" defaultValue="26" max="99" id="input-1" type="number" autoComplete="off"/>
+                                        <label htmlFor="input-1" >
                                             <span className="">How old am I?</span>
                                         </label>
                                     </div>

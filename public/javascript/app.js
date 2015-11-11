@@ -8,6 +8,13 @@ import cookieUtil from './utils/cookieUtil';
 
 var bootstrapData = {};
 
+if ( document.location.pathname==='/password-reset' ) {
+    bootstrapData.loginStore = {
+        showResetPasswordForm: true,
+        showModal: true
+    };
+}
+
 if(cookieUtil.getItem('horu')) {
 
     bootstrapData.sessionStore = {

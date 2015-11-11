@@ -14,7 +14,7 @@ class sessionStore {
 
         this.on('beforeEach', function() {
             this.apiCallInProgress = false;
-            this.isError = false;
+            this.isAuthenticationError = false;
             this.registrationError = false;
             this.successfulRegistration = false;
         });
@@ -67,7 +67,7 @@ class sessionStore {
     }
 
     authenticationErrorResponse () {
-        this.isError = true;
+        this.isAuthenticationError = true;
     }
 
     getUser () {

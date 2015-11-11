@@ -2,6 +2,7 @@ var React = require('react');
 var Router = require('react-router');
 var routes = require('../public/javascript/routes');
 var alt = require('../public/javascript/alt.js');
+var url = require('url');
 
 export default function (req, res) {
 
@@ -39,7 +40,8 @@ export default function (req, res) {
         res.render('index', {
             html: html,
             assetPath: assetPath,
-            nodeEnv: process.env.NODE_ENV
+            nodeEnv: process.env.NODE_ENV,
+            queryParameters: JSON.stringify(url.parse(req.originalUrl, true).query)
         });
         return alt.flush();
     });

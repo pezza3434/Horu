@@ -4,86 +4,55 @@ if (typeof window !== 'undefined') {
 
 var React = require('react');
 var Modal = require('react-bootstrap').Modal;
-var classNames = require('classnames');
 var sessionActions = require('../../actions/sessionActions');
 var sessionStore = require('../../stores/sessionStore');
 
+import loginStore from '../../stores/loginStore';
+
+import loginActions from '../../actions/loginActions';
+
+import ForgotPasswordForm from './forgotPasswordForm';
+import LoginForm from './loginForm';
+import ResetPasswordForm from './resetPasswordForm';
+
 export default React.createClass({
+    componentWillMount() {
+        this.setState(sessionStore.getState());
+        this.setState(loginStore.getState());
+    },
     componentDidMount() {
-        sessionStore.listen(this._onStoreChange);
+        sessionStore.listen(this._sessionStoreChange);
+        loginStore.listen(this._loginStoreChange);
     },
-    getInitialState() {
-        return {showModal: false, validated:false, isError:false};
+    _loginStoreChange(storeState) {
+        this.setState(storeState);
     },
-    _onStoreChange(response) {
-
-        var state = {};
-
-        if(response.apiCallInProgress) {
-            state.apiCallInProgress = true;
-        } else {
-            state.apiCallInProgress = false;
-        }
-
-        if(response.isLoggedIn && response.user && !response.isError) {
-            state.showModal = false;
-        }
-
-        if(response.isError) {
-            state.isError = true;
-        }
-
-        this.setState(state);
+    _sessionStoreChange(response) {
+        this.setState(response);
     },
-    _validate(e) {
+    _submitForgotPasswordEmail(e, email) {
         e.preventDefault();
-
-        var username = this.refs.username.getDOMNode().value;
-        var password = this.refs.password.getDOMNode().value;
-
-        var state = {
-            username: '',
-            password: ''
-        };
-
-        if(!username) {
-            state.username = 'Please supply a username';
-        }
-
-        if(!password) {
-            state.password = 'Please supply a password';
-        }
-
-        if(state.username || state.password) {
-            return this.setState(state);
-        }
-
-        var authenticationData = {
-            username: username,
-            password: password
-        };
-
-        sessionActions.authenticate(authenticationData);
-
+        loginActions.submitForgottenPassword(email);
     },
-    _formOnChange() {
-        var username = this.refs.username.getDOMNode().value;
-        var password = this.refs.password.getDOMNode().value;
-
-        if(username && password) {
-            this.setState({validated: true});
-        } else {
-            this.setState({validated:false});
-        }
+    _submitPasswordReset(e, newPassword) {
+        e.preventDefault();
+        loginActions.submitPasswordReset(newPassword);
+    },
+    _loginFormSubmitAction(e) {
+        e.preventDefault();
+        let data = {
+            username: this.state.loginForm.username.value,
+            password: this.state.loginForm.password.value
+        };
+        sessionActions.authenticate(data);
     },
     _openModal() {
-        this.setState({ showModal: true });
+        loginActions.triggerModal(true);
     },
     _closeModal() {
-        this.setState({showModal:false});
+        loginActions.triggerModal(false);
     },
     render() {
-        var submitClasses = classNames('btn', 'btn-default', {disabled: !this.state.validated || this.state.apiCallInProgress});
         return(
             <div>
                 <div className="login-button" onClick={this._openModal}>Log in</div>
@@ -92,18 +61,42 @@ export default React.createClass({
                         <Modal.Title>Login to How Old Are you Really</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form name="loginForm">
-                            <div className="form-group">
-                                <label htmlFor="exampleInputEmail1">Username</label> {this.state.username ? <span className="error-message"> Your name is required.</span> : ''}
-                                <input onChange={this._formOnChange} ref="username" className="form-control" id="exampleInputEmail1" name="username" placeholder="Enter username" type="text" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="exampleInputPassword1">Password</label> {this.state.password ? <span className="error-message"> Your password is required.</span> : ''}
-                                <input onChange={this._formOnChange} ref="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" type="password" />
-                            </div>
-                            <button disabled={!this.state.validated || this.state.apiCallInProgress} className={submitClasses} onClick={this._validate} type="submit">{this.state.apiCallInProgress ? 'Loading...' : 'Submit'}</button>
-                            {this.state.isError ? <span className="error-message">There was a problem with your supplied username and password</span> : '' }
-                        </form>
+                        {this.state.showForgotPasswordForm ?
+                             <ForgotPasswordForm
+                                 submitForgottenPasswordAction={this._submitForgotPasswordEmail}
+                                 forgottenPasswordEmailInputTriggerAction={loginActions.forgottenPasswordEmailInputTrigger}
+                                 forgottenPasswordForm={this.state.forgottenPasswordForm}
+                                 isValid={this.state.forgottenPasswordIsValid}
+                                 apiCallInProgress={this.state.apiCallInProgress}
+                                 forgottenPasswordSuccess={this.state.forgottenPasswordSuccess}
+                                 />
+                         : ''}
+                         {this.state.showLoginForm ?
+                            <LoginForm
+                                usernameOnChangeAction={loginActions.usernameInputTrigger}
+                                passwordOnChangeAction={loginActions.passwordInputTrigger}
+                                isValid={this.state.loginFormIsValid}
+                                apiCallInProgress={this.state.apiCallInProgress}
+                                isError={this.state.isAuthenticationError}
+                                loginFormSubmitAction={this._loginFormSubmitAction}
+                                loginForm={this.state.loginForm}
+                                forgotPasswordClickedAction={loginActions.forgotPasswordClicked}
+                                 />
+                        : '' }
+
+                        {this.state.showResetPasswordForm ?
+                            <ResetPasswordForm
+                                apiCallInProgress={this.state.apiCallInProgress}
+                                resetPasswordForm={this.state.resetPasswordForm}
+                                isValid={this.state.resetPasswordFormIsValid}
+                                submitPasswordResetAction={this._submitPasswordReset}
+                                passwordresetSuccess = {this.state.passwordresetSuccess}
+                                resetPasswordInputTrigger = {loginActions.resetPasswordInputTrigger}
+                                resetPasswordConfirmInputTrigger = {loginActions.resetPasswordConfirmInputTrigger}
+                                passwordResetError = {this.state.passwordresetError}
+                            />
+                        : ''}
+
                     </Modal.Body>
                     <Modal.Footer>
                         <button onClick={this._closeModal} className="btn btn-default" type="button">Close</button>
@@ -113,6 +106,7 @@ export default React.createClass({
         );
     },
     componentWillUnmount() {
-        sessionStore.unlisten(this._onStoreChange);
+        sessionStore.unlisten(this._sessionStoreChange);
+        loginStore.unlisten(this._loginStoreChange);
     }
 });

@@ -11,13 +11,11 @@ const fakeRatings = [{
     image_thumbnail: '/profileimage.jpg',
     current_rating: '24',
     votes: '64'
-},
-{
+},{
     image_thumbnail: '/vanessa.jpg',
     current_rating: '20',
     votes: '23'
-}
-];
+}];
 
 export default React.createClass({
     render() {

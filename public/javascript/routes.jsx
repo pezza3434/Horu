@@ -11,6 +11,7 @@ var routes = (
         <Route handler={Isotope} name='isotope' path='/'/>
         <Route handler={Account} name='account' path='account'/>
         <Route handler={About} name='about' path='about'/>
+        <Route handler={Isotope} name='password-reset' path='/:passwordreset'/>
     </Route>
 );
 

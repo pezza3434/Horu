@@ -9,7 +9,7 @@ export default React.createClass({
     render() {
         return(
             <div>
-                <div className="col-xs-6 col-sm-12 user-info">
+                <div className="col-xs-7 col-sm-12 user-info">
                     {!this.props.isLoggedIn ?
                     <div className="navigation__center">
                         <div className='user-info__login'>
@@ -24,7 +24,7 @@ export default React.createClass({
                             user={this.props.user}/> : ''}
                 </div>
                 {this.props.isLoggedIn ?
-                <div className="col-xs-6 col-sm-0 logout-area">
+                <div className="col-xs-5 col-sm-0 logout-area">
                     <button
                         onClick={this.props._logoutHandler}
                         className="btn btn-logout-user-info">logout</button>

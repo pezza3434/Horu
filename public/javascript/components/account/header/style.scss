@@ -4,8 +4,26 @@
 
 .account__header__text {
     color: #218ae3;
-    line-height: 145px;
     text-align: center;
-    font-size: 50px;
     font-weight: lighter;
+    padding: 10px 0px;
+    font-size:28px;
+}
+
+@media (min-width: 768px) {
+    .account__header__text {
+        line-height: 145px;
+        font-size:50px;
+        padding:0px;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
 }

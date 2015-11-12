@@ -8,10 +8,10 @@ export default React.createClass({
         var url = this.props.serverUrl + '/static/thumbnails' + this.props.rating.image_thumbnail;
         return (
             <div className="account__uploads__container col-md-6">
-                <div className="col-md-4 account__uploads__image">
+                <div className="col-xs-4 account__uploads__image">
                     <img src={url} />
                 </div>
-                <div className="col-md-8 account__uploads_stats">
+                <div className="col-xs-8 account__uploads_stats">
                     <div>
                         <strong>People think you look: </strong>
                         {Math.floor(this.props.rating.current_rating)}

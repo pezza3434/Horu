@@ -38,7 +38,7 @@ export default React.createClass({
     render() {
 
         return (
-            <div className="col-sm-2 sidebar">
+            <div className="col-sm-3 col-md-2 sidebar">
                     <Logo/>
                     <div className="row user-area">
                         <UserArea

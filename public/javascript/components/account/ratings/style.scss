@@ -1,10 +1,15 @@
 .account_uploads_stats__delete span{
-    font-size:11px;
+    font-size:13px;
     color:red;
+}
+
+.account_uploads_stats__delete i{
+    padding-right:5px;
 }
 
 .account__uploads__container {
     padding: 10px 0;
+    overflow:auto;
 }
 
 .account__uploads img {
@@ -13,17 +18,30 @@
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 70px;
+    height: 70px;
     display: inline-block;
     border: 2px solid #eaeaea;
     float: left;
 }
 .account__uploads_stats {
-    padding: 29px 0;
-    font-size: 21px;
+    padding: 8px 0;
+    font-size: 15px;
 }
 
 .account_uploads_stats__delete__button {
     cursor: pointer;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .account__uploads img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .account__uploads_stats {
+        padding: 29px 0;
+        font-size: 21px;
+    }
 }

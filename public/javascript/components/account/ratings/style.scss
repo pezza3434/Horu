@@ -34,8 +34,8 @@
 }
 
 .account__uploads__message {
-    padding: 21px 0;
-    font-size:11px;
+    padding: 10px 0;
+    font-size:13px;
     a {
         color:#218ae3;
         &:hover {
@@ -47,18 +47,23 @@
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+    .account__uploads__container {
+        padding: 20px 0;
+        overflow:auto;
+    }
+    
     .account__uploads img {
         width: 120px;
         height: 120px;
     }
 
     .account__uploads_stats {
-        padding: 29px 0;
+        padding: 16px 0;
         font-size: 21px;
     }
 
     .account__uploads__message {
-        padding: 39px 0;
-        font-size: 13px;
+        padding: 12px 0;
+        font-size: 21px;
     }
 }

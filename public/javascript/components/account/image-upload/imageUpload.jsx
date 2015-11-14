@@ -38,8 +38,7 @@ export default React.createClass({
                     <Modal.Header closeButton>
                         <Modal.Title>Image Cropper</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
-                    <div className="col-md-12">
+                    <Modal.Body modalClassName='account__upload__modal-body'>
                         {Cropper ?
                             <Cropper
                             ref='cropper'
@@ -50,7 +49,6 @@ export default React.createClass({
                             preview='.preview'
                              />
                         : ''}
-                    </div>
                     <div className="col-md-12">
                     <label className="btn btn-primary btn-upload" htmlFor="inputImage" title="Upload image file">
                         <input accept="image/*" className="sr-only" id="inputImage" name="file" type="file" onChange={this.props.newImageSelectedAction}/>

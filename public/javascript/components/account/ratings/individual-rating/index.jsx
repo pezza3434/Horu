@@ -29,8 +29,9 @@ export default React.createClass({
                 </div>
                 :
                 <div className="col-xs-8 account__uploads__message">
-                    <div>Unfortunately nobody has seen your image yet</div>
-                    <div>For more info, check out the <Link href="/#/about" to="about">about us</Link> page.</div>
+                    <div><strong>Check back soon...</strong></div>
+                    <div>Peole are guessing your age.</div>
+
                     <DeleteImage
                         deleteAction={this.props.triggerDeleteModal}
                         imageId={this.props.rating.image_id}

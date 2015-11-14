@@ -27,6 +27,7 @@ export default React.createClass({
 
                      <div className="box__container box__container--mobile">
                          <input ref="mobileFaceInput" placeholder="How old do I look?" min="7" max="99" className="" id="input-1" type="number" autoComplete="off"/>
+                         <input type="submit" value="Submit"/>
                     </div>
 
                     <input type="submit" className="invisible-submit"/>

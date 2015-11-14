@@ -33,9 +33,16 @@
         border: 0;
         text-align: center;
         padding: 9px;
-        border-radius: 2px;
-        width: 204px;
+        border-radius: 2px 0px 0px 2px;
+        width: 175px;
         margin:7px 0px;
+        display:inline;
+    }
+    input[type="submit"] {
+        width:80px;
+        background:#218ae3;
+        color:#fff;
+        border-radius: 0px 2px 2px 0px;
 
     }
 }

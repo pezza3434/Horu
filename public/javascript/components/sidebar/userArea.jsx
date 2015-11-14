@@ -26,7 +26,7 @@ export default React.createClass({
                 {this.props.isLoggedIn ?
                 <div className="col-xs-5 col-sm-0 logout-area">
                     <button
-                        onClick={this.props._logoutHandler}
+                        onClick={this.props.logoutHandler}
                         className="btn btn-logout-user-info">logout</button>
                 </div>
                 : ''}

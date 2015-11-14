@@ -41,7 +41,8 @@ export default function (req, res) {
             html: html,
             assetPath: assetPath,
             nodeEnv: process.env.NODE_ENV,
-            queryParameters: JSON.stringify(url.parse(req.originalUrl, true).query)
+            queryParameters: JSON.stringify(url.parse(req.originalUrl, true).query),
+            isProduction: process.env.NODE_ENV === 'production'
         });
         return alt.flush();
     });

@@ -59,7 +59,7 @@ export default React.createClass({
                         </span>
                     </label>
                     <button disabled={uploadIsDisabled} onClick={this._uploadImage} className={uploadClassNames}><span>{this.props.uploadInProgress ? 'Uploading...': 'Upload Image'}</span></button>
-                    {this.props.facialRecognitionInProgress ? <div>Facial recognition in progres...</div> : ''}
+                    {this.props.facialRecognitionInProgress ? <div>Facial recognition in progress...</div> : ''}
                     {this.props.facialRecognitionError ? <div>Unfortunately we failed to find a face in this photo. Please try again..</div> : ''}
                     {this.props.uploadInProgress ? <ProgressBar className="progressBar" active now={this.props.uploadProgress || 0} /> : ''}
                     {this.props.uploadSuccess ? <div className="success-message btn btn-success">Your image has been uploaded!</div> : ''}

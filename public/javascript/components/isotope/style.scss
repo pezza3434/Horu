@@ -20,7 +20,6 @@
     color: #fff;
     text-align: center;
     label {
-        transition: all 0.2s ease-in;
         position: absolute;
         color: #000;
         top: 0;
@@ -29,7 +28,6 @@
         top: 8px;
     }
     input {
-        transition: all 0.2s ease-in;
         background: #fff;
         color: #218ae3;
         border: 0;
@@ -206,6 +204,14 @@ input::-webkit-inner-spin-button {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
+    .img-responsive {
+        width: 100%;
+    }
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
     .box {
         background: #218ae3;
         height: 38px;
@@ -218,20 +224,14 @@ input::-webkit-inner-spin-button {
             width:auto;
             margin:0px;
         }
-    }
 
-
-    .img-responsive {
-        width: auto;
+        label {
+            transition: all 0.2s ease-in;
+        }
     }
     .box-hide {
         display:none;
     }
-}
-
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
 }
 
 /* Large devices (large desktops, 1200px and up) */

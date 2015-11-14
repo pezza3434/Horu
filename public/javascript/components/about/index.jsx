@@ -20,7 +20,7 @@ const fakeRatings = [{
 export default React.createClass({
     render() {
         return (
-            <div className="col-sm-10 col-sm-offset-2 content fill about-us">
+            <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 content no-padding about-us">
                 <div className="row">
                     <div className="col-md-12 centre">
                         <h1 className="about-us__title">Horu.io enables you to find out exactly how old you look</h1>

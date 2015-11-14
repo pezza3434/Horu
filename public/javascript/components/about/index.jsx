@@ -79,7 +79,7 @@ export default React.createClass({
                     </div>
                 </div>
                 <div className="row about-us__ratings">
-                    <Ratings serverUrl={'/images'} ratings={fakeRatings} />
+                    <Ratings serverUrl={'/images'} ratings={fakeRatings} triggerDeleteModal={function(){}}/>
                 </div>
                 <div className="row">
                     <div className="col-md-12 centre">

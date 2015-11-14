@@ -33,6 +33,18 @@
     cursor: pointer;
 }
 
+.account__uploads__message {
+    padding: 21px 0;
+    font-size:11px;
+    a {
+        color:#218ae3;
+        &:hover {
+            color:#218ae3;
+            text-decoration:underline;
+        }
+    }
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .account__uploads img {
@@ -43,5 +55,10 @@
     .account__uploads_stats {
         padding: 29px 0;
         font-size: 21px;
+    }
+
+    .account__uploads__message {
+        padding: 39px 0;
+        font-size: 13px;
     }
 }

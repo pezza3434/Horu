@@ -1,9 +1,10 @@
 import React from 'react';
 
+import DeleteImage from '../../delete-image';
+
+import {Link} from 'react-router';
+
 export default React.createClass({
-    _deleteImage() {
-        this.props.triggerDeleteModal(this.props.rating.image_id);
-    },
     render() {
         var url = this.props.serverUrl + '/static/thumbnails' + this.props.rating.image_thumbnail;
         return (
@@ -11,6 +12,7 @@ export default React.createClass({
                 <div className="col-xs-4 account__uploads__image">
                     <img src={url} />
                 </div>
+                {this.props.rating.votes > 0 ?
                 <div className="col-xs-8 account__uploads_stats">
                     <div>
                         <strong>People think you look: </strong>
@@ -20,13 +22,21 @@ export default React.createClass({
                         <strong>Number of Votes: </strong>
                         {this.props.rating.votes}
                     </div>
-                    <div className="account_uploads_stats__delete">
-                        <span className="account_uploads_stats__delete__button" onClick={this._deleteImage}>
-                            <i className="fa fa-trash"></i>
-                            Delete Image
-                        </span>
-                    </div>
+                    <DeleteImage
+                        deleteAction={this.props.triggerDeleteModal}
+                        imageId={this.props.rating.image_id}
+                        />
                 </div>
+                :
+                <div className="col-xs-8 account__uploads__message">
+                    <div>Unfortunately nobody has seen your image yet</div>
+                    <div>For more info, check out the <Link href="/#/about" to="about">about us</Link> page.</div>
+                    <DeleteImage
+                        deleteAction={this.props.triggerDeleteModal}
+                        imageId={this.props.rating.image_id}
+                        />
+                </div>
+                }
             </div>
         );
     }

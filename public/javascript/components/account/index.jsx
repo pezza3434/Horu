@@ -49,7 +49,7 @@ export default React.createClass({
     render() {
         var {ratings} = this.state;
         return (
-            <div className="col-sm-10 col-sm-offset-2 content no-padding fill">
+            <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 content no-padding fill">
                 <div className="account fill">
                     <Header/>
                     <Upload/>

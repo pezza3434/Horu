@@ -23,7 +23,7 @@ export default React.createClass({
         var boxClassNames = classNames(
             'box',
             {submitted: this.props.formSubmitted},
-            {hide: !this.props.displayForm && !this.props.formSubmitted}
+            {'box-hide': !this.props.displayForm && !this.props.formSubmitted}
         );
 
         var primaryImageClasses = classNames(
@@ -40,7 +40,7 @@ export default React.createClass({
                 <img className={primaryImageClasses} src={url + this.props.path} />
                 <div className={boxClassNames}>
                     <div className="grid-item__text__input">
-                        {this.props.displayForm && !this.props.formSubmitted ?
+                        {!this.props.formSubmitted ?
                             <Form formSubmittedHandler={this.props.formSubmittedHandler} faceId={this.props.id} containerClicked={this.props.containerClicked} /> : ''
                         }
                     </div>

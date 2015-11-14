@@ -13,3 +13,23 @@
 label {
     font-weight:500;
 }
+
+.box__container--desktop {
+    display:none;
+}
+
+.box__container--mobile {
+    display:block;
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .box__container--desktop {
+        display:block;
+    }
+
+    .box__container--mobile {
+        display:none;
+    }
+}

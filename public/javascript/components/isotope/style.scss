@@ -6,12 +6,16 @@
     position: relative;
     cursor: pointer;
 }
+
+.invisible-submit {
+    position: absolute; left: -9999px;
+}
+
 .box {
     position: absolute;
-    background: #218ae3;
     width: 100%;
     bottom: 0;
-    height: 38px;
+    height: 59px;
     transition: all 0.2s ease-in;
     color: #fff;
     text-align: center;
@@ -26,14 +30,19 @@
     }
     input {
         transition: all 0.2s ease-in;
-        color: #fff;
-        background: #218ae3;
+        background: #fff;
+        color: #218ae3;
         border: 0;
         text-align: center;
-        padding-top: 9px;
+        padding: 9px;
+        border-radius: 2px;
+        width: 204px;
+        margin:7px 0px;
+
     }
 }
 .box.submitted {
+    background: #218ae3;
     height: 228px;
     label {
         opacity: 0;
@@ -196,8 +205,27 @@ input::-webkit-inner-spin-button {
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+
+    .box {
+        background: #218ae3;
+        height: 38px;
+
+        input {
+            color:#fff;
+            background: #218ae3;
+            padding:9px 0px 0px 0px;
+            border-radius:0px;
+            width:auto;
+            margin:0px;
+        }
+    }
+
+
     .img-responsive {
         width: auto;
+    }
+    .box-hide {
+        display:none;
     }
 }
 

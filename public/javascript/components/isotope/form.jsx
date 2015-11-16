@@ -3,7 +3,9 @@ import React from 'react';
 export default React.createClass({
     componentWillReceiveProps(props) {
         if (props.containerClicked){
-            React.findDOMNode(this.refs.faceInput).focus();
+            setTimeout(() =>{
+                React.findDOMNode(this.refs.faceInput).focus();
+            }, 1)
         }
     },
     _submitForm(e) {

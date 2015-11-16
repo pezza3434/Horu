@@ -7,24 +7,15 @@ export default React.createClass({
             <div className="col-sm-12 navigation no-padding">
                 <ul>
                     <li>
-                        <div className="navigation__center">
-                            <i className="fa fa-home"></i>
-                            <Link href="/#/" to="isotope">Home</Link>
-                        </div>
+                            <Link href="/#/" to="isotope"><i className="fa fa-home"></i>Face Feed</Link>
                     </li>
                     {this.props.isLoggedIn
                         ? <li>
-                                <div className="navigation__center">
-                                    <i className="fa fa-users"></i>
-                                    <Link href="/#/account" to="account">Your Account</Link>
-                                </div>
+                                    <Link href="/#/account" to="account"><i className="fa fa-users"></i>Your Dashboard</Link>
                             </li>
                         : ''}
                     <li>
-                        <div className="navigation__center">
-                            <i className="fa fa-info"></i>
-                            <Link href="/#/about" to="about">About</Link>
-                        </div>
+                            <Link href="/#/about" to="about"><i className="fa fa-info"></i>About Horu</Link>
                     </li>
                 </ul>
             </div>

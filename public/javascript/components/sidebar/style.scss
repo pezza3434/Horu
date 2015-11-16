@@ -114,7 +114,12 @@
                 float: right;
             }
             float: left;
-            padding: 18px 10px;
+            padding: 0px 10px;
+            font-size:11px;
+            a {
+                display:block;
+                padding:18px 0px;
+            }
         }
     }
 }
@@ -194,6 +199,7 @@
                 float: none;
                 display: block;
                 padding-left: 15px;
+                font-size:14px;
                 i {
                     width: 25px;
                 }
@@ -223,7 +229,10 @@
     .navigation {
         ul {
             li {
-                text-align:center;
+                font-size:15px;
+                a {
+                    padding:18px 3px;
+                }
             }
         }
     }

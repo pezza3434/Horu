@@ -16,7 +16,7 @@
     width: 100%;
     bottom: 0;
     height: 59px;
-    transition: all 0.2s ease-in;
+    transition: height 0.2s ease-in;
     color: #fff;
     text-align: center;
     label {
@@ -81,12 +81,7 @@
 .box.active {
     bottom: 0;
 }
-.grid-item__image {
-    -webkit-transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -o-transition: opacity 1s ease-in-out;
-    transition: opacity 1s ease-in-out;
-}
+
 .hideimage{
     opacity:0;
 }
@@ -95,20 +90,7 @@
     top:0;
     z-index: -100;
 }
-.grid-item__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10;
-    transition: all 0.3s ease-in-out;
-    background: #000;
-    opacity: 0.3;
-}
-.grid-item__overlay.ng-hide {
-    opacity: 0;
-}
+
 .grid-item__text {
     position: absolute;
     top: 0;
@@ -233,7 +215,7 @@ input::-webkit-inner-spin-button {
         }
 
         label {
-            transition: all 0.2s ease-in;
+            transition: top 0.2s ease-in;
         }
     }
     .box-hide {

@@ -3,6 +3,7 @@ import React from 'react';
 export default React.createClass({
     componentWillReceiveProps(props) {
         if (props.containerClicked){
+            //Wrapped in a setTimeout for IE. Marked tech debt.
             setTimeout(() =>{
                 React.findDOMNode(this.refs.faceInput).focus();
             }, 1)

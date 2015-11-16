@@ -6,7 +6,7 @@ export default React.createClass({
             //Wrapped in a setTimeout for IE. Marked tech debt.
             setTimeout(() =>{
                 React.findDOMNode(this.refs.faceInput).focus();
-            }, 1)
+            }, 1);
         }
     },
     _submitForm(e) {

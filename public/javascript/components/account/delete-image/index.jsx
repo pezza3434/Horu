@@ -9,6 +9,6 @@ export default React.createClass({
                     Delete Image
                 </span>
             </div>
-        )
+        );
     }
 });

@@ -2,8 +2,6 @@ import React from 'react';
 
 import DeleteImage from '../../delete-image';
 
-import {Link} from 'react-router';
-
 export default React.createClass({
     render() {
         var url = this.props.serverUrl + '/static/thumbnails' + this.props.rating.image_thumbnail;

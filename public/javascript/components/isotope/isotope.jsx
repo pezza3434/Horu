@@ -19,7 +19,8 @@ export default React.createClass({
             formSubmittedHandler,
             clickedFaceHandler,
             mouseEnteredContainerHandler,
-            mouseLeftContainerHandler} = this.props;
+            mouseLeftContainerHandler,
+            refreshFacesHander} = this.props;
 
         return (
              <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 content no-padding">
@@ -32,6 +33,7 @@ export default React.createClass({
                             userId={face.user_id}
                             rated={face.rated}
                             age={face.age}
+                            refreshFacesHander = {refreshFacesHander}
                             mouseLeftContainerHandler={mouseLeftContainerHandler.bind(null, index)}
                             mouseEnteredContainerHandler={mouseEnteredContainerHandler.bind(null, index)}
                             clickedFaceHandler={clickedFaceHandler.bind(null, index)}

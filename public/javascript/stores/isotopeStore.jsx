@@ -21,13 +21,22 @@ class isotopeStore {
             mouseLeftContainer: isotopeActions.mouseLeftContainer,
             mouseEnteredContainer: isotopeActions.mouseEnteredContainer,
             populateImageRequestSuccess: isotopeActions.populateImageRequestSuccess,
-            resetImageState: isotopeActions.resetImageState
+            populateImageRequestError: isotopeActions.populateImageRequestError
         });
 
         this.exportPublicMethods({
 
             imageIdsCurrentlyBeingDisplayed() {
-                return this.getState().isotopeImages.map(image => image.id);
+                let currentlyDisplayed = this.getState().isotopeImages.map(image => image.id);
+                let previouslyDisplayed = (JSON.parse(localStorage.getItem('imageIds')) || [])
+                .filter((id)=>{
+                    if (currentlyDisplayed.indexOf(id) > -1) {
+                        return false;
+                    }
+                    return true;
+                });
+
+                return currentlyDisplayed.concat(previouslyDisplayed);
             },
             getSubmittedFace() {
                 return this.getState().isotopeState.filter(face => face.formSubmitted);
@@ -41,6 +50,9 @@ class isotopeStore {
     }
 
     getImagesSuccess (response) {
+        if (response.body.length === 0) {
+            this.error = 'No more images found';
+        }
         this.isotopeImages = response.body;
         this.apiCallInProgress = false;
         this.isotopeState = response.body.reduce(function(builtState){
@@ -62,6 +74,16 @@ class isotopeStore {
         this.apiCallInProgress = true;
         this.isotopeState[data.faceIndex].formSubmitted = true;
         this.isotopeState[data.faceIndex].ageGuessed = data.ageGuessed;
+
+        let existingEntries = JSON.parse(localStorage.getItem('imageIds'));
+
+        if (existingEntries == null) {
+            existingEntries = [];
+        }
+
+        existingEntries.push(this.isotopeImages[data.faceIndex].id);
+
+        localStorage.setItem('imageIds', JSON.stringify(existingEntries));
     }
 
     submitAgeSuccess () {
@@ -83,24 +105,27 @@ class isotopeStore {
     }
 
     populateImageRequestSuccess(imagesResponse) {
-        var submittedFace = this.isotopeState.filter(face => face.formSubmitted === true);
-        if(submittedFace.length > 0) {
-            submittedFace[0].secondaryImage = imagesResponse.body[0].path;
-            submittedFace[0].formSubmitted = false;
+        var index = this.isotopeState.length;
+
+        while (index--) {
+            if (this.isotopeState[index].formSubmitted) {
+                if (imagesResponse.body[index]) {
+                    this.isotopeState[index].containerClicked = false;
+                    this.isotopeState[index].displayForm = false;
+                    this.isotopeState[index].formSubmitted = false;
+                    this.isotopeState[index].secondaryImage = false;
+                    this.isotopeImages[index] = imagesResponse.body[index];
+                } else {
+                    this.isotopeState.splice(index, 1);
+                    this.isotopeImages.splice(index, 1);
+                }
+            }
         }
+
     }
 
-    resetImageState(imagesResponse) {
-
-        this.isotopeState.forEach((face, index) => {
-            if(face.secondaryImage) {
-                this.isotopeImages[index] = imagesResponse.body[0];
-                this.isotopeState[index].secondaryImage = false;
-            }
-        });
-
-
-
+    populateImageRequestError(response) {
+        this.error = {status:response.statusCode, message: response.body.error};
     }
 
 }

@@ -8,6 +8,7 @@ export default React.createClass({
                 <div className="box__container-guess__guess-number">{this.props.ageGuessed}</div>
                 <div className="box__container-guess__real-age">Real Age:</div>
                 <div className="box__container-guess__real-age-number">{this.props.age}</div>
+                <div onClick={this.props.refreshFacesHander} className="box__container-refresh"><i className="fa fa-refresh"></i></div>
             </div>
         );
     }

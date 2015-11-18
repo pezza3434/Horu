@@ -55,6 +55,14 @@
     input {
         opacity: 0;
     }
+
+    .box__container-refresh {
+        position:absolute;
+        top:20px;
+        right: 20px;
+        font-size:22px;
+        cursor:pointer;
+    }
 }
 .box__container {
     text-align: center;

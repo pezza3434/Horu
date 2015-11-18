@@ -5,7 +5,9 @@ export default React.createClass({
         if (props.containerClicked){
             //Wrapped in a setTimeout for IE. Marked tech debt.
             setTimeout(() =>{
-                React.findDOMNode(this.refs.faceInput).focus();
+                if (React.findDOMNode(this.refs.faceInput)){
+                    React.findDOMNode(this.refs.faceInput).focus();
+                }
             }, 1);
         }
     },

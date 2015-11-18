@@ -19,19 +19,20 @@ export default React.createClass({
         this.setState(isotopeStore.getState());
     },
     componentDidMount() {
-        if (isotopeStore.getState().isotopeImages.length === 0) {
-            isotopeActions.getImages();
-        }
         isotopeStore.listen(this._isotopeStoreChange);
+
+        if (isotopeStore.getState().isotopeImages.length === 0) {
+            isotopeActions.getImages(isotopeStore.imageIdsCurrentlyBeingDisplayed());
+        }
     },
     _isotopeStoreChange(storeState) {
         this.setState(storeState);
     },
     _clickedFaceHandler(faceIndex) {
-        if(isotopeStore.getSubmittedFace().length > 0){
-            isotopeActions.populateImageRequest(isotopeStore.imageIdsCurrentlyBeingDisplayed());
-        }
         isotopeActions.clickedFace(faceIndex);
+    },
+    _refreshFacesHandler() {
+        isotopeActions.populateImageRequest(isotopeStore.imageIdsCurrentlyBeingDisplayed());
     },
     render() {
         return(
@@ -45,6 +46,7 @@ export default React.createClass({
                     mouseEnteredContainerHandler = {isotopeActions.mouseEnteredContainer}
                     formSubmittedHandler = {isotopeActions.submitAge}
                     isotopeState = {this.state.isotopeState}
+                    refreshFacesHander = {this._refreshFacesHandler}
                     />
                 : ''}
                 {this.state.error ? <NoImagesError/> : ''}

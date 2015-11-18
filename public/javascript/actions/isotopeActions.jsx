@@ -3,11 +3,17 @@ var request = require('superagent');
 var configurationStore = require('../stores/configurationStore');
 
 var isotopeActions = {
-    getImages() {
+    getImages(imageIdsToExclude) {
         var sessionStore = require('../stores/sessionStore');
+        let endpoint;
 
-        var req = request
-        .get(configurationStore.getServerUrl() + '/images');
+        if(imageIdsToExclude.length) {
+            endpoint = `${configurationStore.getServerUrl()}/images?exclude=${imageIdsToExclude.join(',')}`;
+        } else {
+            endpoint = `${configurationStore.getServerUrl()}/images`;
+        }
+
+        var req = request.get(endpoint);
 
         if (sessionStore.getAuthenticationToken()) {
             req.set('x-access-token', sessionStore.getAuthenticationToken());
@@ -67,15 +73,21 @@ var isotopeActions = {
         var sessionStore = require('../stores/sessionStore');
         if(sessionStore.getAuthenticationToken()) {
             request
-            .get(configurationStore.getServerUrl() + '/images/1/?exclude=' + imageIdsToExclude.join(','))
+            .get(configurationStore.getServerUrl() + '/images/?exclude=' + imageIdsToExclude.join(','))
             .set('x-access-token', sessionStore.getAuthenticationToken())
             .end((err,res) => {
+                if(err) {
+                    return this.actions.populateImageRequestError(res);
+                }
                 this.actions.populateImageRequestSuccess(res);
             });
         } else {
             request
-            .get(configurationStore.getServerUrl() + '/images/1?exclude=' + imageIdsToExclude.join(','))
+            .get(configurationStore.getServerUrl() + '/images/?exclude=' + imageIdsToExclude.join(','))
             .end((err,res) => {
+                if(err) {
+                    return this.actions.populateImageRequestError(res);
+                }
                 this.actions.populateImageRequestSuccess(res);
             });
 
@@ -84,13 +96,10 @@ var isotopeActions = {
     },
     populateImageRequestSuccess(res) {
         this.dispatch(res);
-        this.actions.resetImageState(res);
     },
-    resetImageState(res) {
+    populateImageRequestError(res) {
         this.dispatch(res);
     }
-
-
 };
 
 export default alt.createActions(isotopeActions);

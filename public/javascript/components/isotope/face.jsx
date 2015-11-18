@@ -41,10 +41,16 @@ export default React.createClass({
                 <div className={boxClassNames}>
                     <div className="grid-item__text__input">
                         {!this.props.formSubmitted ?
-                            <Form formSubmittedHandler={this.props.formSubmittedHandler} faceId={this.props.id} containerClicked={this.props.containerClicked} /> : ''
+                            <Form formSubmittedHandler={this.props.formSubmittedHandler}
+                                 faceId={this.props.id}
+                                 containerClicked={this.props.containerClicked}
+                                  /> : ''
                         }
                     </div>
-                    <ResultsForm ageGuessed = {this.props.ageGuessed} age = {this.props.age}/>
+                    <ResultsForm ageGuessed={this.props.ageGuessed}
+                         age={this.props.age}
+                         refreshFacesHander={this.props.refreshFacesHander}
+                         />
                 </div>
             </div>
         );

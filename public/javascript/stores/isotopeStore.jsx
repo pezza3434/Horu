@@ -1,7 +1,11 @@
 var alt = require('../alt');
 var isotopeActions = require('../actions/isotopeActions');
 
-class isotopeStore {
+function facesSubmitted(isotopeState) {
+    return isotopeState.filter(face => face.formSubmitted);
+}
+
+export class unwrappedIsotopeStore {
     constructor() {
         this.isotopeImages = [];
         this.isotopeState = [];
@@ -11,18 +15,7 @@ class isotopeStore {
             this.apiCallInProgress = false;
         });
 
-        this.bindListeners({
-            getImages: isotopeActions.getImages,
-            getImagesSuccess: isotopeActions.getImagesSuccess,
-            getImagesError: isotopeActions.getImagesError,
-            submitAge: isotopeActions.submitAge,
-            submitAgeSuccess: isotopeActions.submitAgeSuccess,
-            clickedFace: isotopeActions.clickedFace,
-            mouseLeftContainer: isotopeActions.mouseLeftContainer,
-            mouseEnteredContainer: isotopeActions.mouseEnteredContainer,
-            populateImageRequestSuccess: isotopeActions.populateImageRequestSuccess,
-            populateImageRequestError: isotopeActions.populateImageRequestError
-        });
+        this.bindActions(isotopeActions);
 
         this.exportPublicMethods({
 
@@ -39,7 +32,7 @@ class isotopeStore {
                 return currentlyDisplayed.concat(previouslyDisplayed);
             },
             getSubmittedFace() {
-                return this.getState().isotopeState.filter(face => face.formSubmitted);
+                return facesSubmitted(this.getState().isotopeState);
             }
 
         });
@@ -104,7 +97,7 @@ class isotopeStore {
         this.isotopeState[faceIndex].displayForm = true;
     }
 
-    populateImageRequestSuccess(imagesResponse) {
+    refreshImagesSuccess(imagesResponse) {
         var index = this.isotopeState.length;
 
         while (index--) {
@@ -124,12 +117,26 @@ class isotopeStore {
 
     }
 
-    populateImageRequestError(response) {
-        this.error = {status:response.statusCode, message: response.body.error};
+    refreshImagesError(response) {
+        let facesSubmitted = this.isotopeState.filter(face => face.formSubmitted).length;
+        let totalFaces = this.isotopeState.length;
+
+        if (facesSubmitted === totalFaces) {
+            this.error = {status:response.statusCode, message: response.body.error};
+        }
+
+        var index = this.isotopeState.length;
+        while (index--) {
+            if (this.isotopeState[index].formSubmitted) {
+                this.isotopeState.splice(index, 1);
+                this.isotopeImages.splice(index, 1);
+            }
+        }
+
     }
 
 }
 
 
 
-export default alt.createStore(isotopeStore, 'isotopeStore');
+export default alt.createStore(unwrappedIsotopeStore, 'isotopeStore');

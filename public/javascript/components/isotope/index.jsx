@@ -32,7 +32,7 @@ export default React.createClass({
         isotopeActions.clickedFace(faceIndex);
     },
     _refreshFacesHandler() {
-        isotopeActions.populateImageRequest(isotopeStore.imageIdsCurrentlyBeingDisplayed());
+        isotopeActions.refreshImages(isotopeStore.imageIdsCurrentlyBeingDisplayed());
     },
     render() {
         return(

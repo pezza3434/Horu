@@ -7,7 +7,7 @@ var isotopeActions = {
         var sessionStore = require('../stores/sessionStore');
         let endpoint;
 
-        if(imageIdsToExclude.length) {
+        if(imageIdsToExclude && imageIdsToExclude.length) {
             endpoint = `${configurationStore.getServerUrl()}/images?exclude=${imageIdsToExclude.join(',')}`;
         } else {
             endpoint = `${configurationStore.getServerUrl()}/images`;
@@ -69,7 +69,7 @@ var isotopeActions = {
     mouseLeftContainer(faceIndex) {
         this.dispatch(faceIndex);
     },
-    populateImageRequest(imageIdsToExclude) {
+    refreshImages(imageIdsToExclude) {
         var sessionStore = require('../stores/sessionStore');
         if(sessionStore.getAuthenticationToken()) {
             request
@@ -77,27 +77,27 @@ var isotopeActions = {
             .set('x-access-token', sessionStore.getAuthenticationToken())
             .end((err,res) => {
                 if(err) {
-                    return this.actions.populateImageRequestError(res);
+                    return this.actions.refreshImagesError(res);
                 }
-                this.actions.populateImageRequestSuccess(res);
+                this.actions.refreshImagesSuccess(res);
             });
         } else {
             request
             .get(configurationStore.getServerUrl() + '/images/?exclude=' + imageIdsToExclude.join(','))
             .end((err,res) => {
                 if(err) {
-                    return this.actions.populateImageRequestError(res);
+                    return this.actions.refreshImagesError(res);
                 }
-                this.actions.populateImageRequestSuccess(res);
+                this.actions.refreshImagesSuccess(res);
             });
 
         }
         this.dispatch();
     },
-    populateImageRequestSuccess(res) {
+    refreshImagesSuccess(res) {
         this.dispatch(res);
     },
-    populateImageRequestError(res) {
+    refreshImagesError(res) {
         this.dispatch(res);
     }
 };

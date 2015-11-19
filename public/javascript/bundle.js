@@ -55171,7 +55171,7 @@
 	                url: 'http://generation.com:3000'
 	            },
 	            production: {
-	                url: 'http://generation.com:3000'
+	                url: 'http://46.101.54.208:3000'
 	            }
 	        };
 	    });

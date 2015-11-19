@@ -5,7 +5,8 @@
   "scripts": {
     "webpack": "webpack-dev-server --devtool eval --progress --colors --content-base build",
     "start": "NODE_ENV=development nodemon -e jsx,js,hbs --watch ../horu bin/www",
-    "eslint": "eslint **/*  --ext .jsx --ext .js --quiet"
+    "eslint": "eslint **/*  --ext .jsx --ext .js --quiet",
+    "test": "karma start"
   },
   "dependencies": {
     "body-parser": "~1.12.0",
@@ -43,11 +44,14 @@
     "eslint-plugin-react": "^3.6.3",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
+    "karma": "^0.13.15",
+    "karma-coverage": "^0.5.3",
     "karma-phantomjs-launcher": "^0.2.1",
+    "karma-phantomjs2-launcher": "^0.3.2",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.3",
     "node-sass": "^3.3.3",
-    "phantomjs": "^1.9.18",
+    "phantomjs2": "^2.0.0",
     "react-router": "^0.13.3",
     "sass-loader": "^2.0.1",
     "style-loader": "^0.12.4",

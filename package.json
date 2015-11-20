@@ -6,7 +6,8 @@
     "webpack": "webpack-dev-server --devtool eval --progress --colors --content-base build",
     "start": "NODE_ENV=development nodemon -e jsx,js,hbs --watch ../horu bin/www",
     "eslint": "eslint **/*  --ext .jsx --ext .js --quiet",
-    "test": "karma start"
+    "test": "eslint **/*  --ext .jsx --ext .js --quiet && karma start",
+    "build": "webpack"
   },
   "dependencies": {
     "body-parser": "~1.12.0",
@@ -54,6 +55,7 @@
     "phantomjs": "^1.9.18",
     "react-router": "^0.13.3",
     "sass-loader": "^2.0.1",
+    "shipit-deploy": "^2.0.0",
     "style-loader": "^0.12.4",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.11.0"

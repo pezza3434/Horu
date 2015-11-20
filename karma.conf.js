@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = function (config) {
     config.set({
         basePath: '',
-        browsers: ['PhantomJS2'],
+        browsers: ['PhantomJS'],
         frameworks: ['mocha', 'chai'],
         files: [
             './tests.webpack.js'

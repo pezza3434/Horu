@@ -2,4 +2,5 @@ deployment:
   production:
     branch: master
     commands:
+      - webpack   
       - shipit production deploy

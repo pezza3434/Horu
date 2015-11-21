@@ -23,6 +23,5 @@ module.exports = function (shipit) {
 
     var nodeModules = path.resolve('./node_modules');
     shipit.remoteCopy(nodeModules, shipit.releasePath);
-    shipit.remote('pm2 restart horu');
   });
 };

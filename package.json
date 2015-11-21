@@ -7,7 +7,7 @@
     "start": "NODE_ENV=development nodemon -e jsx,js,hbs --watch ../horu bin/www",
     "eslint": "eslint **/*  --ext .jsx --ext .js --quiet",
     "test": "eslint **/*  --ext .jsx --ext .js --quiet && karma start",
-    "build": "webpack"
+    "build": "webpack --config ./webpack.dist.js"
   },
   "dependencies": {
     "body-parser": "~1.12.0",

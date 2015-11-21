@@ -5,11 +5,11 @@ module.exports = function (shipit) {
 
   shipit.initConfig({
     default: {
-      workspace: '/tmp/github-monitor',
-      deployTo: '/tmp/deploy_to',
+      workspace: '/tmp/horu',
+      deployTo: '/home/horu-app',
       repositoryUrl: 'https://github.com/pezza3434/Horu',
       ignores: ['.git'],
-      keepReleases: 2,
+      keepReleases: 5,
       deleteOnRollback: false,
       shallowClone: true
     },

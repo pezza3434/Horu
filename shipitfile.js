@@ -8,7 +8,7 @@ module.exports = function (shipit) {
       workspace: '/tmp/github-monitor',
       deployTo: '/tmp/deploy_to',
       repositoryUrl: 'https://github.com/pezza3434/Horu',
-      ignores: ['.git', 'node_modules'],
+      ignores: ['.git'],
       keepReleases: 2,
       deleteOnRollback: false,
       shallowClone: true
@@ -20,5 +20,8 @@ module.exports = function (shipit) {
   shipit.on('updated', function () {
     var buildDirectory = path.resolve('./public/');
     shipit.remoteCopy(buildDirectory, shipit.releasePath);
+
+    var nodeModules = path.resolve('./node_modules');
+    shipit.remoteCopy(nodeModules, shipit.releasePath);
   });
 };

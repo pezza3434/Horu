@@ -5,6 +5,6 @@ deployment:
   production:
     branch: master
     commands:
-      - webpack
+      - npm run build
       - shipit production deploy
       - ./deployHoru.bash

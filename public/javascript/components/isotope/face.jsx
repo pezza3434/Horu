@@ -50,6 +50,7 @@ export default React.createClass({
                     <ResultsForm ageGuessed={this.props.ageGuessed}
                          age={this.props.age}
                          refreshFacesHander={this.props.refreshFacesHander}
+                         validationError={this.props.validationError}
                          />
                 </div>
             </div>

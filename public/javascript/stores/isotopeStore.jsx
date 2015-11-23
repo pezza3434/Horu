@@ -54,6 +54,7 @@ export class unwrappedIsotopeStore {
             newState.displayForm = false;
             newState.formSubmitted = false;
             newState.secondaryImage = false;
+            newState.validationError = false;
             builtState.push(newState);
             return builtState;
         }, []);
@@ -83,6 +84,10 @@ export class unwrappedIsotopeStore {
         this.apiCallInProgress = false;
     }
 
+    submitAgeError (faceIndex) {
+        this.isotopeState[faceIndex].validationError = true;
+    }
+
     clickedFace(faceIndex) {
         this.isotopeState[faceIndex].containerClicked = true;
         this.isotopeState[faceIndex].displayForm = true;
@@ -108,6 +113,7 @@ export class unwrappedIsotopeStore {
                     this.isotopeState[index].formSubmitted = false;
                     this.isotopeState[index].secondaryImage = false;
                     this.isotopeImages[index] = imagesResponse.body[index];
+                    this.isotopeState[index].validationError = false;
                 } else {
                     this.isotopeState.splice(index, 1);
                     this.isotopeImages.splice(index, 1);

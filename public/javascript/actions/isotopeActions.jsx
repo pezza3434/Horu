@@ -44,6 +44,9 @@ var isotopeActions = {
             .set('x-access-token', sessionStore.getAuthenticationToken())
             .send(postData)
             .end((err,res) => {
+                if (err) {
+                    return this.actions.submitAgeError(faceIndex);
+                }
                 this.actions.submitAgeSuccess(res);
             });
         } else {
@@ -51,6 +54,9 @@ var isotopeActions = {
             .post(configurationStore.getServerUrl() + '/ratings')
             .send(postData)
             .end((err,res) => {
+                if (err) {
+                    return this.actions.submitAgeError(faceIndex);
+                }
                 this.actions.submitAgeSuccess(res);
             });
         }
@@ -59,6 +65,9 @@ var isotopeActions = {
     },
     submitAgeSuccess(ratingsResponse) {
         this.dispatch(ratingsResponse);
+    },
+    submitAgeError(faceIndex) {
+        this.dispatch(faceIndex);
     },
     clickedFace(faceIndex) {
         this.dispatch(faceIndex);

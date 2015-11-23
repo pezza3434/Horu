@@ -43,6 +43,7 @@ export default React.createClass({
                             formSubmitted={isotopeState[index].formSubmitted}
                             ageGuessed = {isotopeState[index].ageGuessed}
                             secondaryImage = {isotopeState[index].secondaryImage}
+                            validationError = {isotopeState[index].validationError}
                         />;
                 })}
             </div>

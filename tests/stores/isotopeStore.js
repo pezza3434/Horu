@@ -66,6 +66,23 @@ describe.only('isotope store', () => {
         });
     });
 
+    describe('when an invalid vote was made', () => {
+
+        it('should display an error', () => {
+            loadImageResponse();
+
+            guessAge(0);
+
+            alt.dispatcher.dispatch({
+                action: isotopeActions.SUBMIT_AGE_ERROR,
+                data: 0
+            });
+
+            isotopeStore.getState().isotopeState[0].validationError.should.equal(true);
+        });
+
+    });
+
     describe('refresh images success', () => {
         it('should reset the isotope state and isotope images to the new images', () => {
             loadImageResponse();

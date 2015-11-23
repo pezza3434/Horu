@@ -12,14 +12,17 @@ import isotopeActions from '../../actions/isotopeActions';
 
 import isotopeStore from '../../stores/isotopeStore';
 import configurationStore from '../../stores/configurationStore';
+import sessionStore from '../../stores/sessionStore';
 
 export default React.createClass({
     componentWillMount() {
         this.setState({serverUrl: configurationStore.getServerUrl()});
         this.setState(isotopeStore.getState());
+        this.setState(sessionStore.getState());
     },
     componentDidMount() {
         isotopeStore.listen(this._isotopeStoreChange);
+        sessionStore.listen(this._sessionStoreChange);
 
         if (isotopeStore.getState().isotopeImages.length === 0) {
             isotopeActions.getImages(isotopeStore.imageIdsCurrentlyBeingDisplayed());
@@ -27,6 +30,9 @@ export default React.createClass({
     },
     _isotopeStoreChange(storeState) {
         this.setState(storeState);
+    },
+    _sessionStoreChange(storeState) {
+        this.setState(storeState)
     },
     _clickedFaceHandler(faceIndex) {
         isotopeActions.clickedFace(faceIndex);
@@ -49,7 +55,7 @@ export default React.createClass({
                     refreshFacesHander = {this._refreshFacesHandler}
                     />
                 : ''}
-                {this.state.error ? <NoImagesError/> : ''}
+                {this.state.error ? <NoImagesError isLoggedIn={this.state.isLoggedIn}/> : ''}
             </div>
         );
 

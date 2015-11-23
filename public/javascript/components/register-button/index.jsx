@@ -111,7 +111,7 @@ export default React.createClass({
         });
 
         var buttonClassName = this.props.buttonClassName || 'register-button';
-        var buttonText = this.props.buttonText || 'Register';
+        var buttonText = this.props.buttonText || 'Get Started';
 
         return (
             <div>

@@ -11,6 +11,13 @@
     position: absolute; left: -9999px;
 }
 
+.no-images-message .register-button{
+    width:200px;
+    margin:0 auto;
+    padding:14px;
+    margin-top:27px;
+}
+
 .box {
     position: absolute;
     width: 100%;
@@ -62,6 +69,10 @@
         right: 20px;
         font-size:22px;
         cursor:pointer;
+    }
+
+    .invalid .box__container-refresh {
+        top: 48px;
     }
 }
 .box__container {
@@ -181,6 +192,11 @@
     font-size: 30px;
     font-weight: lighter;
 }
+.box__container-guess__invalid {
+    margin-top: -15px;
+    padding: 11px;
+    background: #D25454;
+}
 .box__container-guess__guess-number {
     font-weight: 600;
 }
@@ -203,6 +219,10 @@ input::-webkit-inner-spin-button {
 
     .img-responsive {
         width: 100%;
+    }
+
+    .box__container-guess__invalid {
+        font-size:11px;
     }
 
 }
@@ -228,6 +248,9 @@ input::-webkit-inner-spin-button {
     }
     .box-hide {
         display:none;
+    }
+    .box__container-guess__invalid {
+        font-size:14px;
     }
 }
 

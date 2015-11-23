@@ -11,8 +11,8 @@ import configurationStore from '../../stores/configurationStore';
 
 import Logo from './logo';
 import Navigation from './navigation';
-import UserArea from './userArea';
-
+import UserAreaLoggedIn from './UserAreaLoggedIn';
+import UserAreaLoggedOut from './UserAreaLoggedOut';
 
 export default React.createClass({
     getInitialState() {
@@ -41,11 +41,13 @@ export default React.createClass({
             <div className="col-sm-3 col-md-2 sidebar">
                     <Logo/>
                     <div className="row user-area">
-                        <UserArea
-                            isLoggedIn={this.state.isLoggedIn}
-                            logoutHandler={this._logoutHandler}
-                            user={this.state.user}
-                            serverUrl={this.state.serverUrl} />
+                        {this.state.isLoggedIn ?
+                            <UserAreaLoggedIn
+                                logoutHandler={this._logoutHandler}
+                                user={this.state.user}
+                                serverUrl={this.state.serverUrl}/> :
+                            <UserAreaLoggedOut/>
+                        }
                     </div>
                     <div className="row">
                         <Navigation isLoggedIn={this.state.isLoggedIn} />

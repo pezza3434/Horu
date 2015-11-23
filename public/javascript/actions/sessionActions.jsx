@@ -17,9 +17,10 @@ var sessionActions = {
     },
     authenticateResponse(authenticationResponse) {
         var isotopeActions = require('./isotopeActions');
+        var isotopeStore = require('../stores/isotopeStore');
         this.dispatch(authenticationResponse);
         this.actions.getUser(authenticationResponse.body.token);
-        isotopeActions.getImages();
+        isotopeActions.getImages(isotopeStore.imageIdsCurrentlyBeingDisplayed());
     },
     authenticationErrorResponse(err) {
         this.dispatch(err);

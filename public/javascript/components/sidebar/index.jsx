@@ -11,7 +11,7 @@ import configurationStore from '../../stores/configurationStore';
 
 import Logo from './logo';
 import Navigation from './navigation';
-import UserAreaLoggedIn from './UserAreaLoggedIn';
+import UserAreaLoggedIn from './UserAreaLoggedin';
 import UserAreaLoggedOut from './UserAreaLoggedOut';
 
 export default React.createClass({

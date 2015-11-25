@@ -11,8 +11,8 @@ import configurationStore from '../../stores/configurationStore';
 
 import Logo from './logo';
 import Navigation from './navigation';
-import UserAreaLoggedIn from './UserAreaLoggedin';
-import UserAreaLoggedOut from './UserAreaLoggedOut';
+import UserAreaLoggedIn from './userAreaLoggedin';
+import UserAreaLoggedOut from './userAreaLoggedOut';
 
 export default React.createClass({
     getInitialState() {

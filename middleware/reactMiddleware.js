@@ -14,6 +14,12 @@ export default function (req, res) {
         routes: routes
     });
 
+    if(!req.cookies.welcomeMessage || req.cookies.welcomeMessage !== 'closed') {
+        bootstrapData.bannerStore = {
+            displayWelcomeMessage: true
+        };
+    }
+
     if(req.cookies.horu) {
         bootstrapData.sessionStore = {
             authenticationToken: req.cookies.horu,

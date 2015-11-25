@@ -1,0 +1,65 @@
+.welcome-message {
+    h1 {
+        color:#676767;
+        font-size:28px;
+        margin-top:4px;
+    }
+
+    p {
+        line-height: 25px;
+    }
+
+    i {
+        font-size:35px;
+        // float:right;
+        padding-top:15px;
+    }
+
+    background:#fbfbfb;
+    color:#676767;
+    position:relative;
+    border-bottom: 2px solid #CECECE;
+    padding-top: 0px;
+    padding-bottom: 15px;
+    max-height:500px;
+    text-align:center;
+
+    transition: all 0.3s linear;
+    min-height:0px;
+
+    .register-button {
+        display:inline;
+    }
+
+    .feeling-brave {
+        color:#676767;
+        font-weight:bold;
+    }
+
+    &.closed {
+        max-height:0px;
+        padding-top:0;
+        padding-bottom:0;
+        border-bottom:0;
+        overflow:hidden;
+    }
+
+}
+
+.welcome-message__icon {
+    text-align:right;
+    display:block;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+
+    .welcome-message {
+        h1 {
+            font-size:36px;
+        }
+        padding-top: 10px;
+        padding-bottom: 30px;
+    }
+
+}

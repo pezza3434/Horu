@@ -24,6 +24,12 @@ if(cookieUtil.getItem('horu')) {
 
 }
 
+if(!cookieUtil.getItem('welcomeMessage') || cookieUtil.getItem('welcomeMessage') !== 'closed') {
+    bootstrapData.bannerStore = {
+        displayWelcomeMessage: true
+    };
+}
+
 bootstrapData.configurationStore = {
     environment: window.node_env
 };

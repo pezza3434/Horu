@@ -3,8 +3,6 @@ import React from 'react';
 import LoginButton from '../login-button/index';
 import RegisterButton from '../register-button/index';
 
-import UserProfile from './userProfile';
-
 export default React.createClass({
     render() {
         return(

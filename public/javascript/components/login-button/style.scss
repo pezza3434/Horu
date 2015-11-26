@@ -4,4 +4,16 @@
 
 .forgot-password-link {
     cursor: pointer;
+    color: #545454;
+}
+
+.sign-in {
+    margin: 10px 0px;
+    padding: 10px 0px;
+}
+
+.loginForm {
+    label {
+        display:none;
+    }
 }

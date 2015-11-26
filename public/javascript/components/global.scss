@@ -51,6 +51,26 @@ input:focus {
     color:#bcbbbb;
 }
 
+.modal-header {
+    background:#218ae3;
+    color:#fff;
+    border-bottom:0;
+}
+
+.full-width-button {
+    display:block;
+    width:100%;
+}
+
+.form-group {
+    position:relative;
+}
+
+.modal-content {
+    border-radius:2px;
+    border:0;
+}
+
 @media (min-width: 768px) {
     .fill {
         height:100%;

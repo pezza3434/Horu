@@ -106,7 +106,7 @@ export default React.createClass({
     },
     render() {
 
-        var submitClasses = classNames('btn', 'btn-default', {
+        var submitClasses = classNames('btn', 'btn-default', 'full-width-button', {
             disabled: !this.state.validated || this.state.apiCallInProgress
         });
 
@@ -118,10 +118,10 @@ export default React.createClass({
                 <div className={buttonClassName} onClick={this._openModal}> {buttonText}</div>
                 <Modal onHide={this._closeModal} show={this.state.showModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Register to How Old Are you Really</Modal.Title>
+                        <Modal.Title>Join Us</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form name="registerForm">
+                        <form name="registerForm" className="registerForm">
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Email address</label>
                                 {this.state.emailError ? <span className="error-message">{this.state.emailError.message}</span> : ''}
@@ -146,12 +146,9 @@ export default React.createClass({
                                 <label htmlFor="exampleInputPassword1">Confirm Password</label>
                                 {this.state.confirmPasswordError? <span className="error-message">{this.state.confirmPasswordError.message}</span>: '' }
                             <input ref="confirmPassword" onChange={this._formOnChange}name = "confirm-password" className = "form-control" id = "form-confirm-password" placeholder = "Confirm Password" type = "password" /> </div>
-                            <button className={submitClasses} type="submit" onClick={this._formValidation}> {this.state.apiCallInProgress ? 'Loading...' : 'Submit'} </button>{this.state.registrationError ? <span className="error-message">{this.state.registrationError}</span > : '' } {this.state.successfulRegistration ? <span className="success-message">You're account has been added!</span> : '' }
+                            <button className={submitClasses} type="submit" onClick={this._formValidation}> {this.state.apiCallInProgress ? 'Loading...' : 'Register'} </button>{this.state.registrationError ? <span className="error-message">{this.state.registrationError}</span > : '' } {this.state.successfulRegistration ? <span className="success-message">You're account has been added!</span> : '' }
                             </form>
                         </Modal.Body >
-                        <Modal.Footer>
-                            <button className="btn btn-default" onClick={this._closeModal} type="button">Close</button>
-                        </Modal.Footer>
                     </Modal>
                 </div>
         );

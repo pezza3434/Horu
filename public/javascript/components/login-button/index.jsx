@@ -58,7 +58,7 @@ export default React.createClass({
                 <div className="login-button" onClick={this._openModal}>Log in</div>
                 <Modal show={this.state.showModal} onHide={this._closeModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Login to How Old Are you Really</Modal.Title>
+                        <Modal.Title>Login to HORU</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         {this.state.showForgotPasswordForm ?
@@ -98,9 +98,6 @@ export default React.createClass({
                         : ''}
 
                     </Modal.Body>
-                    <Modal.Footer>
-                        <button onClick={this._closeModal} className="btn btn-default" type="button">Close</button>
-                    </Modal.Footer>
                 </Modal>
             </div>
         );

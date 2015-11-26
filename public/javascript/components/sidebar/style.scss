@@ -183,6 +183,18 @@
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+    .error-message {
+        font-size: 10px;
+        float: right;
+        color: red;
+        position: absolute;
+        right: 6px;
+        top: 10px;
+        background: #E28383;
+        color: #fff;
+        padding: 4px;
+        border-radius: 1px;
+    }
 
     .feedback {
         position:absolute;

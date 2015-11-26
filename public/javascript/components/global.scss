@@ -34,6 +34,17 @@ input:focus {
     border-bottom: 2px solid #1c71b9;
 }
 
+.btn-default:hover {
+    color:#fff;
+    background:#1B70B9;
+    border-bottom: 2px solid #145388;
+}
+
+.modal-header .close {
+    margin-top: -6px;
+    font-size:35px;
+}
+
 .btn-lg {
     padding: 6px 28px;
 }

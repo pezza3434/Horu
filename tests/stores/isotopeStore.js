@@ -119,6 +119,18 @@ describe.only('isotope store', () => {
             should().not.exist(isotopeStore.getState().isotopeState[1]);
 
         });
+
+        it('should replace the image when the index does not match', function () {
+            loadImageResponse();
+            guessAge(1);
+            alt.dispatcher.dispatch({
+                action: isotopeActions.REFRESH_IMAGES_SUCCESS,
+                data: {body: [
+                    {"id":10,"path":"/18Nov15201533010pm.png","user_id":18,"age":22},
+                ]}
+            });
+            isotopeStore.getState().isotopeImages[1].id.should.equal(10);
+        });
     });
 
     describe('refreshImagesError', () => {

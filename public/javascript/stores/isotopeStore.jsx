@@ -105,14 +105,17 @@ export class unwrappedIsotopeStore {
     refreshImagesSuccess(imagesResponse) {
         var index = this.isotopeState.length;
 
+        var availableImages = imagesResponse.body.slice(0);
+
         while (index--) {
             if (this.isotopeState[index].formSubmitted) {
-                if (imagesResponse.body[index]) {
+                var newImage = availableImages.pop();
+                if (newImage) {
                     this.isotopeState[index].containerClicked = false;
                     this.isotopeState[index].displayForm = false;
                     this.isotopeState[index].formSubmitted = false;
                     this.isotopeState[index].secondaryImage = false;
-                    this.isotopeImages[index] = imagesResponse.body[index];
+                    this.isotopeImages[index] = newImage;
                     this.isotopeState[index].validationError = false;
                 } else {
                     this.isotopeState.splice(index, 1);

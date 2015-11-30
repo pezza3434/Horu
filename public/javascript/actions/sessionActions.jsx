@@ -1,5 +1,8 @@
 var alt = require('../alt');
 var request = require('superagent');
+
+import bannerActions from './bannerActions';
+
 var configurationStore = require('../stores/configurationStore');
 
 var sessionActions = {
@@ -21,6 +24,7 @@ var sessionActions = {
         this.dispatch(authenticationResponse);
         this.actions.getUser(authenticationResponse.body.token);
         isotopeActions.getImages(isotopeStore.imageIdsCurrentlyBeingDisplayed());
+        bannerActions.toggleWelcomeMessage(false);
     },
     authenticationErrorResponse(err) {
         this.dispatch(err);
@@ -52,6 +56,7 @@ var sessionActions = {
     },
     postUserResponse(postUserResponse) {
         this.dispatch(postUserResponse);
+        bannerActions.toggleWelcomeMessage(false);
     },
     postUserError(postUserError) {
         this.dispatch(postUserError);

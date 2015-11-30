@@ -128,27 +128,27 @@ export default React.createClass({
                         <form name="registerForm" className="registerForm">
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Email address</label>
-                                {this.state.emailError ? <span className="error-message">{this.state.emailError.message}</span> : ''}
+                                {this.state.emailError ? <span className="error-message-form">{this.state.emailError.message}</span> : ''}
                                 <input className="form-control" id="form-email" name="email" onChange={this._formOnChange} placeholder="Enter email" ref="email" type="email"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Username</label>
-                                {this.state.usernameError ? <span className="error-message">{this.state.usernameError.message}</span>: ''}
+                                {this.state.usernameError ? <span className="error-message-form">{this.state.usernameError.message}</span>: ''}
                                 <input className="form-control" id="form-username" name="username" onChange={this._formOnChange} placeholder="Enter username" ref="username" type="text"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">How old are you? (We use this to tell people how accurate their guesses were)</label>
-                                {this.state.ageError ? <span className="error-message">{this.state.ageError.message}</span>: ''}
+                                {this.state.ageError ? <span className="error-message-form">{this.state.ageError.message}</span>: ''}
                                 <input className="form-control" id="form-username" name="username" onChange={this._formOnChange} placeholder="Enter your age" ref="age" type="text"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputPassword1">Password</label>
-                                {this.state.passwordError? <span className="error-message">{this.state.passwordError.message}</span>: ''}
+                                {this.state.passwordError? <span className="error-message-form">{this.state.passwordError.message}</span>: ''}
                                 <input className="form-control" id="form-password" name="password" onChange={this._formOnChange} placeholder="Password" ref="password" type="password"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputPassword1">Confirm Password</label>
-                                {this.state.confirmPasswordError? <span className="error-message">{this.state.confirmPasswordError.message}</span>: '' }
+                                {this.state.confirmPasswordError? <span className="error-message-form">{this.state.confirmPasswordError.message}</span>: '' }
                             <input ref="confirmPassword" onChange={this._formOnChange}name = "confirm-password" className = "form-control" id = "form-confirm-password" placeholder = "Confirm Password" type = "password" /> </div>
                             <button className={submitClasses} type="submit" onClick={this._formValidation}> {this.state.apiCallInProgress ? 'Loading...' : 'Register'} </button>{this.state.registrationError ? <span className="error-message">{this.state.registrationError}</span > : '' } {this.state.successfulRegistration ? <span className="success-message">You're account has been added!</span> : '' }
                             </form>

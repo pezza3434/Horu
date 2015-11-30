@@ -82,10 +82,17 @@
     color:#fff;
 }
 
-.error-message {
+.error-message, .error-message-form {
     font-size: 10px;
     float: right;
     color: red;
+}
+
+.error-message {
+    background: #E28383;
+    padding: 4px;
+    border-radius: 1px;
+    color:#fff;
 }
 
 .success-message{
@@ -184,6 +191,16 @@
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .error-message {
+        font-size: 10px;
+        float: right;
+        color: red;
+        background: #E28383;
+        color: #fff;
+        padding: 4px;
+        border-radius: 1px;
+    }
+
+    .error-message-form {
         font-size: 10px;
         float: right;
         color: red;

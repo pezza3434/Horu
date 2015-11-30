@@ -23,11 +23,11 @@ export default React.createClass({
         return (
             <form name="loginForm" className="loginForm">
                 <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Username</label>{this.state.showValidation && this.props.loginForm.username.validity ? <span className="error-message"> {this.props.loginForm.username.validity}  </span> : ''}
+                    <label htmlFor="exampleInputEmail1">Username</label>{this.state.showValidation && this.props.loginForm.username.validity ? <span className="error-message-form"> {this.props.loginForm.username.validity}  </span> : ''}
                     <input onChange={this.props.usernameOnChangeAction} ref="username" className="form-control" id="exampleInputEmail1" name="username" placeholder="Enter username" type="text" />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>{this.state.showValidation && this.props.loginForm.password.validity ? <span className="error-message"> {this.props.loginForm.password.validity}  </span> : ''}
+                    <label htmlFor="exampleInputPassword1">Password</label>{this.state.showValidation && this.props.loginForm.password.validity ? <span className="error-message-form"> {this.props.loginForm.password.validity}  </span> : ''}
                     <input onChange={this.props.passwordOnChangeAction} ref="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" type="password" />
                 </div>
                 <button onClick={this._submitClick} disabled={this.props.apiCallInProgress} className={submitClasses} type="submit">{this.props.apiCallInProgress ? 'Loading...' : 'Sign in'}</button>

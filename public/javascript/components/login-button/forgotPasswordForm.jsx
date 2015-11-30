@@ -25,10 +25,10 @@ export default React.createClass({
                         <p>We have sent a email to you containing a password reset link. Click it to reset your password.</p>
                     </div>
                     :
-                    <form name="forgotPasswordForm">
+                    <form name="forgotPasswordForm" className="forgot-password-form">
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1">Your email:</label>
-                            {this.state.showValidation ? <span className="error-message">{this.props.forgottenPasswordForm.email.validity}</span> : ''}
+                            {this.state.showValidation ? <span className="error-message-form">{this.props.forgottenPasswordForm.email.validity}</span> : ''}
                             <input
                                 onChange={this.props.forgottenPasswordEmailInputTriggerAction}
                                 ref="fpemail"

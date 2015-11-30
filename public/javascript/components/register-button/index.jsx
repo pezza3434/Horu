@@ -20,8 +20,6 @@ export default React.createClass({
         sessionStore.listen(this._sessionStoreChange);
     },
     _sessionStoreChange(storeState) {
-        var state = {};
-
         this.setState(storeState);
 
         if (storeState.successfulRegistration) {

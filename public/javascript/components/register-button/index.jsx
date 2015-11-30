@@ -25,7 +25,6 @@ export default React.createClass({
         this.setState(storeState);
 
         if (storeState.successfulRegistration) {
-            state.showModal = false;
             this.setState({showModal:false});
         }
     },

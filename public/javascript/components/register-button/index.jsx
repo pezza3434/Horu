@@ -86,6 +86,10 @@ export default React.createClass({
             state['passwordError'] = {error: true, message: 'Your password must match your confirmed password'};
         }
 
+        if (parseInt(age,10) <= 0) {
+            state['ageError'] = {error:true, message: 'Please enter your real age'};
+        }
+
         if (username.length < 6){
             state['usernameError'] = {error: true, message: 'Your username must be more than 5 characters long'};
         }

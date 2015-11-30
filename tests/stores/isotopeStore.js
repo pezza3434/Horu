@@ -4,7 +4,7 @@ import AltTestingUtils from 'alt/utils/AltTestingUtils';
 import isotopeActions from '../../public/javascript/actions/isotopeActions';
 import {should} from 'chai';
 
-describe.only('isotope store', () => {
+describe('isotope store', () => {
 
     afterEach(() => {
         localStorage.clear();
@@ -50,6 +50,27 @@ describe.only('isotope store', () => {
             isotopeStore.imageIdsCurrentlyBeingDisplayed()[1].should.equal(52);
             isotopeStore.imageIdsCurrentlyBeingDisplayed()[2].should.equal(1);
             isotopeStore.imageIdsCurrentlyBeingDisplayed()[3].should.equal(2);
+        });
+
+        it('should not exclude images from the local storeage if the user is logged in', () => {
+            localStorage.setItem('imageIds', JSON.stringify([1,2,52]));
+
+            isotopeStore.imageIdsCurrentlyBeingDisplayed(true).length.should.equal(0);
+
+            loadImageResponse();
+
+            isotopeStore.imageIdsCurrentlyBeingDisplayed(true).should.deep.equal([61,52]);
+
+        });
+
+        it('should exclude images from the local storeage if the user is not logged in', function () {
+            localStorage.setItem('imageIds', JSON.stringify([1,2,52]));
+
+            isotopeStore.imageIdsCurrentlyBeingDisplayed(false).should.deep.equal([1,2,52]);
+
+            loadImageResponse();
+
+            isotopeStore.imageIdsCurrentlyBeingDisplayed(false).should.deep.equal([61,52,1,2]);
 
         });
 

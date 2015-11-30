@@ -3,11 +3,18 @@ var request = require('superagent');
 var configurationStore = require('../stores/configurationStore');
 
 var isotopeActions = {
-    getImages(imageIdsToExclude) {
+
+    displayName: 'isotopeActions',
+
+    getImages() {
         var sessionStore = require('../stores/sessionStore');
+        var isotopeStore = require('../stores/isotopeStore').default;
+
         let endpoint;
 
-        if(imageIdsToExclude && imageIdsToExclude.length) {
+        let imageIdsToExclude = isotopeStore.imageIdsCurrentlyBeingDisplayed(sessionStore.isLoggedIn());
+
+        if (!sessionStore.isLoggedIn() && imageIdsToExclude.length) {
             endpoint = `${configurationStore.getServerUrl()}/images?exclude=${imageIdsToExclude.join(',')}`;
         } else {
             endpoint = `${configurationStore.getServerUrl()}/images`;
@@ -78,29 +85,33 @@ var isotopeActions = {
     mouseLeftContainer(faceIndex) {
         this.dispatch(faceIndex);
     },
-    refreshImages(imageIdsToExclude) {
+    refreshImages() {
         var sessionStore = require('../stores/sessionStore');
-        if(sessionStore.getAuthenticationToken()) {
-            request
-            .get(configurationStore.getServerUrl() + '/images/?exclude=' + imageIdsToExclude.join(','))
-            .set('x-access-token', sessionStore.getAuthenticationToken())
-            .end((err,res) => {
-                if(err) {
-                    return this.actions.refreshImagesError(res);
-                }
-                this.actions.refreshImagesSuccess(res);
-            });
-        } else {
-            request
-            .get(configurationStore.getServerUrl() + '/images/?exclude=' + imageIdsToExclude.join(','))
-            .end((err,res) => {
-                if(err) {
-                    return this.actions.refreshImagesError(res);
-                }
-                this.actions.refreshImagesSuccess(res);
-            });
+        var isotopeStore = require('../stores/isotopeStore').default;
 
+        let endpoint;
+
+        let imageIdsToExclude = isotopeStore.imageIdsCurrentlyBeingDisplayed(sessionStore.isLoggedIn());
+
+        if(imageIdsToExclude && isotopeStore.imageIdsCurrentlyBeingDisplayed().length) {
+            endpoint = `${configurationStore.getServerUrl()}/images?exclude=${imageIdsToExclude.join(',')}`;
+        } else {
+            endpoint = `${configurationStore.getServerUrl()}/images`;
         }
+
+        var req = request.get(endpoint);
+
+        if (sessionStore.getAuthenticationToken()) {
+            req.set('x-access-token', sessionStore.getAuthenticationToken());
+        }
+
+        req.end((err,res) => {
+            if (err) {
+                return this.actions.refreshImagesError(res);
+            }
+            this.actions.refreshImagesSuccess(res);
+        });
+
         this.dispatch();
     },
     refreshImagesSuccess(res) {

@@ -19,14 +19,20 @@ export class unwrappedIsotopeStore {
 
         this.exportPublicMethods({
 
-            imageIdsCurrentlyBeingDisplayed() {
+            imageIdsCurrentlyBeingDisplayed(loggedIn) {
                 let currentlyDisplayed = this.getState().isotopeImages.map(image => image.id);
+
+                if (loggedIn) {
+                    return currentlyDisplayed;
+                }
+
                 let previouslyDisplayed = (JSON.parse(localStorage.getItem('imageIds')) || [])
                 .filter((id)=>{
                     if (currentlyDisplayed.indexOf(id) > -1) {
                         return false;
                     }
                     return true;
+
                 });
 
                 return currentlyDisplayed.concat(previouslyDisplayed);

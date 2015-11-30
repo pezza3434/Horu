@@ -73,6 +73,8 @@ export default React.createClass({
     },
     componentWillUnmount() {
         isotopeStore.unlisten(this._isotopeStoreChange);
+        sessionStore.unlisten(this._sessionStoreChange);
+        bannerStore.unlisten(this._bannerStoreChange);
     }
 
 });

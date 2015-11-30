@@ -5,18 +5,14 @@ module.exports = function (config) {
     config.set({
         basePath: '',
         browsers: ['PhantomJS'],
-        frameworks: ['mocha', 'chai'],
+        frameworks: ['mocha', 'chai', 'sinon', 'sinon-chai'],
         files: [
             './tests.webpack.js'
         ],
-        reporters: ['progress', 'coverage'],
+        reporters: ['progress'],
         preprocessors: {
             // add webpack as preprocessor
             './tests.webpack.js': ['webpack']
-        },
-        coverageReporter: {
-          type : 'html',
-          dir : 'coverage/'
         },
         webpackMiddleware: {
             // webpack-dev-middleware configuration
@@ -44,14 +40,7 @@ module.exports = function (config) {
                         // activate source maps via loader query
                         'css?sourceMap!' +
                         'sass?sourceMap&')
-                }, ],
-                postLoaders: [
-                    {
-                        test: /\.jsx$/,
-                        exclude: /(node_modules)/,
-                        loader: 'istanbul-instrumenter'
-                    }
-                ],
+                }, ]
             },
             resolve: {
                 alias: {

@@ -44,7 +44,7 @@
     "superagent": "^1.4.0",
     "tracking": "^1.1.1",
     "style-loader": "^0.12.4",
-    "webpack": "^1.12.2",
+    "webpack": "^1.12.2"
   },
   "devDependencies": {
     "chai": "^3.3.0",

@@ -7,4 +7,3 @@ deployment:
     commands:
       - npm run build
       - shipit production deploy
-      - ./deployHoru.bash

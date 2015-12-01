@@ -21,7 +21,6 @@ module.exports = function (shipit) {
     var buildDirectory = path.resolve('./public/');
     shipit.remoteCopy(buildDirectory, shipit.releasePath);
 
-    var nodeModules = path.resolve('./node_modules');
-    shipit.remoteCopy(nodeModules, shipit.releasePath);
+    shipit.remote('npm i');
   });
 };

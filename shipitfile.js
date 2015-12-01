@@ -20,10 +20,10 @@ module.exports = function (shipit) {
   shipit.on('updated', function () {
     var buildDirectory = path.resolve('./public/');
     shipit.remoteCopy(buildDirectory, shipit.releasePath);
-
-    shipit.remote('cd ' + shipit.releasePath + ' && npm install --production');
   });
   shipit.on('published', function () {
-      shipit.remote('pm2 restart horu');
+      shipit.remote('cd ' + shipit.releasePath + ' && npm install --production').then(function(){
+          shipit.remote('pm2 restart horu');
+      });
   });
 };

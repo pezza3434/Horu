@@ -21,7 +21,7 @@ module.exports = function (shipit) {
     var buildDirectory = path.resolve('./public/');
     shipit.remoteCopy(buildDirectory, shipit.releasePath);
 
-    shipit.remote('cd ' + shipit.releasePath + ' npm install --production');
+    shipit.remote('cd ' + shipit.releasePath + ' && npm install --production');
   });
   shipit.on('published', function () {
       shipit.remote('pm2 restart horu');

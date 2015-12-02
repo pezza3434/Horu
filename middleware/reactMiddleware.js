@@ -8,6 +8,7 @@ export default function (req, res) {
 
     var assetPath;
     var bootstrapData = {};
+    let facebookId;
 
     var router = Router.create({
         location: req.url,
@@ -35,10 +36,12 @@ export default function (req, res) {
 
     if (process.env.NODE_ENV === 'development') {
         assetPath = 'http://localhost:8080/public/';
+        facebookId = '560295737450758';
     }
 
     if (process.env.NODE_ENV === 'production') {
         assetPath = '/';
+        facebookId = '960352310705738';
     }
 
     router.run(function (Handler) {
@@ -48,7 +51,8 @@ export default function (req, res) {
             assetPath: assetPath,
             nodeEnv: process.env.NODE_ENV,
             queryParameters: JSON.stringify(url.parse(req.originalUrl, true).query),
-            isProduction: process.env.NODE_ENV === 'production'
+            isProduction: process.env.NODE_ENV === 'production',
+            facebookId: facebookId
         });
         return alt.flush();
     });

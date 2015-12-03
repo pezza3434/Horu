@@ -82,8 +82,16 @@ input:focus {
     border:0;
 }
 
+#habla_beta_container_do_not_rely_on_div_classes_or_names, #habla_window_div {
+    display: none;
+}
+
 @media (min-width: 768px) {
     .fill {
         height:100%;
+    }
+
+    #habla_beta_container_do_not_rely_on_div_classes_or_names, #habla_window_div {
+        display: block;
     }
 }

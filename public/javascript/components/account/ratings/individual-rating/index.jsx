@@ -49,7 +49,7 @@ export default React.createClass({
                 :
                 <div className="col-xs-8 account__uploads__message">
                     <div><strong>Check back soon...</strong></div>
-                    <div>Peole are guessing your age.</div>
+                    <div>People are guessing your age.</div>
 
                     <DeleteImage
                         deleteAction={this.props.triggerDeleteModal}

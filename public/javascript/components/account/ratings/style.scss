@@ -33,25 +33,13 @@
     cursor: pointer;
 }
 
-.account__uploads__message {
-    padding: 10px 0;
-    font-size:13px;
-    a {
-        color:#218ae3;
-        &:hover {
-            color:#218ae3;
-            text-decoration:underline;
-        }
-    }
-}
-
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .account__uploads__container {
         padding: 20px 0;
         overflow:auto;
     }
-    
+
     .account__uploads img {
         width: 120px;
         height: 120px;

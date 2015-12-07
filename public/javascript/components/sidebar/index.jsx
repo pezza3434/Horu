@@ -16,7 +16,7 @@ import UserAreaLoggedOut from './userAreaLoggedOut';
 
 export default React.createClass({
     getInitialState() {
-        return ({isLoggedIn: sessionStore.isLoggedIn()});
+        return sessionStore.getState();
     },
     componentDidMount(){
         let sessionStoreState = sessionStore.getState();
@@ -36,7 +36,6 @@ export default React.createClass({
         sessionActions.logout();
     },
     render() {
-
         return (
             <div className="col-sm-3 col-md-2 sidebar">
                     <Logo/>
@@ -50,7 +49,7 @@ export default React.createClass({
                         }
                     </div>
                     <div className="row">
-                        <Navigation isLoggedIn={this.state.isLoggedIn} />
+                        <Navigation isLoggedIn={this.state.isLoggedIn} path={this.state.path}/>
                     </div>
                     <div className="row donate">
                         <a href="https://donorbox.org/horu">Pay what you want for horu</a>

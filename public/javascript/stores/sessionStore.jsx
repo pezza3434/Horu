@@ -6,6 +6,7 @@ var alt = require('../alt');
 var sessionActions = require('../actions/sessionActions');
 var pageActions = require('../actions/pageActions');
 var isotopeActions = require('../actions/isotopeActions');
+var routeActions = require('../actions/routeActions');
 
 class sessionStore {
     constructor() {
@@ -30,7 +31,8 @@ class sessionStore {
             postUserError: sessionActions.postUserError,
             logout: sessionActions.logout,
             appLoaded: pageActions.appLoaded,
-            updateVoteCount: isotopeActions.submitAgeSuccess
+            updateVoteCount: isotopeActions.submitAgeSuccess,
+            changePath: routeActions.pathChange
         });
 
         this.exportPublicMethods({
@@ -68,6 +70,10 @@ class sessionStore {
 
     authenticationErrorResponse () {
         this.isAuthenticationError = true;
+    }
+
+    changePath(path) {
+        this.path = path;
     }
 
     getUser () {

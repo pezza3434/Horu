@@ -3,6 +3,7 @@ var Router = require('react-router');
 var routes = require('../public/javascript/routes');
 var alt = require('../public/javascript/alt.js');
 var url = require('url');
+import routeActions from '../public/javascript/actions/routeActions';
 
 export default function (req, res) {
 
@@ -44,7 +45,8 @@ export default function (req, res) {
         facebookId = '960352310705738';
     }
 
-    router.run(function (Handler) {
+    router.run(function (Handler, state) {
+        routeActions.pathChange(state.path);
         var html = React.renderToString( < Handler / > );
         res.render('index', {
             html: html,

@@ -5,6 +5,7 @@ import Router from 'react-router';
 import routes from './routes.jsx';
 import alt from './alt';
 import cookieUtil from './utils/cookieUtil';
+import routeActions from './actions/routeActions';
 
 var bootstrapData = {};
 
@@ -36,6 +37,7 @@ bootstrapData.configurationStore = {
 
 alt.bootstrap(JSON.stringify(bootstrapData));
 
-Router.run(routes, Router.HistoryLocation, function (Handler) {
+Router.run(routes, Router.HistoryLocation, function (Handler, state) {
+    routeActions.pathChange(state.path);
     React.render(<Handler/>, document.getElementById('app-container'));
 });

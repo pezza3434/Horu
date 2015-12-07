@@ -49,7 +49,7 @@ export default React.createClass({
                         <strong>Number of Votes: </strong>
                         {this.props.rating.votes}
                     </div>
-                    <div>
+                    <div className="account__uploads_share">
                         Share your age:
                     </div>
                     <div className="social-icons">

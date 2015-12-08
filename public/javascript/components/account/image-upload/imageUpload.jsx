@@ -50,7 +50,7 @@ export default React.createClass({
                              />
                         : ''}
                     <div className="col-md-12">
-                    <label className="btn btn-primary btn-upload" htmlFor="inputImage" title="Upload image file">
+                    <label className="btn btn-upload" htmlFor="inputImage" title="Upload image file">
                         <input accept="image/*" className="sr-only" id="inputImage" name="file" type="file" onChange={this.props.newImageSelectedAction}/>
                         <span className="docs-tooltip" data-original-title="Import image with Blob URLs" data-toggle="tooltip" title="">
                             Choose Image

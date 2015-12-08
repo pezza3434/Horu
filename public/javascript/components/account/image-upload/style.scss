@@ -16,10 +16,20 @@
     color: #fff;
     border:0;
     border-bottom: 2px solid #1a1919;
-    margin: 10px 0;
+    margin: 10px 9px 10px 0px;
+    border-radius: 2px;
     &:hover {
+        background: #2e2c2c;
         text-decoration: underline;
         color: #fff;
+    }
+
+    &:focus {
+        background: #2e2c2c;
+    }
+
+    &:active {
+        background: #2e2c2c;
     }
 }
 

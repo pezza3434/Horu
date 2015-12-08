@@ -4,3 +4,5 @@ bin/www
 public/styles.css
 tests
 views
+coverage
+public/javascript/bundle.js

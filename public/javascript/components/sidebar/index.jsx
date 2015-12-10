@@ -21,7 +21,7 @@ export default React.createClass({
     componentDidMount(){
         let sessionStoreState = sessionStore.getState();
 
-        if(sessionStoreState.isLoggedIn && !sessionStoreState.user) {
+        if (sessionStoreState.isLoggedIn && !sessionStoreState.user) {
             sessionActions.getUser(sessionStore.getAuthenticationToken());
         }
 
@@ -49,7 +49,7 @@ export default React.createClass({
                         }
                     </div>
                     <div className="row">
-                        <Navigation isLoggedIn={this.state.isLoggedIn} path={this.state.path}/>
+                        <Navigation isLoggedIn={this.state.isLoggedIn} path={this.props.location.pathname}/>
                     </div>
                     <div className="row donate">
                         <a href="https://donorbox.org/horu">Pay what you want for horu</a>

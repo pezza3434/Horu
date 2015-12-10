@@ -1,31 +1,27 @@
-var React = require('react');
-var Router = require('react-router');
-var routes = require('../public/javascript/routes');
-var alt = require('../public/javascript/alt.js');
-var url = require('url');
-import routeActions from '../public/javascript/actions/routeActions';
+import React from 'react'; //eslint-disable-line
+import alt from '../public/javascript/alt.js';
+import url from 'url';
+import ReactDOM from 'react-dom/server';
+import { match, RoutingContext } from 'react-router';
 
-export default function (req, res) {
+import routes from '../public/javascript/routes';
+
+export default function(req, res) {
 
     var assetPath;
     var bootstrapData = {};
     let facebookId;
 
-    var router = Router.create({
-        location: req.url,
-        routes: routes
-    });
-
-    if(!req.cookies.welcomeMessage || req.cookies.welcomeMessage !== 'closed') {
+    if (!req.cookies.welcomeMessage || req.cookies.welcomeMessage !== 'closed') {
         bootstrapData.bannerStore = {
             displayWelcomeMessage: true
         };
     }
 
-    if(req.cookies.horu) {
+    if (req.cookies.horu) {
         bootstrapData.sessionStore = {
             authenticationToken: req.cookies.horu,
-            isLoggedIn:true
+            isLoggedIn: true
         };
     }
 
@@ -45,9 +41,10 @@ export default function (req, res) {
         facebookId = '960352310705738';
     }
 
-    router.run(function (Handler, state) {
-        routeActions.pathChange(state.path);
-        var html = React.renderToString( < Handler / > );
+    match({routes, location: req.url}, (error, redirectLocation, renderProps) => {
+        var html = ReactDOM.renderToString(
+            <RoutingContext {...renderProps}/>
+        );
         res.render('index', {
             html: html,
             assetPath: assetPath,
@@ -58,4 +55,5 @@ export default function (req, res) {
         });
         return alt.flush();
     });
+
 }

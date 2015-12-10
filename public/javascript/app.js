@@ -1,11 +1,12 @@
 require('./components/global.scss');
 
-import React from 'react';
-import Router from 'react-router';
+import ReactDOM from 'react-dom';
+import React from 'react'; //eslint-disable-line
 import routes from './routes.jsx';
 import alt from './alt';
 import cookieUtil from './utils/cookieUtil';
-import routeActions from './actions/routeActions';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
+import {Router} from 'react-router';
 
 var bootstrapData = {};
 
@@ -37,7 +38,6 @@ bootstrapData.configurationStore = {
 
 alt.bootstrap(JSON.stringify(bootstrapData));
 
-Router.run(routes, Router.HistoryLocation, function (Handler, state) {
-    routeActions.pathChange(state.path);
-    React.render(<Handler/>, document.getElementById('app-container'));
-});
+let history = createBrowserHistory();
+
+ReactDOM.render(<Router history={history}>{routes}</Router>, document.getElementById('app-container'));

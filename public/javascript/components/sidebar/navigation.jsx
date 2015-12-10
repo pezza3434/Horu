@@ -8,7 +8,7 @@ export default React.createClass({
             <div className="col-sm-12 navigation no-padding">
                 <ul>
                     <li className={cn({'active': this.props.path === '/'})}>
-                            <Link href="/#/" to="isotope"><i className="fa fa-home"></i>Face Feed</Link>
+                            <Link href="/#/" to="/"><i className="fa fa-home"></i>Face Feed</Link>
                     </li>
                     {this.props.isLoggedIn
                         ? <li className={cn({'active': this.props.path === '/account'})}>

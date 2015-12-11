@@ -38,11 +38,11 @@ export default React.createClass({
     },
     _getFieldDOMNodes() {
         return {
-            email: this.refs.email.getDOMNode().value,
-            username: this.refs.username.getDOMNode().value,
-            password: this.refs.password.getDOMNode().value,
-            confirmPassword: this.refs.confirmPassword.getDOMNode().value,
-            age: this.refs.age.getDOMNode().value
+            email: this.refs.email.value,
+            username: this.refs.username.value,
+            password: this.refs.password.value,
+            confirmPassword: this.refs.confirmPassword.value,
+            age: this.refs.age.value
         };
     },
     _formOnChange() {

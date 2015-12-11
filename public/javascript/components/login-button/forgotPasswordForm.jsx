@@ -9,7 +9,7 @@ export default React.createClass({
     _submitClick(e) {
         e.preventDefault();
         if (this.props.isValid) {
-            this.props.submitForgottenPasswordAction(e, this.refs.fpemail.getDOMNode().value);
+            this.props.submitForgottenPasswordAction(e, this.refs.fpemail.value);
         } else {
             this.setState({showValidation:true});
         }

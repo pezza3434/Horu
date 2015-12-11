@@ -10,7 +10,7 @@ export default React.createClass({
     _submitClick(e) {
         e.preventDefault();
         if (this.props.isValid) {
-            this.props.submitPasswordResetAction(e, this.refs.rppasswordconfirm.getDOMNode().value);
+            this.props.submitPasswordResetAction(e, this.refs.rppasswordconfirm.value);
         } else {
             this.setState({showValidation:true});
         }

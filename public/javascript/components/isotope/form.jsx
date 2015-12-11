@@ -1,12 +1,13 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default React.createClass({
     componentWillReceiveProps(props) {
         if (props.containerClicked){
             //Wrapped in a setTimeout for IE. Marked tech debt.
             setTimeout(() =>{
-                if (React.findDOMNode(this.refs.faceInput)){
-                    React.findDOMNode(this.refs.faceInput).focus();
+                if (ReactDOM.findDOMNode(this.refs.faceInput)){
+                    ReactDOM.findDOMNode(this.refs.faceInput).focus();
                 }
             }, 1);
         }
@@ -15,7 +16,7 @@ export default React.createClass({
         e.preventDefault();
         var submissionData = {
             imageRatedId: this.props.faceId,
-            rating: this.refs.faceInput.getDOMNode().value || this.refs.mobileFaceInput.getDOMNode().value
+            rating: this.refs.faceInput.value || this.refs.mobileFaceInput.value
         };
         this.props.formSubmittedHandler(submissionData);
     },

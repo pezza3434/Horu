@@ -41,7 +41,7 @@ var sessionActions = {
     getUserResponse(getUserResponse) {
         this.dispatch(getUserResponse);
     },
-    postUser(registrationData) {
+    postUser(registrationData, history) {
         request
         .post(configurationStore.getServerUrl() + '/user')
         .send(registrationData)
@@ -49,14 +49,18 @@ var sessionActions = {
             if(err){
                 return this.actions.postUserError(res.body.error);
             }
-            this.actions.postUserResponse(res);
+            this.actions.postUserResponse(res, history);
             this.actions.authenticate({username:registrationData.username, password: registrationData.password});
         });
         this.dispatch();
     },
-    postUserResponse(postUserResponse) {
+    postUserResponse(postUserResponse, history) {
+        var uploadActions = require('./uploadActions');
+
         this.dispatch(postUserResponse);
         bannerActions.toggleWelcomeMessage(false);
+        history.pushState(null, '/account');
+        uploadActions.triggerModal(true);
     },
     postUserError(postUserError) {
         this.dispatch(postUserError);

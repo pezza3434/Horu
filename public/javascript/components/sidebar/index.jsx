@@ -45,7 +45,7 @@ export default React.createClass({
                                 logoutHandler={this._logoutHandler}
                                 user={this.state.user}
                                 serverUrl={this.state.serverUrl}/> :
-                            <UserAreaLoggedOut/>
+                            <UserAreaLoggedOut history={this.props.history}/>
                         }
                     </div>
                     <div className="row">

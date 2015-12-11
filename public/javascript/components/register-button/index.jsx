@@ -102,11 +102,10 @@ export default React.createClass({
             age
         };
 
-        sessionActions.postUser(registrationData);
+        sessionActions.postUser(registrationData, this.props.history);
 
     },
     render() {
-
         var submitClasses = classNames('btn', 'btn-default', 'full-width-button', {
             disabled: !this.state.validated || this.state.apiCallInProgress
         });

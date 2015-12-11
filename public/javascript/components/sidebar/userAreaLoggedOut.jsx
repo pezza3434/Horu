@@ -10,7 +10,7 @@ export default React.createClass({
                 <div className="col-sm-12 user-info">
                     <div className="navigation__center">
                         <div className='user-info__login'>
-                            <div className="user-info__register"><RegisterButton /></div>
+                            <div className="user-info__register"><RegisterButton history={this.props.history} /></div>
                             <div className="user-info__login"><LoginButton /></div>
                         </div>
                     </div>

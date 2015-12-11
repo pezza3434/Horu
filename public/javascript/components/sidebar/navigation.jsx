@@ -4,7 +4,6 @@ import cn from 'classnames';
 
 export default React.createClass({
     render() {
-        console.log(this.props.path);
         return (
             <div className="col-sm-12 navigation no-padding">
                 <ul>

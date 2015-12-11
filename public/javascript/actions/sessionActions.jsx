@@ -23,11 +23,10 @@ var sessionActions = {
     },
     authenticateResponse(authenticationResponse) {
         var isotopeActions = require('./isotopeActions');
-        var isotopeStore = require('../stores/isotopeStore').default;
 
         this.dispatch(authenticationResponse);
         this.actions.getUser(authenticationResponse.body.token);
-        isotopeActions.getImages(isotopeStore.imageIdsCurrentlyBeingDisplayed());
+        isotopeActions.getImages();
         bannerActions.toggleWelcomeMessage(false);
 
     },

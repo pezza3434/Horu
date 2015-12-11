@@ -31,7 +31,7 @@ export default React.createClass({
         bannerStore.listen(this._bannerStoreChange);
 
         if (isotopeStore.getState().isotopeImages.length === 0) {
-            isotopeActions.getImages(isotopeStore.imageIdsCurrentlyBeingDisplayed());
+            isotopeActions.getImages();
         }
     },
     _bannerStoreChange(storeState) {

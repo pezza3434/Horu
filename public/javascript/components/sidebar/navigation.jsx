@@ -4,6 +4,7 @@ import cn from 'classnames';
 
 export default React.createClass({
     render() {
+        console.log(this.props.path);
         return (
             <div className="col-sm-12 navigation no-padding">
                 <ul>
@@ -11,11 +12,11 @@ export default React.createClass({
                             <Link href="/#/" to="/"><i className="fa fa-home"></i>Face Feed</Link>
                     </li>
                     {this.props.isLoggedIn
-                        ? <li className={cn({'active': this.props.path === '/account'})}>
+                        ? <li className={cn({'active': this.props.path.indexOf('account') > -1})}>
                                     <Link href="/#/account" to="account"><i className="fa fa-users"></i>Your Dashboard</Link>
                             </li>
                         : ''}
-                    <li className={cn({'active': this.props.path === '/about'})}>
+                    <li className={cn({'active': this.props.path.indexOf('about') > -1})}>
                             <Link href="/#/about" to="about"><i className="fa fa-info"></i>About Horu</Link>
                     </li>
                 </ul>

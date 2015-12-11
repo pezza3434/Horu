@@ -7,36 +7,44 @@ var configurationStore = require('../stores/configurationStore');
 
 var sessionActions = {
     authenticate(data) {
-        request
-        .post(configurationStore.getServerUrl() + '/authenticate')
-        .send(data)
-        .end((err,res) => {
-            if(err){
-                return this.actions.authenticationErrorResponse(err);
-            }
-            this.actions.authenticateResponse(res);
+        return new Promise((resolve) => {
+            request
+            .post(configurationStore.getServerUrl() + '/authenticate')
+            .send(data)
+            .end((err,res) => {
+                if(err){
+                    return this.actions.authenticationErrorResponse(err);
+                }
+                this.actions.authenticateResponse(res);
+                resolve();
+            });
+            this.dispatch();
         });
-        this.dispatch();
     },
     authenticateResponse(authenticationResponse) {
         var isotopeActions = require('./isotopeActions');
         var isotopeStore = require('../stores/isotopeStore').default;
+
         this.dispatch(authenticationResponse);
         this.actions.getUser(authenticationResponse.body.token);
         isotopeActions.getImages(isotopeStore.imageIdsCurrentlyBeingDisplayed());
         bannerActions.toggleWelcomeMessage(false);
+
     },
     authenticationErrorResponse(err) {
         this.dispatch(err);
     },
     getUser(authenticationToken) {
-        request
-        .get(configurationStore.getServerUrl() + '/user')
-        .set('x-access-token', authenticationToken)
-        .end((err,res) => {
-            this.actions.getUserResponse(res);
+        return new Promise((resolve) => {
+            request
+            .get(configurationStore.getServerUrl() + '/user')
+            .set('x-access-token', authenticationToken)
+            .end((err,res) => {
+                this.actions.getUserResponse(res);
+                resolve();
+            });
+            this.dispatch();
         });
-        this.dispatch();
     },
     getUserResponse(getUserResponse) {
         this.dispatch(getUserResponse);
@@ -49,8 +57,9 @@ var sessionActions = {
             if(err){
                 return this.actions.postUserError(res.body.error);
             }
-            this.actions.postUserResponse(res, history);
-            this.actions.authenticate({username:registrationData.username, password: registrationData.password});
+            this.actions.authenticate({username:registrationData.username, password: registrationData.password}).then(() => {
+                this.actions.postUserResponse(res, history);
+            });
         });
         this.dispatch();
     },

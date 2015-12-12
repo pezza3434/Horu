@@ -12,6 +12,10 @@
     overflow:auto;
 }
 
+.account__uploads__container:nth-child(2n+1) {
+    clear: both;
+}
+
 .account__uploads img {
     background-position: 50% 50%;
     background-repeat: no-repeat;

@@ -51,9 +51,6 @@ export default React.createClass({
                     <div className="row">
                         <Navigation isLoggedIn={this.state.isLoggedIn} path={this.props.location.pathname}/>
                     </div>
-                    <div className="row donate">
-                        <a href="https://donorbox.org/horu">Pay what you want for horu</a>
-                    </div>
                     <a href="http://twitter.com/thehoruapp" target="_blank">
                         <div className="row social">
                             <i className="fa fa-twitter"></i>

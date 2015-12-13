@@ -38,7 +38,7 @@ export default React.createClass({
                     <Modal.Header closeButton>
                         <Modal.Title>Image Cropper</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body modalClassName='account__upload__modal-body'>
+                    <Modal.Body bsClass='account__upload__modal-body'>
                         {Cropper ?
                             <Cropper
                             ref='cropper'

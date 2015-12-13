@@ -2,9 +2,8 @@ import React from 'react';
 
 import Header from './header/index';
 import Upload from './image-upload/index';
-import Ratings from './ratings';
+import RatingsContainer from './ratings-container';
 import DeleteRatingModal from './delete-rating-modal';
-import NoImagesMessage from './no-images-message';
 
 import ratingsActions from '../../actions/ratingsActions';
 import imagesActions from '../../actions/imagesActions';
@@ -20,9 +19,9 @@ export default React.createClass({
         this.setState({serverUrl: configurationStore.getServerUrl()});
     },
     componentDidMount() {
-        ratingsActions.getRatings();
         ratingsStore.listen(this._ratingsStoreChange);
         imagesStore.listen(this._imagesStoreChange);
+        ratingsActions.getRatings();
     },
     _ratingsStoreChange(storeState) {
         this.setState(storeState);
@@ -54,8 +53,13 @@ export default React.createClass({
                 <div className="account fill">
                     <Header/>
                     <Upload/>
-                    {ratings && ratings.length > 0 ? <Ratings openUploadModalAction={uploadActions.triggerModalOpen} serverUrl={this.state.serverUrl} ratings={ratings} triggerDeleteModal={this._triggerDeleteModal}/> : ''}
-                    {ratings && ratings.length === 0 && !this.state.apiCallInProgress ? <NoImagesMessage/> : ''}
+                    <RatingsContainer
+                        ratings={ratings}
+                        openUploadModalAction={uploadActions.triggerModalOpen}
+                        serverUrl={this.state.serverUrl}
+                        ratings={ratings}
+                        apiCallInProgress={this.state.apiCallInProgress}
+                        triggerDeleteModal={this._triggerDeleteModal}/>
                     <DeleteRatingModal showModal={this.state.showModal}
                         idToDelete={this.state.idToDelete}
                         cancelModalAction={this._triggerCancelImageDelete}

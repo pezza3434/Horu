@@ -35,6 +35,11 @@ module.exports = [{
         extensions: ['', '.js', '.jsx']
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
         new ExtractTextPlugin("./public/styles.css"),
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.DedupePlugin()

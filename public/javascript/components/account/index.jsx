@@ -8,6 +8,7 @@ import NoImagesMessage from './no-images-message';
 
 import ratingsActions from '../../actions/ratingsActions';
 import imagesActions from '../../actions/imagesActions';
+import uploadActions from '../../actions/uploadActions';
 
 import ratingsStore from '../../stores/ratingsStore';
 import imagesStore from '../../stores/imagesStore';
@@ -53,7 +54,7 @@ export default React.createClass({
                 <div className="account fill">
                     <Header/>
                     <Upload/>
-                    {ratings && ratings.length > 0 ? <Ratings serverUrl={this.state.serverUrl} ratings={ratings} triggerDeleteModal={this._triggerDeleteModal}/> : ''}
+                    {ratings && ratings.length > 0 ? <Ratings openUploadModalAction={uploadActions.triggerModalOpen} serverUrl={this.state.serverUrl} ratings={ratings} triggerDeleteModal={this._triggerDeleteModal}/> : ''}
                     {ratings && ratings.length === 0 && !this.state.apiCallInProgress ? <NoImagesMessage/> : ''}
                     <DeleteRatingModal showModal={this.state.showModal}
                         idToDelete={this.state.idToDelete}

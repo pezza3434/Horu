@@ -38,6 +38,9 @@ var uploadActions = {
     triggerModal(state) {
         this.dispatch(state);
     },
+    triggerModalOpen() {
+        this.actions.triggerModal(true);
+    },
     selectNewImage(ev) {
         this.dispatch(ev);
     },

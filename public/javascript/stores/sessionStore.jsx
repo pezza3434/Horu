@@ -60,8 +60,8 @@ class sessionStore {
         this.isLoggedIn = true;
         this.authenticationToken = response.body.token;
 
-        if(cookieUtil) {
-            cookieUtil.setItem('horu', response.body.token, 1440);
+        if (cookieUtil) {
+            cookieUtil.setItem('horu', response.body.token, 2333000); //Expires in roughly 27 days
         }
 
     }

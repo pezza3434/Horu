@@ -1,4 +1,5 @@
 if (typeof window !== 'undefined') {
+    const history = require('../../history');
     require('./style.scss');
 }
 
@@ -35,9 +36,20 @@ export default React.createClass({
 
     },
     _sidebarClickedAction(e, eventKey) {
+
+        if (eventKey === '1') {
+            this.props.history.pushState(null,'/account');
+        }
+
         if (eventKey === '2') {
             sidebarActions.toggleSettingsModal(true);
         }
+
+        if (eventKey === '3') {
+            sessionActions.logout();
+            this.props.history.pushState(null,'/');
+        }
+
     },
     _sessionStoreChange(storeState) {
         this.setState(storeState);

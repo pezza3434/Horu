@@ -5,7 +5,7 @@ import React from 'react'; //eslint-disable-line
 import routes from './routes.jsx';
 import alt from './alt';
 import cookieUtil from './utils/cookieUtil';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
+import history from './history';
 import {Router} from 'react-router';
 
 var bootstrapData = {};
@@ -37,7 +37,5 @@ bootstrapData.configurationStore = {
 };
 
 alt.bootstrap(JSON.stringify(bootstrapData));
-
-let history = createBrowserHistory();
 
 ReactDOM.render(<Router history={history}>{routes}</Router>, document.getElementById('app-container'));

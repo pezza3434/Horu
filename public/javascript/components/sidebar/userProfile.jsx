@@ -16,7 +16,7 @@ export default React.createClass({
                     <div className="logged-in__profile-text">
                         <div className="logged-in__profile-username">
                             <DropdownButton id="10" className="user-dropdown"  title={this.props.user.username} onSelect={this.props.sidebarClickedAction}>
-                              <MenuItem>Your dashboard</MenuItem>
+                              <MenuItem eventKey="1">Your dashboard</MenuItem>
                               <MenuItem divider />
                               <MenuItem eventKey="2">Settings</MenuItem>
                               <MenuItem eventKey="3">Logout</MenuItem>

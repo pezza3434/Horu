@@ -5,14 +5,17 @@ if (typeof window !== 'undefined') {
 import React from 'react';
 
 import sessionActions from '../../actions/sessionActions';
+import sidebarActions from '../../actions/sidebarActions';
 
 import sessionStore from '../../stores/sessionStore';
 import configurationStore from '../../stores/configurationStore';
+import sidebarStore from '../../stores/sidebarStore';
 
 import Logo from './logo';
 import Navigation from './navigation';
 import UserAreaLoggedIn from './userAreaLoggedin';
 import UserAreaLoggedOut from './userAreaLoggedOut';
+import SettingsModal from './settingsModal';
 
 export default React.createClass({
     getInitialState() {
@@ -26,11 +29,33 @@ export default React.createClass({
         }
 
         sessionStore.listen(this._sessionStoreChange);
+        sidebarStore.listen(this._sidebarStoreChange);
+
         this.setState({serverUrl: configurationStore.getServerUrl()});
 
     },
+    _sidebarClickedAction(e, eventKey) {
+        if (eventKey === '2') {
+            sidebarActions.toggleSettingsModal(true);
+        }
+    },
     _sessionStoreChange(storeState) {
         this.setState(storeState);
+    },
+    _sidebarStoreChange(storeState) {
+        this.setState(storeState);
+    },
+    _closeSettingsModalAction() {
+        sidebarActions.toggleSettingsModal(false);
+    },
+    _settingsFormChangeAction(e) {
+        if (e.target.name === 'weekly') {
+            sidebarActions.toggleWeeklySetting(e.target.checked);
+        }
+    },
+    _savePreferencesAction(e) {
+        e.preventDefault();
+        sidebarActions.savePreferences(this.state.settingsModel);
     },
     _logoutHandler() {
         sessionActions.logout();
@@ -44,7 +69,9 @@ export default React.createClass({
                             <UserAreaLoggedIn
                                 logoutHandler={this._logoutHandler}
                                 user={this.state.user}
-                                serverUrl={this.state.serverUrl}/> :
+                                serverUrl={this.state.serverUrl}
+                                sidebarClickedAction={this._sidebarClickedAction}
+                                /> :
                             <UserAreaLoggedOut history={this.props.history}/>
                         }
                     </div>
@@ -56,6 +83,16 @@ export default React.createClass({
                             <i className="fa fa-twitter"></i>
                         </div>
                     </a>
+                    <SettingsModal
+                        showModal={this.state.displaySettingsModal}
+                        closeModalAction={this._closeSettingsModalAction}
+                        settingsFormChangeAction={this._settingsFormChangeAction}
+                        savePreferencesAction={this._savePreferencesAction}
+                        settingsModel={this.state.settingsModel}
+                        preferencesGetInProgress={this.state.preferencesGetInProgress}
+                        preferencesPostInProgress={this.state.preferencesPostInProgress}
+                        settingsSaveText={this.state.settingsSaveText}
+                     />
                 </div>
         );
     },

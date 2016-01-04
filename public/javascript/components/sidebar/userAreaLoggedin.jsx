@@ -10,7 +10,9 @@ export default React.createClass({
                     {this.props.user ?
                         <UserProfile
                             serverUrl={this.props.serverUrl}
-                            user={this.props.user}/> : ''}
+                            user={this.props.user}
+                            sidebarClickedAction={this.props.sidebarClickedAction}
+                            /> : ''}
                 </div>
                 <div className="col-xs-5 col-sm-0 logout-area">
                     <button

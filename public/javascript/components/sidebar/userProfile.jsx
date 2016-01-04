@@ -1,5 +1,6 @@
 var React = require('react');
-import {Link} from 'react-router';
+var DropdownButton = require('react-bootstrap').DropdownButton;
+var MenuItem = require('react-bootstrap').MenuItem;
 
 export default React.createClass({
     render() {
@@ -14,7 +15,12 @@ export default React.createClass({
                     </div>
                     <div className="logged-in__profile-text">
                         <div className="logged-in__profile-username">
-                            <Link to="account" href="/#/account">{this.props.user.username}</Link>
+                            <DropdownButton id="10" className="user-dropdown"  title={this.props.user.username} onSelect={this.props.sidebarClickedAction}>
+                              <MenuItem>Your dashboard</MenuItem>
+                              <MenuItem divider />
+                              <MenuItem eventKey="2">Settings</MenuItem>
+                              <MenuItem eventKey="3">Logout</MenuItem>
+                            </DropdownButton>
                         </div>
                         <div className="logged-in__profile-votes">
                             {this.props.user.votes} votes

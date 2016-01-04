@@ -1,5 +1,4 @@
 if (typeof window !== 'undefined') {
-    const history = require('../../history');
     require('./style.scss');
 }
 

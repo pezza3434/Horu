@@ -1,7 +1,6 @@
 import {Modal, Input, ButtonInput} from 'react-bootstrap';
-import React from 'react';
+import React from 'react'; //eslint-disable-line
 import LoadingIcon from '../../utils/loading-icon';
-
 
 const settingsModal = (props) => (
     <Modal show={props.showModal}>
